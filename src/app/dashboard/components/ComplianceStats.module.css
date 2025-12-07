@@ -1,0 +1,62 @@
+/* Stats Card Styles */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.icon {
+    font-size: 2rem;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Color variants */
+.blue .value {
+    color: #60a5fa;
+}
+
+.green .value {
+    color: #34d399;
+}
+
+.purple .value {
+    color: #a78bfa;
+}
+
+.orange .value {
+    color: #fbbf24;
+}

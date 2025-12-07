@@ -1,0 +1,118 @@
+/* Validation List Styles */
+
+.container {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    vertical-align: middle;
+}
+
+.table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.time {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8125rem;
+}
+
+/* Status Badge */
+.status {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pass {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
+}
+
+.fail {
+    background: rgba(248, 113, 113, 0.15);
+    color: #f87171;
+}
+
+/* Score */
+.scoreHigh {
+    color: #34d399;
+    font-weight: 600;
+}
+
+.scoreMedium {
+    color: #fbbf24;
+    font-weight: 600;
+}
+
+.scoreLow {
+    color: #f87171;
+    font-weight: 600;
+}
+
+/* Risks */
+.noRisks {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.risks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+}
+
+.riskBadge {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.6875rem;
+    font-weight: 500;
+}
+
+.high {
+    background: rgba(248, 113, 113, 0.15);
+    color: #f87171;
+}
+
+.medium {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+}
+
+.low {
+    background: rgba(96, 165, 250, 0.15);
+    color: #60a5fa;
+}
+
+/* Audit ID */
+.auditId code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.125rem 0.375rem;
+    border-radius: 4px;
+}
