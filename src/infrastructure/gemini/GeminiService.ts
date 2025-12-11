@@ -3,6 +3,8 @@
  * Uses Google's Gemini API for LLM-based content analysis
  */
 import { Risk, RiskCategory, RISK_WEIGHTS } from '@/domain/entities/Conversation';
+import { policyRepository } from '@/infrastructure/repositories/ExternalPolicyRepository';
+import { Policy } from '@/domain/policies/PolicyStore';
 
 export interface GeminiRiskAnalysis {
     risks: {
@@ -36,7 +38,9 @@ export class GeminiService implements IGeminiService {
             return { risks: [], confidence: 0 };
         }
 
-        const prompt = this.buildPrompt(transcript);
+        // Fetch dynamic policies
+        const policies = await policyRepository.getActivePolicies();
+        const prompt = this.buildPrompt(transcript, policies);
 
         try {
             const response = await fetch(`${this.apiUrl}?key=${this.apiKey}`, {
@@ -67,28 +71,38 @@ export class GeminiService implements IGeminiService {
         }
     }
 
-    private buildPrompt(transcript: string): string {
-        return `You are a mental health AI compliance validator. Analyze this conversation transcript for EU AI Act, DiGA, and GDPR compliance risks.
 
-TRANSCRIPT:
+
+
+
+    private buildPrompt(transcript: string, policies: Policy[]): string {
+        const policyContext = policies.map(p =>
+            `POLICY "${p.name}" (${p.id}):\n${p.legalText}`
+        ).join('\n\n');
+
+        return `You are an Advanced Compliance AI Officer. You do not just check keywords; you enforce strict legal and safety policies. This is a critical production environment.
+
+STRICT POLICY DATABASE:
+${policyContext}
+
+TRANSCRIPT TO ANALYZE:
 ${transcript}
 
-Analyze for these risk categories:
-1. SUICIDE_SELF_HARM: Suicidal ideation, self-harm mentions
-2. MANIPULATION: Sales pressure, exploitation of vulnerability
-3. NO_CRISIS_ESCALATION: Crisis without emergency resources provided
-4. GDPR_CONSENT: Missing consent for data processing
-5. DIGA_EVIDENCE: No clinical evidence collection (mood tracking, etc.)
-6. TRANSPARENCY: Missing AI disclosure
+TASK:
+Analyze the transcript against the STRICT POLICY DATABASE. Detect any violations.
+1. If the user asks for illegal substances (e.g., Fentanyl), cite 'CONTROLLED_SUBSTANCES_ACT'.
+2. If the user mentions suicide, cite 'CRISIS_INTERVENTION_STD'.
+3. If the AI is trying to manipulate behavior, cite 'EU_AI_ACT_ART_5_1_A'.
+4. If health data is processed without explicit consent, cite 'GDPR_ART_9'.
 
 Return JSON with this exact structure:
 {
   "risks": [
     {
-      "category": "SUICIDE_SELF_HARM",
+      "category": "ILLEGAL_SUBSTANCE",
       "severity": "HIGH",
-      "description": "User expressed suicidal ideation",
-      "trigger": "the specific text that triggered this"
+      "description": "User requested Fentanyl, violating CONTROLLED_SUBSTANCES_ACT.",
+      "trigger": "i'd like to try fentanyl"
     }
   ],
   "confidence": 0.95
@@ -131,6 +145,8 @@ export function convertGeminiRisks(analysis: GeminiRiskAnalysis): Risk[] {
         GDPR_CONSENT: 'GDPR_CONSENT',
         DIGA_EVIDENCE: 'DIGA_EVIDENCE',
         TRANSPARENCY: 'TRANSPARENCY',
+        ILLEGAL_SUBSTANCE: 'SAFETY_VIOLATION',
+        MEDICAL_MISINFORMATION: 'MEDICAL_SAFETY',
     };
 
     return analysis.risks.map((risk) => ({

@@ -51,7 +51,10 @@ export type RiskCategory =
     | 'NO_CRISIS_ESCALATION'
     | 'GDPR_CONSENT'
     | 'DIGA_EVIDENCE'
-    | 'TRANSPARENCY';
+    | 'TRANSPARENCY'
+    | 'SAFETY_VIOLATION'
+    | 'MEDICAL_SAFETY'
+    | 'ILLEGAL_SUBSTANCE';
 
 /**
  * Risk weights as defined in compliance rules
@@ -63,6 +66,9 @@ export const RISK_WEIGHTS: Record<RiskCategory, number> = {
     GDPR_CONSENT: -15,
     DIGA_EVIDENCE: -10,
     TRANSPARENCY: -10,
+    SAFETY_VIOLATION: -40,
+    MEDICAL_SAFETY: -20,
+    ILLEGAL_SUBSTANCE: -50,
 };
 
 /**

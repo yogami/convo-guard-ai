@@ -7,6 +7,7 @@ import styles from './dashboard.module.css';
 import { ValidationList } from './components/ValidationList';
 import { ComplianceStats } from './components/ComplianceStats';
 import { ExportButton } from './components/ExportButton';
+import { PolicyStatus } from './components/PolicyStatus';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,9 +20,12 @@ export default function DashboardPage() {
                         <span className={styles.logo}>🛡️</span>
                         ConvoGuard AI
                     </h1>
-                    <p className={styles.subtitle}>
-                        Mental Health AI Compliance Dashboard
-                    </p>
+                    <div className={styles.headerMeta}>
+                        <p className={styles.subtitle}>
+                            Mental Health AI Compliance Dashboard
+                        </p>
+                        <PolicyStatus />
+                    </div>
                 </div>
                 <ExportButton />
             </header>

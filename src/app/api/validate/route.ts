@@ -12,6 +12,7 @@ import { RuleRegistry } from '@/domain/rules/RuleRegistry';
 import { apiKeyRepository } from '@/infrastructure/supabase/ApiKeyRepository';
 import { auditLogRepository } from '@/infrastructure/supabase/AuditLogRepository';
 import { geminiService, convertGeminiRisks } from '@/infrastructure/gemini/GeminiService';
+import { alertService } from '@/domain/services/AlertService';
 
 export interface ValidateRequest {
     transcript?: string;
@@ -84,13 +85,26 @@ export async function POST(request: NextRequest) {
         const conversation = createConversation(messages);
 
         // Run rule-based validation
-        const registry = new RuleRegistry();
-        const ruleResults = await registry.validateAll(conversation);
-        const ruleRisks = registry.aggregateRisks(ruleResults);
+        let ruleRisks: Risk[] = [];
+        try {
+            const registry = new RuleRegistry();
+            const ruleResults = await registry.validateAll(conversation);
+            ruleRisks = registry.aggregateRisks(ruleResults);
+        } catch (ruleError) {
+            console.error('Rule validation failed:', ruleError);
+            // Don't crash, just proceed without rules? Or generic error?
+            // For now, proceed.
+        }
 
         // Run AI-based analysis (if API key configured)
-        const aiAnalysis = await geminiService.analyzeTranscript(transcript);
-        const aiRisks = convertGeminiRisks(aiAnalysis);
+        let aiRisks: Risk[] = [];
+        try {
+            const aiAnalysis = await geminiService.analyzeTranscript(transcript);
+            aiRisks = convertGeminiRisks(aiAnalysis);
+        } catch (aiError) {
+            console.error('AI analysis failed:', aiError);
+            // Proceed without AI risks
+        }
 
         // Combine and deduplicate risks
         const allRisks = deduplicateRisks([...ruleRisks, ...aiRisks]);
@@ -102,15 +116,24 @@ export async function POST(request: NextRequest) {
         const executionTimeMs = performance.now() - startTime;
 
         // Create and save audit log
-        const auditLog = createAuditLog(conversation.id, result, {
-            apiKeyId,
-            clientIp: request.headers.get('x-forwarded-for') || undefined,
-            userAgent: request.headers.get('user-agent') || undefined,
-            requestDurationMs: executionTimeMs,
-        });
+        let auditLogId = auditId;
+        try {
+            const auditLog = createAuditLog(conversation.id, result, {
+                apiKeyId,
+                clientIp: request.headers.get('x-forwarded-for') || undefined,
+                userAgent: request.headers.get('user-agent') || undefined,
+                requestDurationMs: executionTimeMs,
+            });
+            auditLogId = auditLog.id;
 
-        // Save audit log (non-blocking)
-        auditLogRepository.save(auditLog, transcript).catch(console.error);
+            // Trigger Alerts if necessary (Non-blocking)
+            alertService.checkAndAlert(result, { auditId: auditLog.id, transcript }).catch(e => console.error('Alert failed:', e));
+
+            // Save audit log (non-blocking)
+            auditLogRepository.save(auditLog, transcript).catch(e => console.error('Audit save failed:', e));
+        } catch (logError) {
+            console.error('Audit log creation failed:', logError);
+        }
 
         // Return response
         const response: ValidateResponse = {
@@ -121,16 +144,16 @@ export async function POST(request: NextRequest) {
                 severity: r.severity,
                 message: r.message,
             })),
-            audit_id: auditLog.id,
+            audit_id: auditLogId,
             execution_time_ms: Math.round(executionTimeMs),
         };
 
         return NextResponse.json(response);
 
-    } catch (error) {
-        console.error('Validation error:', error);
+    } catch (error: any) {
+        console.error('Fatal Validation error:', error);
         return NextResponse.json(
-            { error: 'Internal server error' },
+            { error: 'Internal server error', details: error?.message || String(error) },
             { status: 500 }
         );
     }

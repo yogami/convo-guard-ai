@@ -12,6 +12,7 @@ import { CrisisEscalationRule } from './CrisisEscalationRule';
 import { ConsentRule } from './ConsentRule';
 import { DiGAEvidenceRule } from './DiGAEvidenceRule';
 import { TransparencyRule } from './TransparencyRule';
+import { SafetyRule } from './SafetyRule';
 
 export class RuleRegistry {
     private rules: Map<string, ComplianceRule> = new Map();
@@ -28,6 +29,7 @@ export class RuleRegistry {
         this.register(new ConsentRule());
         this.register(new DiGAEvidenceRule());
         this.register(new TransparencyRule());
+        this.register(new SafetyRule());
     }
 
     /**
