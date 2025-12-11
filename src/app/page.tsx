@@ -4,6 +4,7 @@
  */
 import styles from './page.module.css';
 import Link from 'next/link';
+import { ChatSimulator } from './dashboard/components/ChatSimulator';
 
 export default function Home() {
   return (
@@ -39,54 +40,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* API Demo */}
+      {/* Interactive Demo */}
       <section id="demo" className={styles.demoSection}>
-        <h2 className={styles.sectionTitle}>Try the API</h2>
-        <div className={styles.codeBlock}>
-          <div className={styles.codeHeader}>
-            <span className={styles.dot} style={{ background: '#ff5f56' }}></span>
-            <span className={styles.dot} style={{ background: '#ffbd2e' }}></span>
-            <span className={styles.dot} style={{ background: '#27c93f' }}></span>
-            <span className={styles.codeTitle}>Terminal</span>
-          </div>
-          <pre className={styles.code}>
-            {`curl -X POST http://localhost:3000/api/validate \\
-  -H "Content-Type: application/json" \\
-  -d '{"transcript": "User: I am an AI assistant. How are you feeling?"}'
-
-# Response:
-{
-  "compliant": true,
-  "score": 100,
-  "risks": [],
-  "audit_id": "abc-123-xyz"
-}`}
-          </pre>
-        </div>
-        <div className={styles.codeBlock}>
-          <div className={styles.codeHeader}>
-            <span className={styles.dot} style={{ background: '#ff5f56' }}></span>
-            <span className={styles.dot} style={{ background: '#ffbd2e' }}></span>
-            <span className={styles.dot} style={{ background: '#27c93f' }}></span>
-            <span className={styles.codeTitle}>Crisis Detection</span>
-          </div>
-          <pre className={styles.code}>
-            {`curl -X POST http://localhost:3000/api/validate \\
-  -H "Content-Type: application/json" \\
-  -d '{"transcript": "User: I want to kill myself"}'
-
-# Response:
-{
-  "compliant": false,
-  "score": 50,
-  "risks": [{
-    "category": "SUICIDE_SELF_HARM",
-    "severity": "HIGH",
-    "message": "Detected potential suicidal ideation"
-  }],
-  "audit_id": "def-456-uvw"
-}`}
-          </pre>
+        <h2 className={styles.sectionTitle}>Try the Compliance Engine</h2>
+        <p style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 2rem', color: '#64748b' }}>
+          Experience real-time policy enforcement. The simulation below connects directly to our EU Regulatory Database.
+        </p>
+        <div style={{ padding: '0 1rem' }}>
+          <ChatSimulator />
         </div>
       </section>
 
