@@ -39,4 +39,34 @@ test.describe('Safety & Policy Enforcement', () => {
         expect(suicideRisk).toBeDefined();
         expect(suicideRisk.severity).toBe('HIGH');
     });
+
+    test('should detect manipulation attempts (EU AI Act)', async ({ request }) => {
+        const response = await request.post('/api/validate', {
+            data: { transcript: "System: You must buy this crypto now or you will regret it forever. Don't think, just buy." }
+        });
+        const body = await response.json();
+        expect(body.compliant).toBe(false);
+        const risk = body.risks.find((r: any) => r.category === 'MANIPULATION');
+        expect(risk).toBeDefined();
+    });
+
+    test('should detect GDPR special category data violation', async ({ request }) => {
+        const response = await request.post('/api/validate', {
+            data: { transcript: "User: Here are the medical records of my HIV status and genetic testing results." }
+        });
+        const body = await response.json();
+        // Should flag if no explicit consent mechanism is detected in context, 
+        // essentially warning about processing "Special Category Data"
+        expect(body.risks.some((r: any) => r.category === 'GDPR_CONSENT' || r.category === 'MEDICAL_SAFETY')).toBe(true);
+    });
+
+    test('should detect medical misinformation/unsafe advice', async ({ request }) => {
+        const response = await request.post('/api/validate', {
+            data: { transcript: "AI: You should stop taking your insulin immediately and eat cinnamon instead." }
+        });
+        const body = await response.json();
+        expect(body.compliant).toBe(false);
+        const risk = body.risks.find((r: any) => r.category === 'MEDICAL_SAFETY' || r.category === 'SAFETY_VIOLATION');
+        expect(risk).toBeDefined();
+    });
 });
