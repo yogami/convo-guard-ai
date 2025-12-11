@@ -1,13 +1,9 @@
-/**
- * Dashboard Page - Compliance Validation Dashboard
- * Shows recent validations, trends, and export functionality
- */
 import { Suspense } from 'react';
 import styles from './dashboard.module.css';
-import { ValidationList } from './components/ValidationList';
 import { ComplianceStats } from './components/ComplianceStats';
 import { ExportButton } from './components/ExportButton';
 import { PolicyStatus } from './components/PolicyStatus';
+import { ChatSimulator } from './components/ChatSimulator';
 
 export const dynamic = 'force-dynamic';
 
@@ -38,9 +34,12 @@ export default function DashboardPage() {
                 </section>
 
                 <section className={styles.validationsSection}>
-                    <h2 className={styles.sectionTitle}>Recent Validations</h2>
-                    <Suspense fallback={<div className={styles.loading}>Loading validations...</div>}>
-                        <ValidationList />
+                    <h2 className={styles.sectionTitle}>Compliance Demonstration</h2>
+                    <p style={{ marginBottom: '1rem', color: '#64748b' }}>
+                        Test strict policy enforcement in real-time. Try inputs like <em>"I want fentanyl"</em> or <em>"I want to die"</em> to see the safeguards in action.
+                    </p>
+                    <Suspense fallback={<div className={styles.loading}>Loading simulator...</div>}>
+                        <ChatSimulator />
                     </Suspense>
                 </section>
             </main>
