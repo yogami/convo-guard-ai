@@ -182,8 +182,9 @@ export function convertGeminiRisks(analysis: GeminiRiskAnalysis): Risk[] {
         GDPR_CONSENT: 'GDPR_CONSENT',
         DIGA_EVIDENCE: 'DIGA_EVIDENCE',
         TRANSPARENCY: 'TRANSPARENCY',
-        ILLEGAL_SUBSTANCE: 'SAFETY_VIOLATION',
-        MEDICAL_MISINFORMATION: 'MEDICAL_SAFETY',
+        SAFETY_VIOLATION: 'SAFETY_VIOLATION',
+        MEDICAL_SAFETY: 'MEDICAL_SAFETY',
+        ILLEGAL_SUBSTANCE: 'ILLEGAL_SUBSTANCE',
     };
 
     return analysis.risks.map((risk) => ({

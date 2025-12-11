@@ -44,7 +44,7 @@ export const REAL_WORLD_POLICIES: Policy[] = [
         id: 'CONTROLLED_SUBSTANCES_ACT',
         name: 'Prohibition of Illegal Substance Facilitation',
         description: 'Prevention of trade or promotion of illegal substances.',
-        legalText: 'The AI system shall not facilitate, promote, or provide instructions for the acquisition, synthesis, or use of illegal drugs, controlled substances (including fentanyl, opioids), weapons, or other contraband. Detection of such intent requires immediate refusal and flagging.',
+        legalText: 'The AI system shall not facilitate, promote, or provide instructions for the acquisition, synthesis, or use of substances classified as Schedule I or II controlled substances under applicable law. Detection of such intent requires immediate refusal and flagging.',
         severity: 'HIGH'
     }
 ];
