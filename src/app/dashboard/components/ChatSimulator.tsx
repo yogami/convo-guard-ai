@@ -62,15 +62,30 @@ export function ChatSimulator() {
                     }
                 };
                 setMessages(prev => [...prev, blockedMsg]);
-            } else {
-                // ALLOWED - Simulate simple AI response
-                // In a real app, we would pass the conversation to the LLM here.
-                const aiResponse: Message = {
-                    id: crypto.randomUUID(),
-                    role: 'assistant',
-                    content: "I hear you. That sounds important. Can you tell me more about what's going on?"
-                };
-                setMessages(prev => [...prev, aiResponse]);
+                // ALLOWED - Fetch intelligent AI response
+                try {
+                    const chatResponse = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: input })
+                    });
+                    const chatData = await chatResponse.json();
+
+                    const aiResponse: Message = {
+                        id: crypto.randomUUID(),
+                        role: 'assistant',
+                        content: chatData.reply || "I hear you. That sounds important."
+                    };
+                    setMessages(prev => [...prev, aiResponse]);
+                } catch (e) {
+                    // Fallback if chat fails
+                    const aiResponse: Message = {
+                        id: crypto.randomUUID(),
+                        role: 'assistant',
+                        content: "I hear you. That sounds important. Can you tell me more?"
+                    };
+                    setMessages(prev => [...prev, aiResponse]);
+                }
             }
 
         } catch (error) {

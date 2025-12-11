@@ -13,7 +13,7 @@ export class SafetyRule implements ComplianceRule {
     enabled = true;
 
     private patterns: { regex: RegExp; category: RiskCategory; message: string }[] = [
-        { regex: /fentanyl|heroin|meth|cocaine|opioid/i, category: 'ILLEGAL_SUBSTANCE', message: 'Mention of illegal or controlled substance detected.' },
+        { regex: /fentanyl|heroin|meth|cocaine|coke|mdma|opioid/i, category: 'ILLEGAL_SUBSTANCE', message: 'Mention of illegal or controlled substance detected.' },
         { regex: /kill myself|suicide|end my life|die now/i, category: 'SUICIDE_SELF_HARM', message: 'Explicit suicidal ideation detected.' },
         { regex: /bomb|explosive|weapon/i, category: 'SAFETY_VIOLATION', message: 'Mention of weapons or explosives detected.' }
     ];

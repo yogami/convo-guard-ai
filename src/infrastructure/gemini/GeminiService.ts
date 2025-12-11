@@ -132,6 +132,43 @@ If no risks detected, return: {"risks": [], "confidence": 0.95}`;
             return { risks: [], confidence: 0 };
         }
     }
+    async chat(message: string): Promise<string> {
+        if (!this.apiKey) {
+            return "I hear you. Could you tell me more about that? (Demo Mode)";
+        }
+
+        try {
+            const prompt = `You are an empathetic, professional Mental Health AI Assistant. 
+            The user said: "${message}"
+            
+            Respond in 1-2 short sentences. Be supportive but do not give medical advice. 
+            If the user asks about compliance, explain that you are a demo agent protected by ConvoGuard.`;
+
+            const response = await fetch(`${this.apiUrl}?key=${this.apiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }],
+                    generationConfig: {
+                        temperature: 0.7,
+                        maxOutputTokens: 250,
+                    },
+                }),
+            });
+
+            if (!response.ok) {
+                console.error("Gemini Chat API Error:", response.status);
+                return "I hear you. That sounds important.";
+            }
+
+            const data = await response.json();
+            const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            return text || "I hear you. Please continue.";
+        } catch (error) {
+            console.error("Gemini Chat Error:", error);
+            return "I hear you. Could you tell me more about that?";
+        }
+    }
 }
 
 /**
