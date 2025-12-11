@@ -12,11 +12,9 @@ export class SafetyRule implements ComplianceRule {
     description = 'Regex-based detection of controlled substances and self-harm keywords';
     enabled = true;
 
-    private patterns: { regex: RegExp; category: RiskCategory; message: string }[] = [
-        { regex: /fentanyl|heroin|meth|cocaine|coke|mdma|opioid/i, category: 'ILLEGAL_SUBSTANCE', message: 'Mention of illegal or controlled substance detected.' },
-        { regex: /kill myself|suicide|end my life|die now/i, category: 'SUICIDE_SELF_HARM', message: 'Explicit suicidal ideation detected.' },
-        { regex: /bomb|explosive|weapon/i, category: 'SAFETY_VIOLATION', message: 'Mention of weapons or explosives detected.' }
-    ];
+    // Patterns removed in favor of Semantic AI Analysis per user requirement.
+    // The Gemini Service now handles slang and semantic matching (e.g. "coke", "mdma").
+    private patterns: { regex: RegExp; category: RiskCategory; message: string }[] = [];
 
     async validate(conversation: Conversation): Promise<Risk[]> {
         const risks: Risk[] = [];
