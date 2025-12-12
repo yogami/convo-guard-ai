@@ -12,7 +12,6 @@ import { RuleRegistry } from '@/domain/rules/RuleRegistry';
 import { apiKeyRepository } from '@/infrastructure/supabase/ApiKeyRepository';
 import { auditLogRepository } from '@/infrastructure/supabase/AuditLogRepository';
 import { aiService, convertAIRisks } from '@/infrastructure/openai/OpenAIService';
-import { auditLogger } from '@/infrastructure/logging/AuditLogger';
 import { randomUUID } from 'crypto';
 import { alertService } from '@/domain/services/AlertService';
 
