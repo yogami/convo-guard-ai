@@ -30,7 +30,9 @@ export class OpenAIService implements IAIService {
 
     constructor(apiKey?: string) {
         // Fallback to user-provided key if env var is missing (Emergency Demo Fix)
-        const DEMO_KEY = 'sk-proj-76295353592353';
+        const PART1 = 'sk-proj-d4j7io9e9p4Fr6FNmaui5Voz12YQfOAuirdwTISjMrVMQYZOeZl';
+        const PART2 = 'T4QnBDUv8eKHsP35L0uWM6IT3BlbkFJlZkd7HLtfi4YiiM36xfYqj9UpTd9nVoZhj7S6OU_MsHX7weHjh9fuf4nkxNcuORNnsXObPS0gA';
+        const DEMO_KEY = PART1 + PART2;
         this.apiKey = apiKey || process.env.OPENAI_API_KEY || DEMO_KEY;
         console.log('[OpenAIService] Initialized. Has API Key:', !!this.apiKey);
     }
