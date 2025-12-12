@@ -9,6 +9,7 @@ export interface Policy {
     description: string;
     legalText: string;
     severity: 'HIGH' | 'MEDIUM' | 'LOW';
+    enabled?: boolean;
 }
 
 export const REAL_WORLD_POLICIES: Policy[] = [

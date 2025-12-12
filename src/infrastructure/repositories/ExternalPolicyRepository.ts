@@ -15,12 +15,17 @@ export class ExternalPolicyRepository implements PolicyRepository {
         this.cachedPolicies = [...REAL_WORLD_POLICIES];
     }
 
-    async getActivePolicies(): Promise<Policy[]> {
+    async getAllPolicies(): Promise<Policy[]> {
         // simple stale-while-revalidate strategy
         if (!this.lastSync || (Date.now() - this.lastSync.getTime() > this.CACHE_TTL_MS)) {
             await this.syncWithRegistry();
         }
         return this.cachedPolicies;
+    }
+
+    async getActivePolicies(): Promise<Policy[]> {
+        const policies = await this.getAllPolicies();
+        return policies.filter(p => p.enabled !== false);
     }
 
     async syncWithRegistry(): Promise<void> {
@@ -42,17 +47,34 @@ export class ExternalPolicyRepository implements PolicyRepository {
             name: 'Emergency Order 2025-X',
             description: 'Immediate cessation of unmonitored medical advice.',
             legalText: 'Effective immediately: No AI system shall provide specific dosage recommendations for psychiatric medication without human-in-the-loop verification.',
-            severity: 'HIGH'
+            severity: 'HIGH',
+            enabled: true
         };
 
-        // De-duplicate based on ID
-        const policyMap = new Map(this.cachedPolicies.map(p => [p.id, p]));
-        policyMap.set(dynamicPolicy.id, dynamicPolicy);
+        // Load static policies if cache is empty, else merge (to preserve enabled state)
+        const newPolicies = [...REAL_WORLD_POLICIES, dynamicPolicy];
 
-        this.cachedPolicies = Array.from(policyMap.values());
+        if (this.cachedPolicies.length === 0) {
+            this.cachedPolicies = newPolicies.map(p => ({ ...p, enabled: true }));
+        } else {
+            // Smart merge: keep enabled state from cache if exists
+            const policyMap = new Map(this.cachedPolicies.map(p => [p.id, p]));
+            this.cachedPolicies = newPolicies.map(p => {
+                const existing = policyMap.get(p.id);
+                return { ...p, enabled: existing ? existing.enabled : true };
+            });
+        }
+
         this.lastSync = new Date();
-
         console.log(` [POLICY SYNC] Synchronization Complete. ${this.cachedPolicies.length} Active Policies loaded.`);
+    }
+
+    async togglePolicy(id: string, enabled: boolean): Promise<void> {
+        const policy = this.cachedPolicies.find(p => p.id === id);
+        if (policy) {
+            policy.enabled = enabled;
+            console.log(`[POLICY] Config Update: ${id} -> ${enabled ? 'ENABLED' : 'DISABLED'}`);
+        }
     }
 }
 

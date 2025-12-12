@@ -6,7 +6,12 @@ import { Policy } from '../policies/PolicyStore';
  */
 export interface PolicyRepository {
     /**
-     * Get all active policies for the current region/context.
+     * Get all policies (enabled and disabled) for configuration.
+     */
+    getAllPolicies(): Promise<Policy[]>;
+
+    /**
+     * Get only ENABLED policies for validation.
      */
     getActivePolicies(): Promise<Policy[]>;
 
@@ -14,4 +19,9 @@ export interface PolicyRepository {
      * Force a synchronization with the external regulatory source.
      */
     syncWithRegistry(): Promise<void>;
+
+    /**
+     * Toggle a policy's enabled state.
+     */
+    togglePolicy(id: string, enabled: boolean): Promise<void>;
 }
