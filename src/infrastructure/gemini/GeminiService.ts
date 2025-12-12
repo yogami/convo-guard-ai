@@ -67,7 +67,7 @@ export class GeminiService implements IGeminiService {
                     risks: [{
                         category: 'SAFETY_VIOLATION',
                         severity: 'HIGH',
-                        description: 'Safety System unavailable. Defaulting to block.',
+                        description: `Safety System unavailable (Error ${response.status}). Defaulting to block.`,
                         trigger: 'SYSTEM_ERROR' // Fail Safe
                     }],
                     confidence: 0
