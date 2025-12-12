@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { geminiService } from '@/infrastructure/gemini/GeminiService';
+import { aiService } from '@/infrastructure/openai/OpenAIService';
 
 export async function POST(req: Request) {
     try {
@@ -10,7 +10,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Message required' }, { status: 400 });
         }
 
-        const reply = await geminiService.chat(message);
+        const reply = await aiService.chat(message);
 
         return NextResponse.json({
             reply,

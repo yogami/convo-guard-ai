@@ -11,7 +11,9 @@ import { createAuditLog } from '@/domain/entities/AuditLog';
 import { RuleRegistry } from '@/domain/rules/RuleRegistry';
 import { apiKeyRepository } from '@/infrastructure/supabase/ApiKeyRepository';
 import { auditLogRepository } from '@/infrastructure/supabase/AuditLogRepository';
-import { geminiService, convertGeminiRisks } from '@/infrastructure/gemini/GeminiService';
+import { aiService, convertAIRisks } from '@/infrastructure/openai/OpenAIService';
+import { auditLogger } from '@/infrastructure/logging/AuditLogger';
+import { randomUUID } from 'crypto';
 import { alertService } from '@/domain/services/AlertService';
 
 export interface ValidateRequest {
@@ -32,9 +34,10 @@ export interface ValidateResponse {
     execution_time_ms: number;
 }
 
-export async function POST(request: NextRequest) {
-    const startTime = performance.now();
+export const runtime = 'edge';
 
+export async function POST(request: Request) {
+    const startTime = Date.now();
     try {
         const body: ValidateRequest = await request.json();
 
@@ -99,8 +102,8 @@ export async function POST(request: NextRequest) {
         // Run AI-based analysis (if API key configured)
         let aiRisks: Risk[] = [];
         try {
-            const aiAnalysis = await geminiService.analyzeTranscript(transcript);
-            aiRisks = convertGeminiRisks(aiAnalysis);
+            const aiAnalysis = await aiService.analyzeTranscript(transcript);
+            aiRisks = convertAIRisks(aiAnalysis);
         } catch (aiError) {
             console.error('AI analysis failed:', aiError);
             // Proceed without AI risks
@@ -113,7 +116,7 @@ export async function POST(request: NextRequest) {
         const auditId = crypto.randomUUID();
         const result = createValidationResult(allRisks, auditId);
 
-        const executionTimeMs = performance.now() - startTime;
+        const executionTimeMs = Date.now() - startTime;
 
         // Create and save audit log
         let auditLogId = auditId;
