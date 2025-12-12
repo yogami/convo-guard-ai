@@ -12,7 +12,7 @@ export async function GET() {
         version: process.env.npm_package_version || '0.1.0',
         services: {
             database: isSupabaseConfigured() ? 'connected' : 'not_configured',
-            gemini: process.env.GEMINI_API_KEY ? 'configured' : 'not_configured',
+            openai: process.env.OPENAI_API_KEY ? 'configured' : 'fallback_mode',
         },
     };
 

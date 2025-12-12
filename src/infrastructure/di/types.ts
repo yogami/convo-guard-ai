@@ -9,7 +9,7 @@ export const TYPES = {
     // Services
     RuleRegistry: Symbol.for('RuleRegistry'),
     RiskAnalyzer: Symbol.for('RiskAnalyzer'),
-    GeminiService: Symbol.for('GeminiService'),
+    OpenAIService: Symbol.for('OpenAIService'),
 
     // Use Cases
     ValidateConversation: Symbol.for('ValidateConversation'),
