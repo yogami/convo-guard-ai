@@ -65,7 +65,7 @@ export class GeminiService implements IGeminiService {
                 console.error('Gemini API error:', response.status, await response.text());
                 return {
                     risks: [{
-                        category: 'SAFETY_VIOLATION',
+                        category: 'SYSTEM_ERROR',
                         severity: 'HIGH',
                         description: `Safety System unavailable (Error ${response.status}). Defaulting to block.`,
                         trigger: 'SYSTEM_ERROR' // Fail Safe
@@ -81,7 +81,7 @@ export class GeminiService implements IGeminiService {
             console.error('Gemini analysis failed:', error);
             return {
                 risks: [{
-                    category: 'SAFETY_VIOLATION',
+                    category: 'SYSTEM_ERROR',
                     severity: 'HIGH',
                     description: 'Safety System fatal error. Defaulting to block.',
                     trigger: 'SYSTEM_ERROR'
@@ -263,7 +263,8 @@ export function convertGeminiRisks(analysis: GeminiRiskAnalysis): Risk[] {
         'GDPR_VIOLATION': 'GDPR_CONSENT',
         'GDPR_ART_9': 'GDPR_CONSENT',
         'CRISIS_INTERVENTION': 'SUICIDE_SELF_HARM',
-        'EU_AI_ACT_ART_5': 'MANIPULATION'
+        'EU_AI_ACT_ART_5': 'MANIPULATION',
+        'SYSTEM_ERROR': 'SYSTEM_ERROR'
     };
 
     return analysis.risks.map((risk) => {

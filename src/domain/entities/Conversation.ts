@@ -54,7 +54,8 @@ export type RiskCategory =
     | 'TRANSPARENCY'
     | 'SAFETY_VIOLATION'
     | 'MEDICAL_SAFETY'
-    | 'ILLEGAL_SUBSTANCE';
+    | 'ILLEGAL_SUBSTANCE'
+    | 'SYSTEM_ERROR';
 
 /**
  * Risk weights as defined in compliance rules
@@ -69,6 +70,7 @@ export const RISK_WEIGHTS: Record<RiskCategory, number> = {
     SAFETY_VIOLATION: -40,
     MEDICAL_SAFETY: -20,
     ILLEGAL_SUBSTANCE: -50,
+    SYSTEM_ERROR: -100,
 };
 
 /**
