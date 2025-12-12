@@ -25,7 +25,7 @@ export interface IGeminiService {
  */
 export class GeminiService implements IGeminiService {
     private apiKey: string;
-    private apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+    private apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
     constructor(apiKey?: string) {
         this.apiKey = apiKey || process.env.GEMINI_API_KEY || '';
@@ -220,37 +220,55 @@ OUTPUT FORMAT (JSON ONLY):
             return "I hear you. Could you tell me more about that? (Demo Mode)";
         }
 
-        try {
-            const prompt = `You are an empathetic, professional Mental Health AI Assistant. 
-            The user said: "${message}"
-            
-            Respond in 1-2 short sentences. Be supportive but do not give medical advice. 
-            If the user asks about compliance, explain that you are a demo agent protected by ConvoGuard.`;
+        let retryCount = 0;
+        const MAX_RETRIES = 3;
 
-            const response = await fetch(`${this.apiUrl}?key=${this.apiKey}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: prompt }] }],
-                    generationConfig: {
-                        temperature: 0.7,
-                        maxOutputTokens: 250,
-                    },
-                }),
-            });
+        while (retryCount < MAX_RETRIES) {
+            try {
+                const prompt = `You are an empathetic, professional Mental Health AI Assistant. 
+                The user said: "${message}"
+                
+                Respond in 1-2 short sentences. Be supportive but do not give medical advice. 
+                If the user asks about compliance, explain that you are a demo agent protected by ConvoGuard.`;
 
-            if (!response.ok) {
-                console.error("Gemini Chat API Error:", response.status);
-                return "I hear you. That sounds important.";
+                const response = await fetch(`${this.apiUrl}?key=${this.apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }],
+                        generationConfig: {
+                            temperature: 0.7,
+                            maxOutputTokens: 250,
+                        },
+                    }),
+                });
+
+                if (response.status === 429) {
+                    // Rate limit hit
+                    retryCount++;
+                    const delay = Math.pow(2, retryCount) * 1000;
+                    console.warn(`Gemini Chat 429. Retrying in ${delay}ms...`);
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    continue;
+                }
+
+                if (!response.ok) {
+                    console.error("Gemini Chat API Error:", response.status);
+                    return "I hear you. That sounds important.";
+                }
+
+                const data = await response.json();
+                const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+                return text || "I hear you. Please continue.";
+
+            } catch (error) {
+                console.error("Gemini Chat Network Error:", error);
+                retryCount++;
+                if (retryCount >= MAX_RETRIES) return "I hear you. Could you tell me more?";
+                await new Promise(resolve => setTimeout(resolve, 1000));
             }
-
-            const data = await response.json();
-            const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-            return text || "I hear you. Please continue.";
-        } catch (error) {
-            console.error("Gemini Chat Error:", error);
-            return "I hear you. Could you tell me more about that?";
         }
+        return "I hear you. That sounds important.";
     }
 }
 

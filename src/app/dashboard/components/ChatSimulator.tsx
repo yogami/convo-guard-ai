@@ -62,6 +62,7 @@ export function ChatSimulator() {
                     }
                 };
                 setMessages(prev => [...prev, blockedMsg]);
+            } else {
                 // ALLOWED - Fetch intelligent AI response
                 try {
                     const chatResponse = await fetch('/api/chat', {
