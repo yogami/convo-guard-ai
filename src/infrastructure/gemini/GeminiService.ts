@@ -109,47 +109,14 @@ export class GeminiService implements IGeminiService {
             }],
             confidence: 0
         };
-
-        if (!response.ok) {
-            console.error('Gemini API error:', response.status, await response.text());
-            return {
-                risks: [{
-                    category: 'SYSTEM_ERROR',
-                    severity: 'HIGH',
-                    description: `Safety System unavailable (Error ${response.status}). Defaulting to block.`,
-                    trigger: 'SYSTEM_ERROR' // Fail Safe
-                }],
-                confidence: 0
-            };
-        }
-
-        const data = await response.json();
-        console.log('[DEBUG] Gemini Raw Response:', JSON.stringify(data, null, 2));
-        return this.parseResponse(data);
-    } catch(error) {
-        console.error('Gemini analysis failed:', error);
-        return {
-            risks: [{
-                category: 'SYSTEM_ERROR',
-                severity: 'HIGH',
-                description: 'Safety System fatal error. Defaulting to block.',
-                trigger: 'SYSTEM_ERROR'
-            }],
-            confidence: 0
-        };
     }
-}
-
-
-
-
 
     private buildPrompt(transcript: string, policies: Policy[]): string {
-    const policyContext = policies.map(p =>
-        `[${p.id}] "${p.name}"\nDEFINITION: ${p.description}\nLEGAL_TEXT: ${p.legalText}\nSEVERITY: ${p.severity}`
-    ).join('\n\n');
+        const policyContext = policies.map(p =>
+            `[${p.id}] "${p.name}"\nDEFINITION: ${p.description}\nLEGAL_TEXT: ${p.legalText}\nSEVERITY: ${p.severity}`
+        ).join('\n\n');
 
-    return `ROLE: You are a Regulatory Compliance Engine. You are NOT an assistant. You are a strict logic gate.
+        return `ROLE: You are a Regulatory Compliance Engine. You are NOT an assistant. You are a strict logic gate.
 Your task is to AUDIT the transcript against the provided POLICY_DATABASE.
 
 INSTRUCTIONS:
@@ -186,104 +153,104 @@ OUTPUT FORMAT (JSON ONLY):
   ],
   "confidence": 1.0
 }`;
-}
+    }
 
     private parseResponse(data: unknown): GeminiRiskAnalysis {
-    try {
-        // Extract text from Gemini response structure
-        const responseData = data as {
-            candidates?: {
-                content?: { parts?: { text?: string }[] },
-                finishReason?: string
-            }[]
-        };
-
-        const candidate = responseData?.candidates?.[0];
-        const finishReason = candidate?.finishReason;
-        const text = candidate?.content?.parts?.[0]?.text;
-
-        // If Gemini refused to generate text due to Safety/Recitation, treat as High Risk
-        if (finishReason === 'SAFETY' || finishReason === 'RECITATION' || finishReason === 'OTHER') {
-            return {
-                risks: [{
-                    category: 'SAFETY_VIOLATION',
-                    severity: 'HIGH',
-                    description: `Content flagged by AI Safety Filter (${finishReason}).`,
-                    trigger: 'AI_SAFETY_FILTER'
-                }],
-                confidence: 1.0
+        try {
+            // Extract text from Gemini response structure
+            const responseData = data as {
+                candidates?: {
+                    content?: { parts?: { text?: string }[] },
+                    finishReason?: string
+                }[]
             };
-        }
 
-        if (!text) {
-            // Return generic block if no text but no explicit reason (Fail Safe)
+            const candidate = responseData?.candidates?.[0];
+            const finishReason = candidate?.finishReason;
+            const text = candidate?.content?.parts?.[0]?.text;
+
+            // If Gemini refused to generate text due to Safety/Recitation, treat as High Risk
+            if (finishReason === 'SAFETY' || finishReason === 'RECITATION' || finishReason === 'OTHER') {
+                return {
+                    risks: [{
+                        category: 'SAFETY_VIOLATION',
+                        severity: 'HIGH',
+                        description: `Content flagged by AI Safety Filter (${finishReason}).`,
+                        trigger: 'AI_SAFETY_FILTER'
+                    }],
+                    confidence: 1.0
+                };
+            }
+
+            if (!text) {
+                // Return generic block if no text but no explicit reason (Fail Safe)
+                return {
+                    risks: [{
+                        category: 'SAFETY_VIOLATION',
+                        severity: 'HIGH',
+                        description: 'AI refused to process content.',
+                        trigger: 'AI_REFUSAL'
+                    }],
+                    confidence: 0
+                };
+            }
+
+            // Parse JSON from response
+            const parsed = JSON.parse(text);
+            return {
+                risks: parsed.risks || [],
+                confidence: parsed.confidence || 0.8,
+            };
+        } catch (error) {
+            console.error('Failed to parse Gemini response:', error);
+            // JSON parse error likely means AI returned plain text refusal "I cannot do that..."
             return {
                 risks: [{
                     category: 'SAFETY_VIOLATION',
                     severity: 'HIGH',
-                    description: 'AI refused to process content.',
+                    description: 'Unsafe content detected (Parse Fallback).',
                     trigger: 'AI_REFUSAL'
                 }],
                 confidence: 0
             };
         }
-
-        // Parse JSON from response
-        const parsed = JSON.parse(text);
-        return {
-            risks: parsed.risks || [],
-            confidence: parsed.confidence || 0.8,
-        };
-    } catch (error) {
-        console.error('Failed to parse Gemini response:', error);
-        // JSON parse error likely means AI returned plain text refusal "I cannot do that..."
-        return {
-            risks: [{
-                category: 'SAFETY_VIOLATION',
-                severity: 'HIGH',
-                description: 'Unsafe content detected (Parse Fallback).',
-                trigger: 'AI_REFUSAL'
-            }],
-            confidence: 0
-        };
     }
-}
-    async chat(message: string): Promise < string > {
-    if(!this.apiKey) {
-    return "I hear you. Could you tell me more about that? (Demo Mode)";
-}
+    async chat(message: string): Promise<string> {
+        if (!this.apiKey) {
+            return "I hear you. Could you tell me more about that? (Demo Mode)";
+        }
 
-try {
-    const prompt = `You are an empathetic, professional Mental Health AI Assistant. 
+        try {
+            const prompt = `You are an empathetic, professional Mental Health AI Assistant. 
             The user said: "${message}"
             
             Respond in 1-2 short sentences. Be supportive but do not give medical advice. 
             If the user asks about compliance, explain that you are a demo agent protected by ConvoGuard.`;
 
-    const response = await fetch(`${this.apiUrl}?key=${this.apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: {
-                temperature: 0.7,
-                maxOutputTokens: 250,
-            },
-        }),
-    });
+            const response = await fetch(`${this.apiUrl}?key=${this.apiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }],
+                    generationConfig: {
+                        temperature: 0.7,
+                        maxOutputTokens: 250,
+                    },
+                }),
+            });
 
-    if (!response.ok) {
-        console.error("Gemini Chat API Error:", response.status);
-        return "I hear you. That sounds important.";
-    }
+            if (!response.ok) {
+                console.error("Gemini Chat API Error:", response.status);
+                return "I hear you. That sounds important.";
+            }
 
-    const data = await response.json();
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    return text || "I hear you. Please continue.";
-} catch (error) {
-    console.error("Gemini Chat Error:", error);
-    return "I hear you. Could you tell me more about that?";
-}
+            const data = await response.json();
+            const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            return text || "I hear you. Please continue.";
+        } catch (error) {
+            console.error("Gemini Chat Error:", error);
+            return "I hear you. Could you tell me more about that?";
+        }
     }
 }
 
