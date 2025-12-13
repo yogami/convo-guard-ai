@@ -11,6 +11,9 @@ export const MENTAL_HEALTH_EU_V1: PolicyPack = {
     name: 'Mental Health Compliance (EU AI Act & DiGA)',
     version: '1.0.0',
     description: 'Standard policy pack for mental health chatbots operating in EU. Covers suicide prevention, manipulation, and GDPR.',
+    domain: 'mental_health',
+    jurisdiction: 'EU',
+    effectiveFrom: new Date('2024-08-01'),
 
     detectors: [
         new SuicideDetector(),

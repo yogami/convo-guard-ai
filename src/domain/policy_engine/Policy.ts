@@ -34,6 +34,12 @@ export interface PolicyPack {
     version: string;
     description: string;
 
+    // Domain-agnostic metadata
+    domain: string; // e.g., "mental_health", "fintech", "healthcare"
+    jurisdiction: string; // e.g., "EU", "US", "GLOBAL"
+    effectiveFrom?: Date;
+    effectiveTo?: Date;
+
     // Detectors needed for this pack
     detectors: any[]; // We will type this properly in implementation
 

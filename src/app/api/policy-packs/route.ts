@@ -8,8 +8,12 @@ export async function GET() {
         name: p.name,
         version: p.version,
         description: p.description,
+        domain: p.domain,
+        jurisdiction: p.jurisdiction,
+        effectiveFrom: p.effectiveFrom?.toISOString(),
         ruleCount: p.rules.length
     }));
 
     return NextResponse.json(packs);
 }
+

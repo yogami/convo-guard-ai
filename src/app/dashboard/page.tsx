@@ -4,6 +4,7 @@ import { ComplianceStats } from './components/ComplianceStats';
 import { ExportButton } from './components/ExportButton';
 import { PolicyStatus } from './components/PolicyStatus';
 import { ChatSimulator } from './components/ChatSimulator';
+import { PolicyPacksSection } from './components/PolicyPacksSection';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,7 +19,7 @@ export default function DashboardPage() {
                     </h1>
                     <div className={styles.headerMeta}>
                         <p className={styles.subtitle}>
-                            Mental Health AI Compliance Dashboard
+                            Conversation Policy Engine Dashboard
                         </p>
                         <PolicyStatus />
                     </div>
@@ -33,6 +34,10 @@ export default function DashboardPage() {
                     </Suspense>
                 </section>
 
+                <Suspense fallback={<div className={styles.loading}>Loading policy packs...</div>}>
+                    <PolicyPacksSection />
+                </Suspense>
+
                 <section className={styles.validationsSection}>
                     <h2 className={styles.sectionTitle}>Compliance Demonstration</h2>
                     <p style={{ marginBottom: '1rem', color: '#64748b' }}>
@@ -46,8 +51,9 @@ export default function DashboardPage() {
 
             <footer className={styles.footer}>
                 <p>EU AI Act • DiGA • GDPR Compliant</p>
-                <p className={styles.version}>v0.1.0 MVP</p>
+                <p className={styles.version}>v1.0.0</p>
             </footer>
         </div>
     );
 }
+

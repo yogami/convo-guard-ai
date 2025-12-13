@@ -23,10 +23,13 @@ export interface ValidateRequest {
 export interface ValidateResponse {
     compliant: boolean;
     score: number;
+    policyPackId: string;
     risks: {
         category: string;
         severity: string;
         message: string;
+        ruleId?: string;
+        regulationIds?: string[];
     }[];
     audit_id: string;
     execution_time_ms: number;
@@ -137,10 +140,13 @@ export async function POST(request: Request) {
         const response: ValidateResponse = {
             compliant: result.compliant,
             score: result.score,
-            risks: result.risks.map(r => ({
-                category: r.category,
-                severity: r.severity,
-                message: r.message,
+            policyPackId: policyPackId,
+            risks: evaluation.violations.map(v => ({
+                category: v.category,
+                severity: v.severity,
+                message: v.message,
+                ruleId: v.ruleId,
+                regulationIds: v.regulationIds,
             })),
             audit_id: auditLogId,
             execution_time_ms: Math.round(executionTimeMs),
