@@ -2,23 +2,22 @@
  * POST /api/validate
  * Main API endpoint for conversation compliance validation
  * 
- * Request: { transcript: string, apiKey?: string, messages?: ConversationMessage[] }
+ * Request: { transcript: string, apiKey?: string, messages?: ConversationMessage[], policyPackId?: string }
  * Response: { compliant: boolean, score: number, risks: Risk[], audit_id: string }
  */
 import { NextRequest, NextResponse } from 'next/server';
 import { createConversation, ConversationMessage, createValidationResult, Risk } from '@/domain/entities/Conversation';
 import { createAuditLog } from '@/domain/entities/AuditLog';
-import { RuleRegistry } from '@/domain/rules/RuleRegistry';
 import { apiKeyRepository } from '@/infrastructure/supabase/ApiKeyRepository';
 import { auditLogRepository } from '@/infrastructure/supabase/AuditLogRepository';
-import { aiService, convertAIRisks } from '@/infrastructure/openai/OpenAIService';
-import { randomUUID } from 'crypto';
 import { alertService } from '@/domain/services/AlertService';
+import { policyEngine } from '@/domain/policy_engine/PolicyEngine';
 
 export interface ValidateRequest {
     transcript?: string;
     messages?: ConversationMessage[];
     apiKey?: string;
+    policyPackId?: string;
 }
 
 export interface ValidateResponse {
@@ -86,39 +85,36 @@ export async function POST(request: Request) {
 
         const conversation = createConversation(messages);
 
-        // Run rule-based validation
-        let ruleRisks: Risk[] = [];
-        try {
-            const registry = new RuleRegistry();
-            const ruleResults = await registry.validateAll(conversation);
-            ruleRisks = registry.aggregateRisks(ruleResults);
-        } catch (ruleError) {
-            console.error('Rule validation failed:', ruleError);
-            // Don't crash, just proceed without rules? Or generic error?
-            // For now, proceed.
-        }
+        // --- NEW POLICY ENGINE EXECUTION ---
+        // Use provided policyPackId or default to Mental Health EU V1
+        const policyPackId = body.policyPackId || 'MENTAL_HEALTH_EU_V1';
 
-        // Run AI-based analysis (if API key configured)
-        let aiRisks: Risk[] = [];
-        try {
-            const aiAnalysis = await aiService.analyzeTranscript(transcript);
-            aiRisks = convertAIRisks(aiAnalysis);
-        } catch (aiError) {
-            console.error('AI analysis failed:', aiError);
-            // Proceed without AI risks
-        }
+        const evaluation = await policyEngine.evaluate(conversation, policyPackId);
 
-        // Combine and deduplicate risks
-        const allRisks = deduplicateRisks([...ruleRisks, ...aiRisks]);
+        // Map Evaluation Violations to "Risks" for backward compatibility
+        const mappedRisks: Risk[] = evaluation.violations.map(v => ({
+            category: v.category as any,
+            severity: v.severity,
+            message: v.message,
+            weight: v.scoreImpact,
+            triggeredBy: v.triggerSignal?.metadata?.triggerText,
+            regulationIds: v.regulationIds
+        }));
 
-        // Create validation result
-        const auditId = crypto.randomUUID();
-        const result = createValidationResult(allRisks, auditId);
+        // --- END ---
 
         const executionTimeMs = Date.now() - startTime;
 
+        // Reconstruct ValidationResult for persistence
+        // (Note: PolicyEngine calculated score/compliant already, but we need to match the type expected by createAuditLog)
+        const result = createValidationResult(mappedRisks, evaluation.auditId);
+
+        // Override with engine's exact calculation if difference exists (should differ only by custom logic)
+        // Actually createValidationResult re-calculates. 
+        // For now, let's rely on createValidationResult to ensure consistency with passed risks.
+
         // Create and save audit log
-        let auditLogId = auditId;
+        let auditLogId = evaluation.auditId;
         try {
             const auditLog = createAuditLog(conversation.id, result, {
                 apiKeyId,
@@ -193,10 +189,8 @@ function parseTranscript(transcript: string): ConversationMessage[] {
     }];
 }
 
-/**
- * Deduplicate risks by category, keeping highest severity
- */
 function deduplicateRisks(risks: Risk[]): Risk[] {
+    // Kept for reference but unused in new flow as simple dedupe happens in Engine
     const severityOrder: Record<Risk['severity'], number> = { HIGH: 3, MEDIUM: 2, LOW: 1 };
     const riskMap = new Map<string, Risk>();
 

@@ -40,6 +40,7 @@ export interface Risk {
     message: string;
     weight: number;
     triggeredBy?: string;
+    regulationIds?: string[];
 }
 
 /**
