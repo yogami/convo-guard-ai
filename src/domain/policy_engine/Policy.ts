@@ -18,7 +18,7 @@ export interface PolicyRule {
     minConfidence: number;
 
     // Consequences
-    severity: 'HIGH' | 'MEDIUM' | 'LOW';
+    severity: 'HIGH' | 'MEDIUM' | 'LOW' | 'CRITICAL';
     weight: number; // e.g. -50
 
     // Traceability
@@ -52,7 +52,7 @@ export interface PolicyViolation {
     ruleId: string;
     category: string;
     regulationIds: string[];
-    severity: 'HIGH' | 'MEDIUM' | 'LOW';
+    severity: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
     scoreImpact: number;
     message: string;
     triggerSignal: Signal;

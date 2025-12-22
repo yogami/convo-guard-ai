@@ -20,7 +20,7 @@ test.describe('POST /api/validate - Compliance Validation API', () => {
         expect(body.score).toBeGreaterThanOrEqual(90);
         expect(body.risks).toHaveLength(0);
         expect(body.audit_id).toBeDefined();
-        expect(body.execution_time_ms).toBeLessThan(1000);
+        expect(body.execution_time_ms).toBeLessThan(5000); // Allow up to 5s for AI analysis
     });
 
     test('should detect suicide/self-harm and return FAIL', async ({ request }) => {

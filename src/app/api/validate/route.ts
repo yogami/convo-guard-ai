@@ -6,12 +6,17 @@
  * Response: { compliant: boolean, score: number, risks: Risk[], audit_id: string }
  */
 import { NextRequest, NextResponse } from 'next/server';
-import { createConversation, ConversationMessage, createValidationResult, Risk } from '@/domain/entities/Conversation';
-import { createAuditLog } from '@/domain/entities/AuditLog';
+import { ConversationMessage, createConversation, createValidationResult, Risk } from '@/domain/entities/Conversation';
+import { ValidateConversation } from '@/domain/usecases/ValidateConversation';
+import { PolicyEngine, policyEngine } from '@/domain/policy_engine/PolicyEngine';
+
+// Repositories & Services
 import { apiKeyRepository } from '@/infrastructure/supabase/ApiKeyRepository';
 import { auditLogRepository } from '@/infrastructure/supabase/AuditLogRepository';
 import { alertService } from '@/domain/services/AlertService';
-import { policyEngine } from '@/domain/policy_engine/PolicyEngine';
+import { createAuditLog } from '@/domain/entities/AuditLog';
+
+export const runtime = 'nodejs'; // Ensure we use Node runtime for crypto support
 
 export interface ValidateRequest {
     transcript?: string;
@@ -35,7 +40,7 @@ export interface ValidateResponse {
     execution_time_ms: number;
 }
 
-export const runtime = 'edge';
+
 
 export async function POST(request: Request) {
     const startTime = Date.now();
@@ -197,7 +202,7 @@ function parseTranscript(transcript: string): ConversationMessage[] {
 
 function deduplicateRisks(risks: Risk[]): Risk[] {
     // Kept for reference but unused in new flow as simple dedupe happens in Engine
-    const severityOrder: Record<Risk['severity'], number> = { HIGH: 3, MEDIUM: 2, LOW: 1 };
+    const severityOrder: Record<Risk['severity'], number> = { CRITICAL: 4, HIGH: 3, MEDIUM: 2, LOW: 1 };
     const riskMap = new Map<string, Risk>();
 
     for (const risk of risks) {

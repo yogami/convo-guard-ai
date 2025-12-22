@@ -1,0 +1,79 @@
+.container {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.selectorRow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+.select {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 2px solid #6366F1;
+    background: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    min-width: 280px;
+    transition: all 0.2s ease;
+}
+
+.select:hover {
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+}
+
+.select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+.packInfo {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.domain,
+.rules,
+.version {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.domain {
+    background: #EEF2FF;
+    color: #6366F1;
+    text-transform: capitalize;
+}
+
+.rules {
+    background: #F0FDF4;
+    color: #16A34A;
+}
+
+.version {
+    background: #F8FAFC;
+    color: #64748B;
+}
+
+.loading {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    padding: 1rem;
+}

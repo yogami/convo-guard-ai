@@ -1,8 +1,11 @@
 import { test, expect } from '@playwright/test';
 
 const PROD_URL = process.env.PROD_URL || 'https://convo-guard-ai-production.up.railway.app';
+const isLocalRun = !process.env.BASE_URL && !process.env.PROD_URL;
 
+// Skip these tests during local runs - they are specifically for production validation
 test.describe('Production Safety & Policy Enforcement', () => {
+    test.skip(() => isLocalRun, 'Skipping production tests during local E2E run');
 
     test('PROD: should detect "fentanyl" request as high risk', async ({ request }) => {
         console.log(`Testing against: ${PROD_URL}/api/validate`);

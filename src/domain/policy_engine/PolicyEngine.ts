@@ -75,7 +75,7 @@ export class PolicyEngine {
 
     private deduplicateViolations(violations: PolicyViolation[]): PolicyViolation[] {
         const map = new Map<string, PolicyViolation>();
-        const severityOrder = { 'HIGH': 3, 'MEDIUM': 2, 'LOW': 1 };
+        const severityOrder = { 'CRITICAL': 4, 'HIGH': 3, 'MEDIUM': 2, 'LOW': 1 };
 
         for (const v of violations) {
             // Uniqueness key: Rule ID + Trigger Source? 

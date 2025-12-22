@@ -78,7 +78,7 @@ export class ValidateConversation {
      */
     private deduplicateRisks(risks: Risk[]): Risk[] {
         const riskMap = new Map<string, Risk>();
-        const severityOrder = { HIGH: 3, MEDIUM: 2, LOW: 1 };
+        const severityOrder = { CRITICAL: 4, HIGH: 3, MEDIUM: 2, LOW: 1 };
 
         for (const risk of risks) {
             const existing = riskMap.get(risk.category);

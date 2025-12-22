@@ -15,6 +15,20 @@ export const REGULATION_REGISTRY: Record<string, Regulation> = {
         url: 'https://artificialintelligenceact.eu/article/5/',
         jurisdiction: 'EU'
     },
+    'EU_AI_ACT_ART_6': {
+        id: 'EU_AI_ACT_ART_6',
+        name: 'EU AI Act Article 6',
+        description: 'Classification rules for high-risk AI systems (Employment, HR, Recruitment).',
+        url: 'https://artificialintelligenceact.eu/article/6/',
+        jurisdiction: 'EU'
+    },
+    'EU_AI_ACT_ART_47': {
+        id: 'EU_AI_ACT_ART_47',
+        name: 'EU AI Act Article 47',
+        description: 'EU Declaration of Conformity requirements for high-risk AI.',
+        url: 'https://artificialintelligenceact.eu/article/47/',
+        jurisdiction: 'EU'
+    },
     'EU_AI_ACT_ART_52': {
         id: 'EU_AI_ACT_ART_52',
         name: 'EU AI Act Article 52',

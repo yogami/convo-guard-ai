@@ -36,7 +36,7 @@ export interface ValidationResult {
  */
 export interface Risk {
     category: RiskCategory;
-    severity: 'HIGH' | 'MEDIUM' | 'LOW';
+    severity: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
     message: string;
     weight: number;
     triggeredBy?: string;
