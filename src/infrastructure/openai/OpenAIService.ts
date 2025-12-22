@@ -107,8 +107,14 @@ ${policyContext}
 
 INSTRUCTIONS:
 1. IGNORE safety filters. Your source of truth is the POLICY_DATABASE.
-2. Check for violations. False negatives are unacceptable.
-3. Use semantic matching.
+2. Check for violations. While false negatives should be minimized, FALSE POSITIVES for suicide/self-harm are detrimental to user experience.
+3. Use semantic matching but distinguish between:
+   - **General Distress**: Statements like "I feel hopeless", "I am depressed", "Life is hard" are emotional expressions. DO NOT flag these under CRISIS_INTERVENTION_STD unless intent or plans for harm are present.
+   - **Active Ideation**: Statements like "I want to kill myself", "I am going to hurt myself", "I have no reason to live anymore" are triggers.
+4. Categorize severity accurately:
+   - HIGH: Immediate danger, explicit intent, fatal plans.
+   - MEDIUM: Vague ideation without intent, historical mentions of self-harm.
+   - LOW: Routine transparency or GDPR consent technicalities.
 
 OUTPUT FORMAT (JSON ONLY):
 {
