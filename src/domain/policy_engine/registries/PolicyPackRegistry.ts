@@ -56,6 +56,17 @@ export const MENTAL_HEALTH_EU_V1: PolicyPack = {
 
         // --- GDPR CONSENT ---
         {
+            id: 'RULE_GDPR_SPECIAL_CATEGORY',
+            name: 'GDPR Special Category Data (Article 9)',
+            category: 'GDPR_CONSENT',
+            targetSignal: 'SIGNAL_GDPR_SPECIAL_CATEGORY',
+            minConfidence: 0.9,
+            severity: 'HIGH',
+            weight: -40,
+            regulationIds: ['GDPR_ART_9'],
+            messageTemplate: 'GDPR Article 9 special category data detected (health, genetic, biometric, racial/ethnic, political, religious, sexual orientation). Explicit consent required.'
+        },
+        {
             id: 'RULE_MISSING_CONSENT_REQ',
             name: 'Missing Consent Request',
             category: 'GDPR_CONSENT',

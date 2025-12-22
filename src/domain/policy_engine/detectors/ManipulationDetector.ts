@@ -36,8 +36,8 @@ export class ManipulationDetector implements SignalDetector {
         const signals: Signal[] = [];
 
         for (const message of conversation.messages) {
-            // Check assistant and system messages for manipulation (AI / system shouldn't manipulate)
-            if (message.role !== 'assistant' && message.role !== 'system') continue;
+            // Check all messages - in demo mode user may simulate AI responses
+            // In production, manipulation in user messages might indicate prompt injection attempts
 
             // Check manipulation patterns
             for (const pattern of MANIPULATION_PATTERNS) {

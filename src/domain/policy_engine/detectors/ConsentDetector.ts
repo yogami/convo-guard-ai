@@ -28,11 +28,42 @@ const DATA_PATTERNS = [
     /\b(health|medical)\b/i,
 ];
 
+// GDPR Article 9 - Special Category Data (requires explicit consent, immediate flag)
+const SPECIAL_CATEGORY_DATA = [
+    /\b(HIV|AIDS)\b/i,
+    /\b(genetic (test|data|result))\b/i,
+    /\b(biometric)\b/i,
+    /\b(sexual orientation|sexuality)\b/i,
+    /\b(political (opinion|belief))\b/i,
+    /\b(religious belief|religion)\b/i,
+    /\b(ethnic origin|race|racial)\b/i,
+    /\b(trade union)\b/i,
+];
+
 export class ConsentDetector implements SignalDetector {
     readonly id = 'regex_consent_detector';
 
     async detect(conversation: Conversation): Promise<Signal[]> {
         const signals: Signal[] = [];
+
+        // 0. Check for GDPR Article 9 special category data (immediate flag)
+        for (const message of conversation.messages) {
+            for (const pattern of SPECIAL_CATEGORY_DATA) {
+                const match = message.content.match(pattern);
+                if (match) {
+                    signals.push({
+                        type: 'SIGNAL_GDPR_SPECIAL_CATEGORY',
+                        source: 'REGEX',
+                        confidence: 1.0,
+                        metadata: {
+                            triggerText: match[0],
+                            context: 'GDPR Article 9 special category data detected'
+                        }
+                    });
+                    break;
+                }
+            }
+        }
 
         // 1. Detect if data collection is happening
         let isDataCollecting = false;
@@ -59,7 +90,7 @@ export class ConsentDetector implements SignalDetector {
             });
         }
 
-        if (!isDataCollecting) return signals;
+        if (!isDataCollecting && signals.length === 0) return signals;
 
         // 2. Check for consent flow
         let consentRequested = false;
