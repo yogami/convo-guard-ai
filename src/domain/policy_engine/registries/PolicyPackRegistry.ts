@@ -5,6 +5,10 @@ import { OpenAI_SignalDetector } from '../detectors/OpenAI_SignalDetector';
 import { TransparencyDetector } from '../detectors/TransparencyDetector';
 import { CrisisDetector } from '../detectors/CrisisDetector';
 import { ManipulationDetector } from '../detectors/ManipulationDetector';
+import { BiasDetector } from '../detectors/BiasDetector';
+import { MedicalAdviceDetector } from '../detectors/MedicalAdviceDetector';
+import { ClinicalEvidenceDetector } from '../detectors/ClinicalEvidenceDetector';
+import { IllegalSubstanceDetector } from '../detectors/IllegalSubstanceDetector';
 
 export const MENTAL_HEALTH_EU_V1: PolicyPack = {
     id: 'MENTAL_HEALTH_EU_V1',
@@ -21,7 +25,8 @@ export const MENTAL_HEALTH_EU_V1: PolicyPack = {
         new TransparencyDetector(),
         new CrisisDetector(),
         new ManipulationDetector(),
-        new OpenAI_SignalDetector()
+        new OpenAI_SignalDetector(),
+        new IllegalSubstanceDetector()
     ],
 
     rules: [
@@ -154,10 +159,242 @@ export const MENTAL_HEALTH_EU_V1: PolicyPack = {
             weight: -25,
             regulationIds: ['DIGA_DI_GUIDE', 'GENERAL_SAFETY'],
             messageTemplate: 'Crisis situation detected but no emergency resources provided.'
+        },
+
+        // --- ILLEGAL SUBSTANCES ---
+        {
+            id: 'RULE_ILLEGAL_SUBSTANCE_REGEX',
+            name: 'Controlled Substance Detection (Regex)',
+            category: 'ILLEGAL_SUBSTANCE',
+            targetSignal: 'SIGNAL_ILLEGAL_SUBSTANCE',
+            minConfidence: 0.9,
+            severity: 'HIGH',
+            weight: -60,
+            regulationIds: ['CONTROLLED_SUBSTANCES_ACT'],
+            messageTemplate: 'Detected mention of controlled substances or unauthorized acquisition.'
+        },
+        {
+            id: 'RULE_ILLEGAL_SUBSTANCE_LLM',
+            name: 'Illegal Substance Detection (LLM)',
+            category: 'ILLEGAL_SUBSTANCE',
+            targetSignal: 'SIGNAL_LLM_ILLEGAL_SUBSTANCE',
+            minConfidence: 0.8,
+            severity: 'HIGH',
+            weight: -50,
+            regulationIds: ['CONTROLLED_SUBSTANCES_ACT'],
+            messageTemplate: 'AI Analysis detected facilitation or promotion of illegal substances.'
+        },
+
+        // --- MEDICAL SAFETY ---
+        {
+            id: 'RULE_MEDICAL_SAFETY_LLM',
+            name: 'Medical Safety Violation (LLM)',
+            category: 'MEDICAL_SAFETY',
+            targetSignal: 'SIGNAL_LLM_MEDICAL_SAFETY',
+            minConfidence: 0.8,
+            severity: 'HIGH',
+            weight: -45,
+            regulationIds: ['CRISIS_INTERVENTION_STD'],
+            messageTemplate: 'AI Analysis detected dangerous medical or dosage advice.'
+        }
+    ]
+};
+
+
+
+export const HR_RECRUITING_EU_V1: PolicyPack = {
+    id: 'HR_RECRUITING_EU_V1',
+    name: 'HR/Recruiting High-Risk Compliance (EU AI Act)',
+    version: '1.0.0',
+    description: 'EU AI Act Annex III high-risk compliance for employment, recruitment, and worker management AI.',
+    domain: 'hr_recruiting',
+    jurisdiction: 'EU',
+    effectiveFrom: new Date('2026-08-02'),
+
+    detectors: [
+        new BiasDetector(),
+        // new HumanOversightDetector(), // TODO
+        // new ExplanationDetector(), // TODO
+        new TransparencyDetector() // Re-use existing
+    ],
+
+    rules: [
+        {
+            id: 'RULE_AGE_BIAS_DETECTED',
+            name: 'Age Discrimination Detection',
+            category: 'BIAS_DISCRIMINATION',
+            targetSignal: 'SIGNAL_AGE_BIAS',
+            minConfidence: 0.8,
+            severity: 'HIGH',
+            weight: -40,
+            regulationIds: ['EU_AI_ACT_ART_6'],
+            messageTemplate: 'Potential age discrimination detected in HR process.'
+        },
+        {
+            id: 'RULE_GENDER_BIAS_DETECTED',
+            name: 'Gender Discrimination Detection',
+            category: 'BIAS_DISCRIMINATION',
+            targetSignal: 'SIGNAL_GENDER_BIAS',
+            minConfidence: 0.8,
+            severity: 'HIGH',
+            weight: -40,
+            regulationIds: ['EU_AI_ACT_ART_6'],
+            messageTemplate: 'Potential gender discrimination detected in HR process.'
+        },
+        {
+            id: 'RULE_ETHNIC_BIAS_DETECTED',
+            name: 'Ethnic/Racial Discrimination',
+            category: 'BIAS_DISCRIMINATION',
+            targetSignal: 'SIGNAL_ETHNIC_BIAS',
+            minConfidence: 0.8,
+            severity: 'HIGH',
+            weight: -50,
+            regulationIds: ['EU_AI_ACT_ART_6'],
+            messageTemplate: 'Potential ethnic or racial discrimination detected.'
+        },
+        {
+            id: 'RULE_PROTECTED_CLASS_EXCLUSION',
+            name: 'Protected Class Exclusion',
+            category: 'BIAS_DISCRIMINATION',
+            targetSignal: 'SIGNAL_PROTECTED_CLASS_EXCLUSION',
+            minConfidence: 0.9,
+            severity: 'HIGH',
+            weight: -50,
+            regulationIds: ['EU_AI_ACT_ART_6'],
+            messageTemplate: 'Exclusion of protected class candidates detected.'
+        }
+    ]
+};
+
+// Phase 2: GPAI Systemic Risk Policy Pack
+export const GPAI_SYSTEMIC_RISK_EU_V1: PolicyPack = {
+    id: 'GPAI_SYSTEMIC_RISK_EU_V1',
+    name: 'GPAI Systemic Risk Compliance (EU AI Act)',
+    version: '1.0.0',
+    description: 'EU AI Act Articles 51-55 compliance for General Purpose AI models with systemic risk.',
+    domain: 'gpai_systemic',
+    jurisdiction: 'EU',
+    effectiveFrom: new Date('2025-08-02'), // Earlier effective date for GPAI
+    detectors: [
+        // In future: SystemicRiskDetector (checking compute thresholds, reach)
+        new BiasDetector(), // Still relevant
+        new TransparencyDetector()
+    ],
+    rules: [
+        {
+            id: 'RULE_SYSTEMIC_RISK_ASSESSMENT_REQUIRED',
+            name: 'Systemic Risk Assessment Required',
+            category: 'GOVERNANCE',
+            targetSignal: 'SIGNAL_COMPUTE_THRESHOLD_EXCEEDED', // Hypothetical signal
+            minConfidence: 1.0,
+            severity: 'CRITICAL',
+            weight: -100,
+            regulationIds: ['EU_AI_ACT_ART_55'],
+            messageTemplate: 'Model exceeds 10^25 FLOPs. Systemic risk assessment required.'
+        }
+    ]
+};
+
+// Phase 3: DiGA/MDR MedTech Policy Pack (Germany/EU)
+export const DIGA_MDR_DE_V1: PolicyPack = {
+    id: 'DIGA_MDR_DE_V1',
+    name: 'DiGA/MDR MedTech Compliance (BfArM Germany)',
+    version: '1.0.0',
+    description: 'Medical Device Regulation (MDR) and DiGA compliance for digital health applications in Germany/EU.',
+    domain: 'medtech',
+    jurisdiction: 'DE',
+    effectiveFrom: new Date('2024-01-01'),
+    detectors: [
+        new MedicalAdviceDetector(),
+        new ClinicalEvidenceDetector(),
+        new SuicideDetector(),
+        new CrisisDetector(),
+        new TransparencyDetector()
+    ],
+    rules: [
+        {
+            id: 'RULE_UNAUTHORIZED_DIAGNOSIS',
+            name: 'Unauthorized Medical Diagnosis',
+            category: 'MEDICAL_ADVICE',
+            targetSignal: 'SIGNAL_UNAUTHORIZED_DIAGNOSIS',
+            minConfidence: 0.9,
+            severity: 'HIGH',
+            weight: -50,
+            regulationIds: ['MDR_ART_10', 'DIGA_GUIDE'],
+            messageTemplate: 'Unauthorized medical diagnosis detected. Medical diagnoses require licensed professionals.'
+        },
+        {
+            id: 'RULE_DOSAGE_RECOMMENDATION',
+            name: 'Unauthorized Dosage Recommendation',
+            category: 'MEDICAL_ADVICE',
+            targetSignal: 'SIGNAL_DOSAGE_RECOMMENDATION',
+            minConfidence: 0.95,
+            severity: 'CRITICAL',
+            weight: -60,
+            regulationIds: ['MDR_ART_10', 'DIGA_GUIDE'],
+            messageTemplate: 'Medication dosage recommendation detected. Only licensed healthcare providers may prescribe dosages.'
+        },
+        {
+            id: 'RULE_TREATMENT_PRESCRIPTION',
+            name: 'Unauthorized Treatment Prescription',
+            category: 'MEDICAL_ADVICE',
+            targetSignal: 'SIGNAL_TREATMENT_PRESCRIPTION',
+            minConfidence: 0.9,
+            severity: 'HIGH',
+            weight: -50,
+            regulationIds: ['MDR_ART_10', 'DIGA_GUIDE'],
+            messageTemplate: 'Unauthorized treatment prescription detected.'
+        },
+        {
+            id: 'RULE_STOP_MEDICATION_ADVICE',
+            name: 'Dangerous Medication Cessation Advice',
+            category: 'MEDICAL_ADVICE',
+            targetSignal: 'SIGNAL_STOP_MEDICATION_ADVICE',
+            minConfidence: 0.95,
+            severity: 'CRITICAL',
+            weight: -70,
+            regulationIds: ['MDR_ART_10', 'DIGA_GUIDE', 'GENERAL_SAFETY'],
+            messageTemplate: 'Dangerous advice to stop medication detected. This could cause serious harm.'
+        },
+        {
+            id: 'RULE_UNVERIFIED_CLINICAL_CLAIM',
+            name: 'Unverified Clinical Claim',
+            category: 'CLINICAL_EVIDENCE',
+            targetSignal: 'SIGNAL_UNVERIFIED_CLINICAL_CLAIM',
+            minConfidence: 0.85,
+            severity: 'MEDIUM',
+            weight: -30,
+            regulationIds: ['MDR_ART_61', 'DIGA_GUIDE'],
+            messageTemplate: 'Unverified clinical claim detected. Clinical claims require evidence per MDR Article 61.'
+        },
+        {
+            id: 'RULE_EFFICACY_CLAIM_NO_EVIDENCE',
+            name: 'Efficacy Claim Without Evidence',
+            category: 'CLINICAL_EVIDENCE',
+            targetSignal: 'SIGNAL_EFFICACY_CLAIM_NO_EVIDENCE',
+            minConfidence: 0.9,
+            severity: 'HIGH',
+            weight: -40,
+            regulationIds: ['MDR_ART_61', 'DIGA_GUIDE'],
+            messageTemplate: 'Efficacy claim without supporting evidence. Clinical claims must be substantiated.'
+        },
+        {
+            id: 'RULE_MEDICAL_DEVICE_CLAIM',
+            name: 'Unverified Medical Device Claim',
+            category: 'CLINICAL_EVIDENCE',
+            targetSignal: 'SIGNAL_MEDICAL_DEVICE_CLAIM',
+            minConfidence: 0.9,
+            severity: 'HIGH',
+            weight: -45,
+            regulationIds: ['MDR_ART_10', 'DIGA_GUIDE'],
+            messageTemplate: 'Unverified medical device performance claim detected.'
         }
     ]
 };
 
 export const POLICY_PACKS: Record<string, PolicyPack> = {
-    'MENTAL_HEALTH_EU_V1': MENTAL_HEALTH_EU_V1
+    'MENTAL_HEALTH_EU_V1': MENTAL_HEALTH_EU_V1,
+    'HR_RECRUITING_EU_V1': HR_RECRUITING_EU_V1,
+    'GPAI_SYSTEMIC_RISK_EU_V1': GPAI_SYSTEMIC_RISK_EU_V1,
+    'DIGA_MDR_DE_V1': DIGA_MDR_DE_V1
 };
