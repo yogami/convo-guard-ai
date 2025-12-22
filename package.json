@@ -21,7 +21,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.86.2",
     "inversify": "^6.2.2",
-    "next": "16.0.7",
+    "next": "^16.0.10",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
@@ -37,6 +37,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
     "husky": "^9.1.7",
+    "jsdom": "^27.3.0",
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
     "reflect-metadata": "^0.2.2",
