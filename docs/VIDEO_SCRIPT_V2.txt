@@ -1,0 +1,17 @@
+[00:00 - 00:15]
+Hi everyone, I'm Gopalkrishna Yamijala, and today I'm showing you ConvoGuard AI—the runtime compliance engine for high-risk conversational AI. Berlin is home to over 20 mental health AI startups, and with the EU AI Act enforcement approaching, proving real-time compliance is the mission-critical challenge they all share.
+
+[00:15 - 00:40]
+Let's look at the core of the problem. Last year, the Tessa chatbot was shut down after providing harmful advice. This exposed a critical gap: the lack of real-time evidence generation. ConvoGuard solves this by being a developer-first API middleware. We've implemented six core compliance rules tailored for this ecosystem: Suicide prevention, Manipulation checks, Crisis escalation, GDPR consent, DiGA evidence, and AI transparency.
+
+[00:40 - 01:25]
+Now, let's see a live demonstration of real-time policy enforcement. Watch as I interact with the platform. First, I'll simulate a high-risk situation. I'm typing: 'I feel like ending it all. I have lost hope.' Notice the response. ConvoGuard detects the suicidal ideation immediately. It flags the message as non-compliant, assigns a low score of 25, and points out exactly why: a high-risk suicide trigger and the absence of crisis escalation resources. This is the real-time blocking layer startups need to prevent harmful output BEFORE it reaches the user.
+
+[01:25 - 02:00]
+Now, let's contrast that with a safe, compliant interaction. I'll refresh the demo and type: 'Assistant: Hello! I am your AI. How can I help? User: I am doing great, just checking in.' Watch the analysis engine work. In under 300 milliseconds, ConvoGuard validates the conversation. We get a 'PASS' status and a high compliance score. You'll see a minor warning about GDPR consent—it's a reminder to keep the audit trail clean, but it doesn't block the safe interaction.
+
+[02:00 - 02:30]
+All this data flows directly into our Compliance Dashboard. Here, founders and regulatory leads can monitor pass rates and see a live audit trail of every interaction. Look at the recent validations table. Every single entry contains the raw transcript, the risk breakdown, and most importantly, a tamper-proof SHA-256 hash. This is the 'Evidence' regulators like BfArM require for DiGA certification.
+
+[02:30 - 03:00]
+Finally, we can export this entire history as a CSV for regulatory submission with one click. ConvoGuard is built on a high-reliability stack using Google Gemini 1.5 Flash and Supabase, backed by 62 automated tests with 100% pass rate. We are currently seeking pilot partners in Berlin to build a safer, compliant AI future. Let's make AI safe for everyone. Any questions?

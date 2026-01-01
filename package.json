@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.86.2",
+    "axios": "^1.13.2",
+    "cloudinary": "^2.8.0",
     "inversify": "^6.2.2",
     "next": "^16.0.10",
     "react": "19.2.0",

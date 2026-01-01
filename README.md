@@ -151,6 +151,13 @@ SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 railway up
 ```
 
+## 📚 Documentation
+
+- [MVP Plan](./docs/MVP_PLAN.md)
+- [EIC Accelerator Short App](./docs/EIC_ACCELERATOR_PROPOSAL.md)
+- [Feature Summary](./docs/FEATURE_SUMMARY.md)
+- [Demo Script](./docs/DEMO_SCRIPT.md)
+
 ## 📜 License
 
 MIT

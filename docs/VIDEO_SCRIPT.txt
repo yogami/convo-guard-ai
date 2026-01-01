@@ -1,0 +1,25 @@
+Hi everyone, I'm Gopalkrishna Yamijala, and today I'm excited to show you ConvoGuard AI—the runtime compliance engine for high-risk conversational AI.
+
+Berlin is home to over 20 mental health AI startups. But with the EU AI Act enforcement approaching in early 2026, these companies face a massive technical hurdle: How do you prove real-time compliance for every single user interaction?
+
+Last year, the Tessa chatbot was shut down after providing harmful advice. This exposed a critical gap—the lack of real-time evidence generation. That's where ConvoGuard comes in.
+
+ConvoGuard is a developer-first API middleware that sits between your chat engine and the user. It evaluates every response against a rigorous EU regulatory database in under 300 milliseconds.
+
+Let's look at the landing page. We've implemented six core compliance rules tailored for Berlin's HealthTech ecosystem: Suicide prevention, Manipulation checks, Crisis escalation, GDPR consent, DiGA evidence gathering, and AI transparency.
+
+Now, let's see it in action with a live API call. 
+
+First, a high-risk failure. If a user expresses suicidal ideation, ConvoGuard detects it immediately. Not only does it flag the risk, but it also checks if the AI provided emergency resources. If those resources are missing, it's a critical failure. You can see the score here is 25—well below the pass threshold.
+
+Compare that to a compliant conversation. Here, the AI is helpful and transparent about being a machine. ConvoGuard validates this in real-time, assigning a high compliance score. Even a minor warning, like a missing GDPR consent prompt, is recorded for future audits without necessarily blocking a safe interaction.
+
+All of this data flows directly into our Compliance Dashboard. Here, founders and regulatory leads can see real-time pass rates, average scores, and top violations. 
+
+The most important feature is here: the Export CSV button. This generates a tamper-proof audit trail with SHA-256 hashes, exactly what regulators like BfArM require for DiGA certification.
+
+Under the hood, we leverage Google Gemini for contextual analysis and Supabase for immutable logging. The system is battle-tested with 62 automated unit and end-to-end tests, achieving a 100% pass rate verified by Playwright.
+
+ConvoGuard enables the safe, compliant deployment of regulated AI. We're currently seeking pilot partners in the Berlin HealthTech space. 
+
+Let’s build a safer future for AI together. Any questions?

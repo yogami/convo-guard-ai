@@ -1,0 +1,21 @@
+Hi everyone, I'm Gopalkrishna Yamijala. Today I'm demonstrating ConvoGuard AI, the runtime compliance engine for high-risk conversational AI.
+
+With the EU AI Act enforcement beginning in February 2026, high-risk AI systems must now log all operations and report serious incidents as mandated by Articles 12 and 73. Yet no developer tools exist for real-time evidence generation. The Tessa chatbot shutdown in 2023 exposed this critical monitoring gap.
+
+ConvoGuard fills this void with six core compliance rules: Suicide prevention, Manipulation detection, Crisis escalation, GDPR consent verification, DiGA evidence collection, and AI transparency disclosure.
+
+Let me show you a live demonstration. This chat simulator is connected directly to our compliance API running in production.
+
+First, I'll demonstrate a high-risk scenario. Watch as I type a message expressing suicidal ideation.
+
+The system immediately blocks the message. You can see the red warning banner with the exact policy violation: suicidal ideation detected. No harmful AI response ever reaches the user. This is Article 73 incident prevention in action.
+
+Now let's try a safe conversation. I'll ask about managing anxiety.
+
+This time the message passes all compliance checks and the AI responds helpfully. ConvoGuard allows natural conversation flow while maintaining complete regulatory oversight.
+
+Every interaction is logged in our Compliance Dashboard. Founders and regulatory leads can monitor real-time pass rates, see detailed risk breakdowns by policy category, and most importantly, export tamper-proof audit trails with SHA-256 hashes. This is precisely what BfArM requires for DiGA certification and what EU regulators need for AI Act compliance.
+
+The conversational AI market is projected to reach 10 billion euros by 2027, with 20 percent requiring high-risk compliance tools. ConvoGuard is production-ready and positioned in the Berlin HealthTech ecosystem.
+
+We are seeking pilot partners to build safer AI together. Thank you.

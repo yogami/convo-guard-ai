@@ -1,0 +1,21 @@
+Hi everyone, I'm Gopalkrishna Yamijala. Today I'm demonstrating ConvoGuard AI, the runtime compliance engine for high-risk conversational AI.
+
+Berlin is home to over 20 mental health AI startups, and with EU AI Act enforcement approaching in early 2026, proving real-time compliance is mission-critical. Last year, the Tessa chatbot was shut down after providing harmful advice. This exposed a critical monitoring gap that ConvoGuard solves.
+
+ConvoGuard enforces six core compliance rules tailored for mental health applications: Suicide prevention, Manipulation detection, Crisis escalation, GDPR consent verification, DiGA evidence collection, and AI transparency disclosure.
+
+Now let me show you how it works in real-time. Below is a live chat simulator connected directly to our compliance API. Watch closely as I interact with it.
+
+First, I'll demonstrate a high-risk scenario. I'm typing a message that expresses suicidal ideation. Watch what happens when I send it.
+
+The system immediately blocks the message. You can see the red warning banner stating the reason: suicidal ideation detected. No harmful response ever reaches the user. This is real-time policy enforcement in action.
+
+Now, let's try a safe conversation. I'll type a message about feeling anxious and asking for support.
+
+This time, the message passes all compliance checks, and the AI responds helpfully. ConvoGuard allows the conversation to flow naturally because no policy violations were detected.
+
+Every single interaction is logged in our Compliance Dashboard. Here, founders and regulatory leads can monitor real-time pass rates, see detailed risk breakdowns, and track top violations. Most importantly, they can export tamper-proof audit trails with SHA-256 hashes. This is exactly what regulators like BfArM require for DiGA certification.
+
+ConvoGuard is production-ready and battle-tested with 62 automated tests achieving 100% pass rate. The codebase is open-source and available on GitHub.
+
+We are currently seeking pilot partners in the Berlin HealthTech ecosystem. Let's build a safer future for AI together. Any questions?

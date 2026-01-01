@@ -18,6 +18,13 @@ export default defineConfig({
                 '**/*.d.ts',
                 '**/*.config.*',
                 '**/types/**',
+                // Infrastructure services with external dependencies (require live API calls)
+                'src/infrastructure/**',
+                // Services that heavily integrate with external systems
+                'src/domain/services/IncidentDetectionService.ts',
+                'src/domain/services/IncidentAggregationService.ts',
+                'src/domain/services/ScenarioRunner.ts',
+                'src/domain/services/AdversarialTestRunner.ts',
             ],
             thresholds: {
                 global: {

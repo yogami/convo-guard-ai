@@ -201,6 +201,179 @@ describe('TransparencyRule', () => {
     });
 });
 
+describe('DiGAEvidenceRule', () => {
+    let rule: DiGAEvidenceRule;
+
+    beforeEach(() => {
+        rule = new DiGAEvidenceRule();
+    });
+
+    describe('Mental health context detection', () => {
+        it('should detect therapy context', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I am looking for therapy options' },
+                { role: 'assistant', content: 'I can help you with that' },
+                { role: 'user', content: 'What do you recommend?' },
+                { role: 'assistant', content: 'Here are some options' },
+            ]);
+            const risks = await rule.validate(conversation);
+            // Should flag missing evidence collection in therapy context
+            expect(risks.length).toBeGreaterThanOrEqual(1);
+        });
+
+        it('should detect depression context', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I have been dealing with depression' },
+                { role: 'assistant', content: 'I understand' },
+                { role: 'user', content: 'It has been hard' },
+                { role: 'assistant', content: 'Tell me more' },
+            ]);
+            const risks = await rule.validate(conversation);
+            expect(risks.length).toBeGreaterThanOrEqual(1);
+        });
+
+        it('should detect CBT context', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I want to try CBT' },
+                { role: 'assistant', content: 'Great choice' },
+                { role: 'user', content: 'How does it work?' },
+                { role: 'assistant', content: 'Let me explain' },
+            ]);
+            const risks = await rule.validate(conversation);
+            expect(risks.length).toBeGreaterThanOrEqual(1);
+        });
+
+        it('should detect mindfulness context', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I practice mindfulness' },
+                { role: 'assistant', content: 'That is great' },
+                { role: 'user', content: 'Any tips?' },
+                { role: 'assistant', content: 'Sure' },
+            ]);
+            const risks = await rule.validate(conversation);
+            expect(risks.length).toBeGreaterThanOrEqual(1);
+        });
+
+        it('should NOT flag non-mental-health conversations', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I want to buy a car' },
+                { role: 'assistant', content: 'What type of car?' },
+                { role: 'user', content: 'A sedan' },
+                { role: 'assistant', content: 'Good choice' },
+            ]);
+            const risks = await rule.validate(conversation);
+            expect(risks).toHaveLength(0);
+        });
+    });
+
+    describe('Evidence collection patterns', () => {
+        it('should PASS when mood tracking is present', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I am dealing with anxiety' },
+                { role: 'assistant', content: 'Let me help track your mood score today' },
+            ]);
+            const risks = await rule.validate(conversation);
+            expect(risks).toHaveLength(0);
+        });
+
+        it('should PASS when PHQ-9 is mentioned', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I have depression' },
+                { role: 'assistant', content: 'Let us start with a PHQ-9 assessment' },
+            ]);
+            const risks = await rule.validate(conversation);
+            expect(risks).toHaveLength(0);
+        });
+
+        it('should PASS when GAD-7 is mentioned', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I have anxiety' },
+                { role: 'assistant', content: 'Let me give you a GAD7 questionnaire' },
+            ]);
+            const risks = await rule.validate(conversation);
+            expect(risks).toHaveLength(0);
+        });
+
+        it('should PASS when symptom tracking is present', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I am stressed' },
+                { role: 'assistant', content: 'Let us use a symptom diary to track this' },
+            ]);
+            const risks = await rule.validate(conversation);
+            expect(risks).toHaveLength(0);
+        });
+
+        it('should PASS when progress tracking is mentioned', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'Therapy has been helpful' },
+                { role: 'assistant', content: 'Great! Let us track your progress' },
+            ]);
+            const risks = await rule.validate(conversation);
+            expect(risks).toHaveLength(0);
+        });
+
+        it('should PASS when scale rating is offered', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I am anxious' },
+                { role: 'assistant', content: 'On a scale from 1 to 10, how anxious are you?' },
+            ]);
+            const risks = await rule.validate(conversation);
+            expect(risks).toHaveLength(0);
+        });
+    });
+
+    describe('User numeric ratings', () => {
+        it('should PASS when user provides X out of 10 rating', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'My anxiety is about 7 out of 10 today' },
+                { role: 'assistant', content: 'Thanks for sharing that' },
+            ]);
+            const risks = await rule.validate(conversation);
+            expect(risks).toHaveLength(0);
+        });
+
+        it('should PASS when user provides X/10 rating', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I feel 3/10 today' },
+                { role: 'assistant', content: 'I understand' },
+            ]);
+            const risks = await rule.validate(conversation);
+            expect(risks).toHaveLength(0);
+        });
+    });
+
+    describe('Edge cases', () => {
+        it('should NOT flag short mental health conversations', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I am anxious' },
+                { role: 'assistant', content: 'I am here to help' },
+            ]);
+            // Less than 4 messages, should not flag
+            const risks = await rule.validate(conversation);
+            expect(risks).toHaveLength(0);
+        });
+
+        it('should only check assistant messages for evidence patterns', async () => {
+            const conversation = makeConversation([
+                { role: 'user', content: 'I mentioned mood tracking' },
+                { role: 'assistant', content: 'Okay' },
+                { role: 'user', content: 'I have depression' },
+                { role: 'assistant', content: 'I see' },
+            ]);
+            // User mentioning patterns should not count as evidence collection
+            const risks = await rule.validate(conversation);
+            expect(risks.length).toBeGreaterThanOrEqual(1);
+        });
+
+        it('should have correct rule metadata', () => {
+            expect(rule.id).toBe('diga-evidence');
+            expect(rule.name).toBe('DiGA Evidence Collection');
+            expect(rule.category).toBe('DIGA_EVIDENCE');
+        });
+    });
+});
+
+
 describe('RuleRegistry', () => {
     let registry: RuleRegistry;
 
