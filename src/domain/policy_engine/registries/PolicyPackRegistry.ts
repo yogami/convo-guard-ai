@@ -9,6 +9,8 @@ import { BiasDetector } from '../detectors/BiasDetector';
 import { MedicalAdviceDetector } from '../detectors/MedicalAdviceDetector';
 import { ClinicalEvidenceDetector } from '../detectors/ClinicalEvidenceDetector';
 import { IllegalSubstanceDetector } from '../detectors/IllegalSubstanceDetector';
+import { BrandSafetyDetector } from '../detectors/BrandSafetyDetector';
+import { FormalityConsistencyDetector } from '../detectors/FormalityConsistencyDetector';
 
 export const MENTAL_HEALTH_EU_V1: PolicyPack = {
     id: 'MENTAL_HEALTH_EU_V1',
@@ -403,9 +405,163 @@ export const DIGA_MDR_DE_V1: PolicyPack = {
     ]
 };
 
+// Promo Script Policy Pack for German market (strict formality + brand safety)
+export const PROMO_SCRIPT_DE_V1: PolicyPack = {
+    id: 'PROMO_SCRIPT_DE_V1',
+    name: 'Promo Script Compliance (German Market)',
+    version: '1.0.0',
+    description: 'Brand safety and formality compliance for promotional scripts targeting German B2B/B2C markets.',
+    domain: 'content_generation',
+    jurisdiction: 'DE',
+    effectiveFrom: new Date('2024-01-01'),
+
+    detectors: [
+        new BrandSafetyDetector(),
+        new FormalityConsistencyDetector(),
+        new TransparencyDetector()
+    ],
+
+    rules: [
+        // Brand Safety Rules
+        {
+            id: 'RULE_AGGRESSIVE_SALES',
+            name: 'Aggressive Sales Language',
+            category: 'MANIPULATION',
+            targetSignal: 'SIGNAL_AGGRESSIVE_SALES',
+            minConfidence: 0.8,
+            severity: 'HIGH',
+            weight: -30,
+            regulationIds: ['UWG_DE', 'EU_UCPD'],
+            messageTemplate: 'Aggressive sales language detected ("Buy now!", "Limited time!"). Soften messaging for German market.'
+        },
+        {
+            id: 'RULE_MISLEADING_CLAIM',
+            name: 'Misleading Marketing Claim',
+            category: 'TRANSPARENCY',
+            targetSignal: 'SIGNAL_MISLEADING_CLAIM',
+            minConfidence: 0.9,
+            severity: 'HIGH',
+            weight: -40,
+            regulationIds: ['UWG_DE', 'EU_UCPD'],
+            messageTemplate: 'Potentially misleading claim detected ("100% guaranteed", "miracle"). Remove or substantiate claim.'
+        },
+        {
+            id: 'RULE_PRESSURE_TACTIC',
+            name: 'Pressure Sales Tactic',
+            category: 'MANIPULATION',
+            targetSignal: 'SIGNAL_PRESSURE_TACTIC',
+            minConfidence: 0.8,
+            severity: 'MEDIUM',
+            weight: -20,
+            regulationIds: ['UWG_DE'],
+            messageTemplate: 'Pressure tactic detected ("Only X left"). May be seen as manipulative in German market.'
+        },
+        // Formality Rules (German-specific)
+        {
+            id: 'RULE_FORMALITY_MIXING',
+            name: 'Sie/Du Mixing (German Formality)',
+            category: 'PROFESSIONALISM',
+            targetSignal: 'SIGNAL_FORMALITY_MIXING',
+            minConfidence: 0.9,
+            severity: 'MEDIUM',
+            weight: -25,
+            regulationIds: ['BRAND_STANDARDS'],
+            messageTemplate: 'Inconsistent formality detected (Sie/Du mixing). B2B content should use consistent Sie-form.'
+        },
+        {
+            id: 'RULE_INFORMAL_LANGUAGE',
+            name: 'Inappropriate Informal Language',
+            category: 'PROFESSIONALISM',
+            targetSignal: 'SIGNAL_INFORMAL_LANGUAGE',
+            minConfidence: 0.7,
+            severity: 'LOW',
+            weight: -10,
+            regulationIds: ['BRAND_STANDARDS'],
+            messageTemplate: 'Informal slang detected. May be inappropriate for professional German content.'
+        },
+        // AI Disclosure
+        {
+            id: 'RULE_AI_DISCLOSURE_PROMO',
+            name: 'AI-Generated Content Disclosure',
+            category: 'TRANSPARENCY',
+            targetSignal: 'SIGNAL_NO_DISCLOSURE',
+            minConfidence: 0.5,
+            severity: 'LOW',
+            weight: -5,
+            regulationIds: ['EU_AI_ACT_ART_52'],
+            messageTemplate: 'Consider disclosing AI-generated nature of content for transparency.'
+        }
+    ]
+};
+
+// Promo Script Policy Pack for EU market (brand safety, less strict formality)
+export const PROMO_SCRIPT_EU_V1: PolicyPack = {
+    id: 'PROMO_SCRIPT_EU_V1',
+    name: 'Promo Script Compliance (EU Market)',
+    version: '1.0.0',
+    description: 'Brand safety compliance for promotional scripts targeting EU markets (English/multi-language).',
+    domain: 'content_generation',
+    jurisdiction: 'EU',
+    effectiveFrom: new Date('2024-01-01'),
+
+    detectors: [
+        new BrandSafetyDetector(),
+        new TransparencyDetector()
+    ],
+
+    rules: [
+        {
+            id: 'RULE_AGGRESSIVE_SALES_EU',
+            name: 'Aggressive Sales Language',
+            category: 'MANIPULATION',
+            targetSignal: 'SIGNAL_AGGRESSIVE_SALES',
+            minConfidence: 0.85,
+            severity: 'MEDIUM',
+            weight: -20,
+            regulationIds: ['EU_UCPD'],
+            messageTemplate: 'Aggressive sales language detected. Consider softer messaging.'
+        },
+        {
+            id: 'RULE_MISLEADING_CLAIM_EU',
+            name: 'Misleading Marketing Claim',
+            category: 'TRANSPARENCY',
+            targetSignal: 'SIGNAL_MISLEADING_CLAIM',
+            minConfidence: 0.9,
+            severity: 'HIGH',
+            weight: -35,
+            regulationIds: ['EU_UCPD'],
+            messageTemplate: 'Potentially misleading claim detected. Remove or substantiate claim.'
+        },
+        {
+            id: 'RULE_PRESSURE_TACTIC_EU',
+            name: 'Pressure Sales Tactic',
+            category: 'MANIPULATION',
+            targetSignal: 'SIGNAL_PRESSURE_TACTIC',
+            minConfidence: 0.85,
+            severity: 'LOW',
+            weight: -15,
+            regulationIds: ['EU_UCPD'],
+            messageTemplate: 'Pressure tactic detected. May be perceived as manipulative.'
+        },
+        {
+            id: 'RULE_AI_DISCLOSURE_EU',
+            name: 'AI-Generated Content Disclosure',
+            category: 'TRANSPARENCY',
+            targetSignal: 'SIGNAL_NO_DISCLOSURE',
+            minConfidence: 0.5,
+            severity: 'LOW',
+            weight: -5,
+            regulationIds: ['EU_AI_ACT_ART_52'],
+            messageTemplate: 'Consider disclosing AI-generated nature of content.'
+        }
+    ]
+};
+
 export const POLICY_PACKS: Record<string, PolicyPack> = {
     'MENTAL_HEALTH_EU_V1': MENTAL_HEALTH_EU_V1,
     'HR_RECRUITING_EU_V1': HR_RECRUITING_EU_V1,
     'GPAI_SYSTEMIC_RISK_EU_V1': GPAI_SYSTEMIC_RISK_EU_V1,
-    'DIGA_MDR_DE_V1': DIGA_MDR_DE_V1
+    'DIGA_MDR_DE_V1': DIGA_MDR_DE_V1,
+    'PROMO_SCRIPT_DE_V1': PROMO_SCRIPT_DE_V1,
+    'PROMO_SCRIPT_EU_V1': PROMO_SCRIPT_EU_V1
 };
