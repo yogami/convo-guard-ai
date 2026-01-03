@@ -120,7 +120,8 @@ export class ApiKeyRepository implements IApiKeyRepository {
 
         // In production with Supabase, would increment the counter
         // For now, demo mode tracks in memory
-        console.log('Request count incremented for:', keyId);
+        // Log with masked keyId (CodeQL: js/clear-text-logging)
+        console.log('Request count incremented for key:', keyId.substring(0, 8) + '...');
     }
 
     isRateLimited(key: ApiKey): boolean {

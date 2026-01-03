@@ -1,5 +1,6 @@
 import { PolicyRepository } from '@/domain/ports/PolicyRepository';
 import { Policy, REAL_WORLD_POLICIES } from '@/domain/policies/PolicyStore';
+import { safeLogger } from '@/lib/safeLogger';
 
 /**
  * Implementation of Policy Repository that simulates fetching from an external Government/Regulatory API.
@@ -73,7 +74,8 @@ export class ExternalPolicyRepository implements PolicyRepository {
         const policy = this.cachedPolicies.find(p => p.id === id);
         if (policy) {
             policy.enabled = enabled;
-            console.log(`[POLICY] Config Update: ${id} -> ${enabled ? 'ENABLED' : 'DISABLED'}`);
+            // Use safeLogger to prevent log injection (CodeQL: js/log-injection)
+            safeLogger.info(`[POLICY] Config Update: ${id} -> ${enabled ? 'ENABLED' : 'DISABLED'}`);
         }
     }
 }

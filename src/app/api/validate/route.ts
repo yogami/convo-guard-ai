@@ -15,6 +15,7 @@ import { apiKeyRepository } from '@/infrastructure/supabase/ApiKeyRepository';
 import { auditLogRepository } from '@/infrastructure/supabase/AuditLogRepository';
 import { alertService } from '@/domain/services/AlertService';
 import { createAuditLog } from '@/domain/entities/AuditLog';
+import { safeLogger } from '@/lib/safeLogger';
 
 export const runtime = 'nodejs'; // Ensure we use Node runtime for crypto support
 
@@ -160,7 +161,9 @@ export async function POST(request: Request) {
         return NextResponse.json(response);
 
     } catch (error: any) {
-        console.error('Fatal Validation error:', error);
+        // Use safeLogger (CodeQL: js/log-injection)
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        safeLogger.error(`Fatal Validation error: ${errorMessage}`);
         return NextResponse.json(
             { error: 'Internal server error', details: error?.message || String(error) },
             { status: 500 }
@@ -176,21 +179,25 @@ function parseTranscript(transcript: string): ConversationMessage[] {
     const messages: ConversationMessage[] = [];
 
     for (const line of lines) {
-        const match = line.match(/^(user|assistant|system):\s*(.+)$/i);
-        if (match) {
-            messages.push({
-                role: match[1].toLowerCase() as 'user' | 'assistant' | 'system',
-                content: match[2].trim(),
-                timestamp: new Date(),
-            });
-        } else {
-            // Default to user message if no role prefix
-            messages.push({
-                role: 'user',
-                content: line.trim(),
-                timestamp: new Date(),
-            });
+        // Use indexOf for role detection to avoid ReDoS (CodeQL: js/polynomial-redos)
+        const colonIndex = line.indexOf(':');
+        if (colonIndex > 0) {
+            const prefix = line.substring(0, colonIndex).toLowerCase().trim();
+            if (prefix === 'user' || prefix === 'assistant' || prefix === 'system') {
+                messages.push({
+                    role: prefix as 'user' | 'assistant' | 'system',
+                    content: line.substring(colonIndex + 1).trim(),
+                    timestamp: new Date(),
+                });
+                continue;
+            }
         }
+        // Default to user message if no valid role prefix
+        messages.push({
+            role: 'user',
+            content: line.trim(),
+            timestamp: new Date(),
+        });
     }
 
     return messages.length > 0 ? messages : [{
