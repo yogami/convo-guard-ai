@@ -13,9 +13,11 @@
     "test": "vitest",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest watch",
-    "test:coverage": "vitest run --coverage",
+    "test:coverage": "vitest run --coverage --coverage.thresholds.lines=80 --coverage.thresholds.branches=80",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "lint:duplication": "jscpd src --threshold 5",
+    "quality": "npm run lint && npm run lint:duplication && npm run test:coverage",
     "prepare": "husky"
   },
   "dependencies": {
@@ -39,6 +41,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
     "husky": "^9.1.7",
+    "jscpd": "^4.0.5",
     "jsdom": "^27.3.0",
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
