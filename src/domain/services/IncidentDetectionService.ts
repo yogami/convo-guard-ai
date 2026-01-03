@@ -5,7 +5,7 @@
  * Feature 2: Serious Incident Radar
  */
 
-import { Signal } from '../policy_engine/Signal';
+import { Signal } from '../../lib/compliance-engine/policy_engine/Signal';
 import {
     IncidentCategory,
     IncidentSeverity,

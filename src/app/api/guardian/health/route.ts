@@ -5,7 +5,7 @@
  * Health check endpoint for monitoring and load balancers.
  */
 import { NextResponse } from 'next/server';
-import { POLICY_PACKS } from '@/domain/policy_engine/registries/PolicyPackRegistry';
+import { POLICY_PACKS } from '@/lib/compliance-engine/policy_engine/registries/PolicyPackRegistry';
 
 interface HealthResponse {
     status: 'healthy' | 'degraded' | 'unhealthy';

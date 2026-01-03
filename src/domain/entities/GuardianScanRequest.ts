@@ -3,8 +3,8 @@
  * Used by InstagramReelPoster and other projects to request content validation
  */
 
-import { Signal } from '../policy_engine/Signal';
-import { PolicyViolation } from '../policy_engine/Policy';
+import { Signal } from '../../lib/compliance-engine/policy_engine/Signal';
+import { PolicyViolation } from '../../lib/compliance-engine/policy_engine/Policy';
 
 /**
  * Content payload for scanning

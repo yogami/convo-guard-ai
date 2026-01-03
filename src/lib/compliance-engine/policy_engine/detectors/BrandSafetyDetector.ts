@@ -8,7 +8,7 @@
  * - Over-promising language
  */
 import { SignalDetector } from '../SignalDetector';
-import { Conversation } from '../../entities/Conversation';
+import { Conversation } from '../../../../domain/entities/Conversation';
 import { Signal } from '../Signal';
 
 // Aggressive sales patterns (typically HIGH severity)

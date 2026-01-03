@@ -8,7 +8,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ConversationMessage, createConversation, createValidationResult, Risk } from '@/domain/entities/Conversation';
 import { ValidateConversation } from '@/domain/usecases/ValidateConversation';
-import { PolicyEngine, policyEngine } from '@/domain/policy_engine/PolicyEngine';
+import { PolicyEngine, policyEngine } from '@/lib/compliance-engine/policy_engine/PolicyEngine';
 
 // Repositories & Services
 import { apiKeyRepository } from '@/infrastructure/supabase/ApiKeyRepository';

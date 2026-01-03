@@ -99,18 +99,10 @@ curl "http://localhost:3000/api/audit-logs?format=csv" -o audit-logs.csv
 ```
 src/
 ├── app/                  # Next.js pages & API routes
-│   ├── api/
-│   │   ├── validate/     # POST /api/validate
-│   │   ├── health/       # GET /api/health
-│   │   └── audit-logs/   # GET /api/audit-logs
-│   └── dashboard/        # Compliance dashboard
-├── domain/
-│   ├── entities/         # Core types
-│   ├── rules/            # 6 compliance rules
-│   └── usecases/         # Business logic
-└── infrastructure/
-    ├── gemini/           # LLM adapter
-    └── supabase/         # Database repositories
+├── domain/               # Domain-driven central logic (entities, ports, services)
+├── lib/
+│   └── compliance-engine/# Extracted Microservice: Policy evaluation & signal detection
+└── infrastructure/       # Adapters (OpenAI, Supabase, etc.)
 ```
 
 ## 🧪 Testing

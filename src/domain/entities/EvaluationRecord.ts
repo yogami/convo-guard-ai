@@ -9,7 +9,7 @@
  * - Compliance gaps
  */
 
-import { Signal } from '../policy_engine/Signal';
+import { Signal } from '../../lib/compliance-engine/policy_engine/Signal';
 import { ValidationResult } from './Conversation';
 
 /**

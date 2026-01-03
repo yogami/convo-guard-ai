@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { ManipulationDetector } from '../ManipulationDetector';
-import { Conversation } from '../../../entities/Conversation';
+import { Conversation } from '../../../../../domain/entities/Conversation';
 
 describe('ManipulationDetector', () => {
     const detector = new ManipulationDetector();

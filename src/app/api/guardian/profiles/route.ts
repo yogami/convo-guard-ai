@@ -5,7 +5,7 @@
  * Returns available compliance profiles for content scanning.
  */
 import { NextResponse } from 'next/server';
-import { POLICY_PACKS } from '@/domain/policy_engine/registries/PolicyPackRegistry';
+import { POLICY_PACKS } from '@/lib/compliance-engine/policy_engine/registries/PolicyPackRegistry';
 import { ComplianceProfile } from '@/domain/entities/GuardianScanRequest';
 
 export async function GET(): Promise<NextResponse<{ profiles: ComplianceProfile[] }>> {

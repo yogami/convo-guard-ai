@@ -8,8 +8,8 @@ import {
     createScanResponse,
     ContentPayload
 } from '@/domain/entities/GuardianScanRequest';
-import { Signal } from '@/domain/policy_engine/Signal';
-import { PolicyViolation } from '@/domain/policy_engine/Policy';
+import { Signal } from '@/lib/compliance-engine/policy_engine/Signal';
+import { PolicyViolation } from '@/lib/compliance-engine/policy_engine/Policy';
 
 describe('GuardianScanRequest Entity', () => {
     describe('createScanResponse()', () => {

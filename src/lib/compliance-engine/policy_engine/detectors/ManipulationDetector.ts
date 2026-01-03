@@ -1,5 +1,5 @@
 import { SignalDetector } from '../SignalDetector';
-import { Conversation } from '../../entities/Conversation';
+import { Conversation } from '../../../../domain/entities/Conversation';
 import { Signal } from '../Signal';
 
 const MANIPULATION_PATTERNS = [

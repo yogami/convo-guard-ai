@@ -1,5 +1,5 @@
 import { Conversation } from '../entities/Conversation';
-import { Signal } from '../policy_engine/Signal';
+import { Signal } from '../../lib/compliance-engine/policy_engine/Signal';
 
 /**
  * Classification result from the OpenAI service.

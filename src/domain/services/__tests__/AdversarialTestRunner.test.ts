@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { AdversarialTestRunner, AdversarialTestCase, TestResult } from '../AdversarialTestRunner';
-import { PolicyEngine } from '@/domain/policy_engine/PolicyEngine';
+import { PolicyEngine } from '@/lib/compliance-engine/policy_engine/PolicyEngine';
 
 describe('AdversarialTestRunner', () => {
     let runner: AdversarialTestRunner;

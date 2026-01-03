@@ -5,7 +5,7 @@
  * Reference: EU AI Act Articles 5-14
  */
 
-import { Signal } from '../policy_engine/Signal';
+import { Signal } from '../../lib/compliance-engine/policy_engine/Signal';
 import { AIActObligation, ComplianceStatus } from '../entities/EvaluationRecord';
 import { RiskClassification } from '../entities/ConversationRecord';
 

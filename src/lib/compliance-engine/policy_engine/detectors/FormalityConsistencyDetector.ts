@@ -6,7 +6,7 @@
  * This detector flags inconsistent formality levels in German scripts.
  */
 import { SignalDetector } from '../SignalDetector';
-import { Conversation } from '../../entities/Conversation';
+import { Conversation } from '../../../../domain/entities/Conversation';
 import { Signal } from '../Signal';
 
 // Formal German indicators (Sie-form)

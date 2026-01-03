@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { REGULATION_REGISTRY } from '@/domain/policy_engine/Regulation';
+import { REGULATION_REGISTRY } from '@/lib/compliance-engine/policy_engine/Regulation';
 
 /**
  * GET /api/regulations

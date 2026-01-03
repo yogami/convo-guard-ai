@@ -78,7 +78,7 @@ const SIGNAL_TO_INCIDENT: Record<string, IncidentCategory> = {
     'SIGNAL_MANIPULATION': 'SAFETY_PROTOCOL_VIOLATION'
 };
 
-import { Signal } from '../policy_engine/Signal';
+import { Signal } from '../../lib/compliance-engine/policy_engine/Signal';
 
 export interface IncidentClassification {
     category: IncidentCategory;

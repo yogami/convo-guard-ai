@@ -1,4 +1,4 @@
-import { PolicyEngine } from '@/domain/policy_engine/PolicyEngine';
+import { PolicyEngine } from '@/lib/compliance-engine/policy_engine/PolicyEngine';
 
 export interface AdversarialTestCase {
     id: string;

@@ -6,14 +6,14 @@
  * Primary integration point for InstagramReelPoster and other projects.
  */
 import { NextRequest, NextResponse } from 'next/server';
-import { PolicyEngine } from '@/domain/policy_engine/PolicyEngine';
+import { PolicyEngine } from '@/lib/compliance-engine/policy_engine/PolicyEngine';
 import { createConversation } from '@/domain/entities/Conversation';
 import {
     GuardianScanRequest,
     GuardianScanResponse,
     createScanResponse
 } from '@/domain/entities/GuardianScanRequest';
-import { POLICY_PACKS } from '@/domain/policy_engine/registries/PolicyPackRegistry';
+import { POLICY_PACKS } from '@/lib/compliance-engine/policy_engine/registries/PolicyPackRegistry';
 
 const policyEngine = new PolicyEngine();
 

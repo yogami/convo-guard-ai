@@ -1,5 +1,5 @@
 import { Signal } from '../Signal';
-import { Conversation } from '../../entities/Conversation';
+import { Conversation } from '../../../../domain/entities/Conversation';
 
 const AGE_BIAS_PATTERNS = [
     /\b(young\s+and\s+energetic)\b/i,

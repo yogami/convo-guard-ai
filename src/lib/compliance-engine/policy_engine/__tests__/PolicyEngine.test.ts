@@ -5,7 +5,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { PolicyEngine } from '../PolicyEngine';
 import { PolicyPack, PolicyRule, PolicyViolation } from '../Policy';
 import { Signal } from '../Signal';
-import { createConversation, ConversationMessage } from '../../entities/Conversation';
+import { createConversation, ConversationMessage } from '../../../../domain/entities/Conversation';
 
 // Helper to create a conversation
 function makeConversation(messages: Partial<ConversationMessage>[]) {

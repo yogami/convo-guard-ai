@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { POLICY_PACKS } from '@/domain/policy_engine/registries/PolicyPackRegistry';
+import { POLICY_PACKS } from '@/lib/compliance-engine/policy_engine/registries/PolicyPackRegistry';
 
 export async function GET() {
     // Return list of available policy packs (metadata only)

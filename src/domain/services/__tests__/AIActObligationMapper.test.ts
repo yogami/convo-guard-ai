@@ -8,7 +8,7 @@ import {
     mapSignalsToObligations,
     getObligationsForRiskClass
 } from '../AIActObligationMapper';
-import { Signal } from '../../policy_engine/Signal';
+import { Signal } from '../../../lib/compliance-engine/policy_engine/Signal';
 
 describe('AIActObligationMapper', () => {
 
