@@ -2,7 +2,7 @@
  * Unit tests for Signal Detectors
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { createConversation, ConversationMessage } from '../../../../domain/entities/Conversation';
+import { createConversation, ConversationMessage } from '../../domain/entities/Conversation';
 import { SuicideDetector } from '../detectors/SuicideDetector';
 import { ConsentDetector } from '../detectors/ConsentDetector';
 import { TransparencyDetector } from '../detectors/TransparencyDetector';

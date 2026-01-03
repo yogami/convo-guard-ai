@@ -1,5 +1,5 @@
 
-import { Conversation, createValidationResult, Risk } from '../../../domain/entities/Conversation';
+import { Conversation, createValidationResult, Risk } from '../domain/entities/Conversation';
 import { PolicyPack, PolicyViolation } from './Policy';
 import { Signal } from './Signal';
 import { POLICY_PACKS } from './registries/PolicyPackRegistry';
