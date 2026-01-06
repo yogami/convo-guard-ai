@@ -16,6 +16,7 @@ import { auditLogRepository } from '@/infrastructure/supabase/AuditLogRepository
 import { alertService } from '@/domain/services/AlertService';
 import { createAuditLog } from '@/domain/entities/AuditLog';
 import { safeLogger } from '@/lib/safeLogger';
+import { errorReporter } from '@/lib/errorReporter';
 
 export const runtime = 'nodejs'; // Ensure we use Node runtime for crypto support
 
@@ -164,6 +165,10 @@ export async function POST(request: Request) {
         // Use safeLogger (CodeQL: js/log-injection)
         const errorMessage = error instanceof Error ? error.message : String(error);
         safeLogger.error(`Fatal Validation error: ${errorMessage}`);
+
+        // Trigger Self-Healing Agent
+        errorReporter.report(error, { endpoint: '/api/validate' });
+
         return NextResponse.json(
             { error: 'Internal server error', details: error?.message || String(error) },
             { status: 500 }
