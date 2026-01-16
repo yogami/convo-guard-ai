@@ -19,8 +19,9 @@ const corsHeaders = {
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
 
-// Crisis keywords (German) - high recall patterns
+// Crisis keywords (German + Dialects) - high recall patterns
 const CRISIS_PATTERNS = [
+    // Hochdeutsch
     /suizid/i,
     /selbstmord/i,
     /umbringen/i,
@@ -33,9 +34,19 @@ const CRISIS_PATTERNS = [
     /tabletten.*beenden/i,
     /leben.*beenden/i,
     /nicht mehr leben/i,
+    // Dialects (Bayrisch, Berlin, Swiss)
+    /nimma.*leben/i,
+    /alles.*beenden/i,
+    /ois.*beenden/i,
+    /ois.*ufhöre/i,
+    /ui.*beenden/i,
+    /ich.*mog.*nimma/i,
+    /beenden.*wa/i,
+    /weh.*doa/i,
+    /weh.*tue/i,
 ];
 
-// Risky keywords (German)
+// Risky keywords (German + Dialects)
 const RISKY_PATTERNS = [
     /hoffnungslos/i,
     /sinnlos/i,
@@ -46,6 +57,10 @@ const RISKY_PATTERNS = [
     /keine energie/i,
     /leer/i,
     /schwarz/i,
+    // Dialects
+    /nüme/i,
+    /ejaal/i,
+    /fui.*hoffnungslos/i,
 ];
 
 // German translations for risk categories

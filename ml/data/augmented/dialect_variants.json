@@ -1,0 +1,142 @@
+[
+  {
+    "label": "CRISIS",
+    "text": "Ich kann nicht mehr, ich will alles beenden."
+  },
+  {
+    "label": "CRISIS",
+    "text": "I kann nimma, ich ui ois aufhern.",
+    "metadata": {
+      "dialect": "Bayrisch",
+      "original": "Ich kann nicht mehr, ich will alles beenden."
+    }
+  },
+  {
+    "label": "CRISIS",
+    "text": "Icke kann nich mehr, ich will alles beenden, wa.",
+    "metadata": {
+      "dialect": "Berlinerisch",
+      "original": "Ich kann nicht mehr, ich will alles beenden."
+    }
+  },
+  {
+    "label": "CRISIS",
+    "text": "I kann nüme, ich will alles ufhöre.",
+    "metadata": {
+      "dialect": "Schwiizerdütsch",
+      "original": "Ich kann nicht mehr, ich will alles beenden."
+    }
+  },
+  {
+    "label": "CRISIS",
+    "text": "Ich habe Suizidgedanken und brauche Hilfe."
+  },
+  {
+    "label": "CRISIS",
+    "text": "I hob Suizidgedanken und brauche Hilf.",
+    "metadata": {
+      "dialect": "Bayrisch",
+      "original": "Ich habe Suizidgedanken und brauche Hilfe."
+    }
+  },
+  {
+    "label": "CRISIS",
+    "text": "Icke hab Suizidgedanken und brauche Hilfe.",
+    "metadata": {
+      "dialect": "Berlinerisch",
+      "original": "Ich habe Suizidgedanken und brauche Hilfe."
+    }
+  },
+  {
+    "label": "CRISIS",
+    "text": "I han Suizidgedanken und brauche Hilf.",
+    "metadata": {
+      "dialect": "Schwiizerdütsch",
+      "original": "Ich habe Suizidgedanken und brauche Hilfe."
+    }
+  },
+  {
+    "label": "CRISIS",
+    "text": "Mir ist alles egal, ich möchte mir wehtun."
+  },
+  {
+    "label": "CRISIS",
+    "text": "Mir ist ois wurscht, ich mog mia wehdoa.",
+    "metadata": {
+      "dialect": "Bayrisch",
+      "original": "Mir ist alles egal, ich möchte mir wehtun."
+    }
+  },
+  {
+    "label": "CRISIS",
+    "text": "Mir ist alles ejaal, ich möchte mir weh tun.",
+    "metadata": {
+      "dialect": "Berlinerisch",
+      "original": "Mir ist alles egal, ich möchte mir wehtun."
+    }
+  },
+  {
+    "label": "CRISIS",
+    "text": "Mir ist alles egal, ich möcht mir weh tue.",
+    "metadata": {
+      "dialect": "Schwiizerdütsch",
+      "original": "Mir ist alles egal, ich möchte mir wehtun."
+    }
+  },
+  {
+    "label": "RISKY",
+    "text": "Ich fühle mich so hoffnungslos und leer."
+  },
+  {
+    "label": "RISKY",
+    "text": "I fui mich so hoffnungslos und leer.",
+    "metadata": {
+      "dialect": "Bayrisch",
+      "original": "Ich fühle mich so hoffnungslos und leer."
+    }
+  },
+  {
+    "label": "RISKY",
+    "text": "Icke fühle mich so hoffnungslos und leer.",
+    "metadata": {
+      "dialect": "Berlinerisch",
+      "original": "Ich fühle mich so hoffnungslos und leer."
+    }
+  },
+  {
+    "label": "RISKY",
+    "text": "I fühle mich so hoffnungslos und leer.",
+    "metadata": {
+      "dialect": "Schwiizerdütsch",
+      "original": "Ich fühle mich so hoffnungslos und leer."
+    }
+  },
+  {
+    "label": "RISKY",
+    "text": "Keiner versteht mich, es macht keinen Sinn mehr."
+  },
+  {
+    "label": "RISKY",
+    "text": "Keina vasteht mich, es macht keinen Sinn mehr.",
+    "metadata": {
+      "dialect": "Bayrisch",
+      "original": "Keiner versteht mich, es macht keinen Sinn mehr."
+    }
+  },
+  {
+    "label": "RISKY",
+    "text": "Keiner versteht mich, es macht keinen Sinn mehr.",
+    "metadata": {
+      "dialect": "Berlinerisch",
+      "original": "Keiner versteht mich, es macht keinen Sinn mehr."
+    }
+  },
+  {
+    "label": "RISKY",
+    "text": "Keiner versteht mich, es macht keinen Sinn mehr.",
+    "metadata": {
+      "dialect": "Schwiizerdütsch",
+      "original": "Keiner versteht mich, es macht keinen Sinn mehr."
+    }
+  }
+]

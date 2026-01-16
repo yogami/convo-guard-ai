@@ -8,13 +8,14 @@ import aiohttp
 import time
 import json
 import statistics
+import argparse
 from datetime import datetime
 from pathlib import Path
 
-# Config
-API_URL = "https://convo-guard-ai-production.up.railway.app/api/local-validate"
-CONCURRENT_REQUESTS = 100
-TOTAL_REQUESTS = 200
+# Default Config
+DEFAULT_API_URL = "https://convo-guard-ai-production.up.railway.app/api/ml-validate"
+DEFAULT_CONCURRENT = 50
+DEFAULT_TOTAL = 100
 
 # Test payload
 TEST_PAYLOAD = {
@@ -26,11 +27,11 @@ REPORTS_DIR = Path(__file__).parent.parent / "reports"
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
 
-async def make_request(session: aiohttp.ClientSession, request_id: int) -> dict:
+async def make_request(session: aiohttp.ClientSession, request_id: int, api_url: str) -> dict:
     """Make a single request and return timing"""
     start = time.perf_counter()
     try:
-        async with session.post(API_URL, json=TEST_PAYLOAD, timeout=30) as response:
+        async with session.post(api_url, json=TEST_PAYLOAD, timeout=30) as response:
             elapsed = (time.perf_counter() - start) * 1000  # ms
             data = await response.json()
             return {
@@ -53,17 +54,17 @@ async def make_request(session: aiohttp.ClientSession, request_id: int) -> dict:
         }
 
 
-async def run_load_test(concurrent: int, total: int) -> list:
+async def run_load_test(concurrent: int, total: int, api_url: str) -> list:
     """Run load test with specified concurrency"""
     print(f"\n🚀 Running load test: {total} requests, {concurrent} concurrent")
-    print(f"   Target: {API_URL}")
+    print(f"   Target: {api_url}")
     
     results = []
     semaphore = asyncio.Semaphore(concurrent)
     
     async def bounded_request(session, i):
         async with semaphore:
-            return await make_request(session, i)
+            return await make_request(session, i, api_url)
     
     connector = aiohttp.TCPConnector(limit=concurrent)
     async with aiohttp.ClientSession(connector=connector) as session:
@@ -107,8 +108,9 @@ def analyze_results(results: list, total_time: float) -> dict:
     return analysis
 
 
-def generate_load_report(analysis: dict):
+def generate_load_report(analysis: dict, config: dict):
     """Generate load test report"""
+    api_url = config['api_url']
     
     # Determine pass/fail
     p95_pass = analysis["latency"]["p95_ms"] < 500  # Was 200, but Railway cold starts
@@ -117,10 +119,10 @@ def generate_load_report(analysis: dict):
     report = {
         "title": "ConvoGuard Load Test Report",
         "timestamp": datetime.now().isoformat(),
-        "target": API_URL,
+        "target": api_url,
         "configuration": {
-            "concurrent_requests": CONCURRENT_REQUESTS,
-            "total_requests": TOTAL_REQUESTS
+            "concurrent_requests": config['concurrent'],
+            "total_requests": config['total']
         },
         "results": analysis,
         "pass_fail": {
@@ -138,7 +140,7 @@ def generate_load_report(analysis: dict):
     md = f"""# ConvoGuard Load Test Report
 
 **Date:** {datetime.now().strftime("%Y-%m-%d %H:%M")}  
-**Target:** {API_URL}
+**Target:** {api_url}
 
 ---
 
@@ -147,7 +149,7 @@ def generate_load_report(analysis: dict):
 | Parameter | Value |
 |:----------|:------|
 | Total Requests | {analysis['total_requests']} |
-| Concurrent | {CONCURRENT_REQUESTS} |
+| Concurrent | {config['concurrent']} |
 | Duration | {analysis['total_time_s']}s |
 | RPS | {analysis['requests_per_second']} req/s |
 
@@ -201,11 +203,23 @@ Based on {analysis['requests_per_second']} RPS:
 
 
 async def main():
+    parser = argparse.ArgumentParser(description="ConvoGuard Load Test")
+    parser.add_argument("--url", default=DEFAULT_API_URL, help="Target API URL")
+    parser.add_argument("--concurrent", type=int, default=DEFAULT_CONCURRENT, help="Concurrent requests")
+    parser.add_argument("--total", type=int, default=DEFAULT_TOTAL, help="Total requests to make")
+    args = parser.parse_args()
+
+    config = {
+        "api_url": args.url,
+        "concurrent": args.concurrent,
+        "total": args.total
+    }
+
     print("=" * 60)
     print("ConvoGuard: Load Test")
     print("=" * 60)
     
-    results, total_time = await run_load_test(CONCURRENT_REQUESTS, TOTAL_REQUESTS)
+    results, total_time = await run_load_test(config["concurrent"], config["total"], config["api_url"])
     
     print("\n[2/3] Analyzing results...")
     analysis = analyze_results(results, total_time)
@@ -221,7 +235,7 @@ async def main():
     print(f"  P99: {analysis['latency']['p99_ms']}ms")
     
     print("\n[3/3] Generating report...")
-    report = generate_load_report(analysis)
+    report = generate_load_report(analysis, config)
     
     print(f"\n🎯 Overall: {report['pass_fail']['overall']}")
 
