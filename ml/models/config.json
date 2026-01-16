@@ -1,0 +1,29 @@
+{
+  "type": "hybrid",
+  "confidence_threshold": 0.75,
+  "crisis_patterns": [
+    "suizid",
+    "selbstmord",
+    "umbringen",
+    "sterben",
+    "wehtun",
+    "verletz",
+    "schneid",
+    "ritzen",
+    "schaden",
+    "tabletten.*beenden",
+    "leben.*beenden",
+    "nicht mehr leben"
+  ],
+  "risky_patterns": [
+    "hoffnungslos",
+    "sinnlos",
+    "verzweifelt",
+    "dunkel.*gedanken",
+    "last.*f\u00fcr",
+    "aufgegeben",
+    "keine energie",
+    "leer",
+    "schwarz"
+  ]
+}

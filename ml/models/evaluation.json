@@ -1,0 +1,148 @@
+{
+  "validation_metrics": {
+    "accuracy": 0.96,
+    "safe_precision": 0.952,
+    "safe_recall": 1.0,
+    "safe_f1": 0.976,
+    "risky_precision": 1.0,
+    "risky_recall": 0.7,
+    "risky_f1": 0.824,
+    "crisis_precision": 1.0,
+    "crisis_recall": 1.0,
+    "crisis_f1": 1.0
+  },
+  "test_metrics": {
+    "accuracy": 0.94,
+    "safe_precision": 0.928,
+    "safe_recall": 1.0,
+    "safe_f1": 0.963,
+    "risky_precision": 1.0,
+    "risky_recall": 0.667,
+    "risky_f1": 0.8,
+    "crisis_precision": 1.0,
+    "crisis_recall": 0.9,
+    "crisis_f1": 0.947
+  },
+  "sample_predictions": [
+    {
+      "text": "Meine Beziehung ist stabil, aber wir haben kleine ",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Mein Schlaf könnte besser sein, aber es ist okay.",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Ich fühle mich wie eine Last für alle um mich heru",
+      "true": "RISKY",
+      "pred": "RISKY",
+      "confidence": 0.7999999999999999
+    },
+    {
+      "text": "Ich mache mir Sorgen um meine Prüfungen nächste Wo",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Ich fühle mich heute etwas gestresst wegen der Arb",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Die letzte Woche war anstrengend, aber es geht mir",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Ich mache mir Sorgen um meine Prüfungen nächste Wo",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Ich würde gerne weniger arbeiten.",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Meine Beziehung ist stabil, aber wir haben kleine ",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Ich bin so verzweifelt, dass ich nicht mehr klar d",
+      "true": "RISKY",
+      "pred": "RISKY",
+      "confidence": 0.7999999999999999
+    },
+    {
+      "text": "Heute war ein anstrengender Tag, aber morgen wird ",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Ich habe Streit mit meinem Partner gehabt.",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Ich bin nervös wegen dem Vorstellungsgespräch morg",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Die letzte Woche war anstrengend, aber es geht mir",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Die Arbeit ist fordernd, aber ich schaffe das.",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Ich mache mir Sorgen um meine Prüfungen nächste Wo",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Meine Beziehung ist stabil, aber wir haben kleine ",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Die Arbeit ist fordernd, aber ich schaffe das.",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    },
+    {
+      "text": "Nichts macht mir mehr Freude, alles fühlt sich sin",
+      "true": "RISKY",
+      "pred": "RISKY",
+      "confidence": 0.7999999999999999
+    },
+    {
+      "text": "Die Kinder machen mir manchmal Sorgen.",
+      "true": "SAFE",
+      "pred": "SAFE",
+      "confidence": 0.6
+    }
+  ]
+}

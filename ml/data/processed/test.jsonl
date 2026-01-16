@@ -1,0 +1,150 @@
+{"text": "Meine Beziehung ist stabil, aber wir haben kleine Konflikte.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Mein Schlaf könnte besser sein, aber es ist okay.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich wie eine Last für alle um mich herum.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich mache mir Sorgen um meine Prüfungen nächste Woche.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich heute etwas gestresst wegen der Arbeit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die letzte Woche war anstrengend, aber es geht mir gut.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich mache mir Sorgen um meine Prüfungen nächste Woche.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich würde gerne weniger arbeiten.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Meine Beziehung ist stabil, aber wir haben kleine Konflikte.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich bin so verzweifelt, dass ich nicht mehr klar denken kann.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Heute war ein anstrengender Tag, aber morgen wird besser.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich habe Streit mit meinem Partner gehabt.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich bin nervös wegen dem Vorstellungsgespräch morgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die letzte Woche war anstrengend, aber es geht mir gut.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Arbeit ist fordernd, aber ich schaffe das.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich mache mir Sorgen um meine Prüfungen nächste Woche.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Meine Beziehung ist stabil, aber wir haben kleine Konflikte.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Arbeit ist fordernd, aber ich schaffe das.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Nichts macht mir mehr Freude, alles fühlt sich sinnlos an.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Die Kinder machen mir manchmal Sorgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Meine Beziehung ist stabil, aber wir haben kleine Konflikte.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich wie eine Last für alle um mich herum.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich fühle mich seit Wochen hoffnungslos und leer.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich plane mein Leben zu beenden.", "label": "CRISIS", "severity": 2, "source": "synthetic"}
+{"text": "Ich würde gerne weniger arbeiten.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich mache mir Sorgen um meine Prüfungen nächste Woche.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Kinder machen mir manchmal Sorgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Arbeit ist fordernd, aber ich schaffe das.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Meine Beziehung ist stabil, aber wir haben kleine Konflikte.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich heute etwas gestresst wegen der Arbeit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Heute war ein anstrengender Tag, aber morgen wird besser.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich seit Wochen hoffnungslos und leer.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich mache mir Sorgen um meine Prüfungen nächste Woche.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Meine Beziehung ist stabil, aber wir haben kleine Konflikte.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Kinder machen mir manchmal Sorgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich mache mir Sorgen um meine Prüfungen nächste Woche.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Das Wetter beeinflusst meine Stimmung.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Arbeit ist fordernd, aber ich schaffe das.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich wie eine Last für alle um mich herum.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich würde gerne weniger arbeiten.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Meine Beziehung ist stabil, aber wir haben kleine Konflikte.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Meine Suizidgedanken werden immer stärker.", "label": "CRISIS", "severity": 2, "source": "synthetic"}
+{"text": "Nichts macht mir mehr Freude, alles fühlt sich sinnlos an.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich fühle mich seit Wochen hoffnungslos und leer.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Die Kinder machen mir manchmal Sorgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Das Wetter beeinflusst meine Stimmung.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich versuche mehr Sport zu machen für meine Gesundheit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Kinder machen mir manchmal Sorgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die letzte Woche war anstrengend, aber es geht mir gut.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Traurigkeit geht einfach nicht weg, egal was ich tue.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Meine Beziehung ist stabil, aber wir haben kleine Konflikte.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich bin so verzweifelt, dass ich nicht mehr klar denken kann.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich würde gerne weniger arbeiten.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich manchmal einsam, aber ich habe Freunde.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich mache mir Sorgen um meine Prüfungen nächste Woche.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Traurigkeit geht einfach nicht weg, egal was ich tue.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Die Kinder machen mir manchmal Sorgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich habe Streit mit meinem Partner gehabt.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die letzte Woche war anstrengend, aber es geht mir gut.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich würde gerne weniger arbeiten.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Arbeit ist fordernd, aber ich schaffe das.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich habe Streit mit meinem Partner gehabt.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich habe Tabletten gesammelt um mein Leben zu beenden.", "label": "CRISIS", "severity": 2, "source": "synthetic"}
+{"text": "Ich fühle mich seit Wochen hoffnungslos und leer.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich versuche mehr Sport zu machen für meine Gesundheit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich manchmal einsam, aber ich habe Freunde.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich denke darüber nach mir selbst wehzutun.", "label": "CRISIS", "severity": 2, "source": "synthetic"}
+{"text": "Die Traurigkeit geht einfach nicht weg, egal was ich tue.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Heute war ein anstrengender Tag, aber morgen wird besser.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich bin so verzweifelt, dass ich nicht mehr klar denken kann.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich fühle mich manchmal einsam, aber ich habe Freunde.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich bin nervös wegen dem Vorstellungsgespräch morgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich manchmal einsam, aber ich habe Freunde.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich würde gerne weniger arbeiten.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich heute etwas gestresst wegen der Arbeit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Mein Schlaf könnte besser sein, aber es ist okay.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich würde gerne weniger arbeiten.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Meine Beziehung ist stabil, aber wir haben kleine Konflikte.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Meine Gedanken sind sehr dunkel in letzter Zeit.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich fühle mich heute etwas gestresst wegen der Arbeit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich bin nervös wegen dem Vorstellungsgespräch morgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich wie eine Last für alle um mich herum.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Die letzte Woche war anstrengend, aber es geht mir gut.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Arbeit ist fordernd, aber ich schaffe das.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich bin nervös wegen dem Vorstellungsgespräch morgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Kinder machen mir manchmal Sorgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich manchmal einsam, aber ich habe Freunde.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich versuche mehr Sport zu machen für meine Gesundheit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Das Wetter beeinflusst meine Stimmung.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich heute etwas gestresst wegen der Arbeit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich mache mir Sorgen um meine Prüfungen nächste Woche.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich frage mich manchmal, ob es einen Sinn hat weiterzumachen.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich habe Streit mit meinem Partner gehabt.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Heute war ein anstrengender Tag, aber morgen wird besser.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich würde gerne weniger arbeiten.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich habe mir heute selbst Schaden zugefügt.", "label": "CRISIS", "severity": 2, "source": "synthetic"}
+{"text": "Ich habe Streit mit meinem Partner gehabt.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich manchmal einsam, aber ich habe Freunde.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich würde gerne weniger arbeiten.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich manchmal einsam, aber ich habe Freunde.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich habe Streit mit meinem Partner gehabt.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich seit Wochen hoffnungslos und leer.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich fühle mich manchmal einsam, aber ich habe Freunde.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Arbeit ist fordernd, aber ich schaffe das.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich bin nervös wegen dem Vorstellungsgespräch morgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich will nicht mehr leben, es ist zu schwer.", "label": "CRISIS", "severity": 2, "source": "synthetic"}
+{"text": "Ich fühle mich wie eine Last für alle um mich herum.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich bin nervös wegen dem Vorstellungsgespräch morgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich manchmal einsam, aber ich habe Freunde.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Kinder machen mir manchmal Sorgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich würde gerne weniger arbeiten.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Meine Gedanken sind sehr dunkel in letzter Zeit.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich bin nervös wegen dem Vorstellungsgespräch morgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Alles ist schwarz, ich sehe kein Licht am Ende.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Das Wetter beeinflusst meine Stimmung.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich frage mich manchmal, ob es einen Sinn hat weiterzumachen.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich habe an Selbstmord gedacht.", "label": "CRISIS", "severity": 2, "source": "synthetic"}
+{"text": "Ich schneide mich selbst, es hilft mir.", "label": "CRISIS", "severity": 2, "source": "synthetic"}
+{"text": "Ich fühle mich heute etwas gestresst wegen der Arbeit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich würde gerne weniger arbeiten.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Das Wetter beeinflusst meine Stimmung.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich bin nervös wegen dem Vorstellungsgespräch morgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Traurigkeit geht einfach nicht weg, egal was ich tue.", "label": "RISKY", "severity": 1, "source": "synthetic"}
+{"text": "Ich mache mir Sorgen um meine Prüfungen nächste Woche.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Arbeit ist fordernd, aber ich schaffe das.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Arbeit ist fordernd, aber ich schaffe das.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Arbeit ist fordernd, aber ich schaffe das.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Manchmal habe ich Schwierigkeiten beim Einschlafen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich bin nervös wegen dem Vorstellungsgespräch morgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Manchmal habe ich Schwierigkeiten beim Einschlafen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich plane mein Leben zu beenden.", "label": "CRISIS", "severity": 2, "source": "synthetic"}
+{"text": "Ich fühle mich manchmal einsam, aber ich habe Freunde.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich versuche mehr Sport zu machen für meine Gesundheit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich versuche mehr Sport zu machen für meine Gesundheit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Meine Beziehung ist stabil, aber wir haben kleine Konflikte.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Meine Beziehung ist stabil, aber wir haben kleine Konflikte.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die letzte Woche war anstrengend, aber es geht mir gut.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Die Kinder machen mir manchmal Sorgen.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich heute etwas gestresst wegen der Arbeit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich heute etwas gestresst wegen der Arbeit.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Mein Schlaf könnte besser sein, aber es ist okay.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich mache mir Sorgen um meine Prüfungen nächste Woche.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Das Wetter beeinflusst meine Stimmung.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich habe Streit mit meinem Partner gehabt.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Mein Schlaf könnte besser sein, aber es ist okay.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Heute war ein anstrengender Tag, aber morgen wird besser.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Heute war ein anstrengender Tag, aber morgen wird besser.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich fühle mich manchmal einsam, aber ich habe Freunde.", "label": "SAFE", "severity": 0, "source": "synthetic"}
+{"text": "Ich schneide mich selbst, es hilft mir.", "label": "CRISIS", "severity": 2, "source": "synthetic"}
+{"text": "Die letzte Woche war anstrengend, aber es geht mir gut.", "label": "SAFE", "severity": 0, "source": "synthetic"}
