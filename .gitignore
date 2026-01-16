@@ -45,3 +45,9 @@ test-results/
 # Agent Context Injections
 .agent_rules.md
 .agent_catalog.md
+
+# ML model files (too large for git)
+ml/models/distilbert/checkpoints/
+ml/models/distilbert/*.safetensors
+ml/models/distilbert/*.pt
+

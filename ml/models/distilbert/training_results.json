@@ -1,0 +1,11 @@
+{
+  "model": "distilbert-base-multilingual-cased",
+  "trained_at": "2026-01-16T17:47:06.918218",
+  "train_samples": 1200,
+  "test_results": {
+    "accuracy": 100.0,
+    "crisis_recall": 100.0,
+    "crisis_precision": 100.0,
+    "crisis_f1": 100.0
+  }
+}
