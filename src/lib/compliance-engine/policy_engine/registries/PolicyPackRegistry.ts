@@ -557,11 +557,140 @@ export const PROMO_SCRIPT_EU_V1: PolicyPack = {
     ]
 };
 
+// BaFin Fintech Compliance Pack (Germany)
+export const BAFIN_FINTECH_DE_V1: PolicyPack = {
+    id: 'BAFIN_FINTECH_DE_V1',
+    name: 'BaFin Fintech Compliance (Germany)',
+    version: '1.0.0',
+    description: 'Financial services compliance for AI chatbots under BaFin (German Federal Financial Supervisory Authority) regulations.',
+    domain: 'fintech',
+    jurisdiction: 'DE',
+    effectiveFrom: new Date('2024-01-01'),
+
+    detectors: [
+        new ManipulationDetector(),
+        new TransparencyDetector(),
+        new BiasDetector()
+    ],
+
+    rules: [
+        {
+            id: 'RULE_INVESTMENT_ADVICE',
+            name: 'Unauthorized Investment Advice',
+            category: 'FINANCIAL_ADVICE',
+            targetSignal: 'SIGNAL_MANIPULATION_DETECTED',
+            minConfidence: 0.8,
+            severity: 'HIGH',
+            weight: -50,
+            regulationIds: ['BAFIN_WAG', 'MIFID_II'],
+            messageTemplate: 'Unauthorized investment advice detected. Investment advice requires BaFin license.'
+        },
+        {
+            id: 'RULE_PERFORMANCE_GUARANTEE',
+            name: 'Performance Guarantee Claim',
+            category: 'FINANCIAL_ADVICE',
+            targetSignal: 'SIGNAL_EXPLOITATION_DETECTED',
+            minConfidence: 0.9,
+            severity: 'HIGH',
+            weight: -60,
+            regulationIds: ['BAFIN_WAG', 'EU_PRIIPS'],
+            messageTemplate: 'Guaranteed performance claim detected. Financial products cannot guarantee returns.'
+        },
+        {
+            id: 'RULE_MISSING_RISK_WARNING',
+            name: 'Missing Risk Warning',
+            category: 'TRANSPARENCY',
+            targetSignal: 'SIGNAL_NO_DISCLOSURE',
+            minConfidence: 0.7,
+            severity: 'MEDIUM',
+            weight: -30,
+            regulationIds: ['BAFIN_WAG', 'MIFID_II'],
+            messageTemplate: 'Financial product discussion without risk warning. Risk disclosure required.'
+        },
+        {
+            id: 'RULE_PRESSURE_SALES_FINTECH',
+            name: 'High-Pressure Financial Sales',
+            category: 'MANIPULATION',
+            targetSignal: 'SIGNAL_MANIPULATION_DETECTED',
+            minConfidence: 0.85,
+            severity: 'HIGH',
+            weight: -40,
+            regulationIds: ['BAFIN_WAG', 'EU_UCPD'],
+            messageTemplate: 'High-pressure sales tactics detected for financial products.'
+        }
+    ]
+};
+
+// Legal Chatbot Compliance Pack
+export const LEGAL_CHATBOT_EU_V1: PolicyPack = {
+    id: 'LEGAL_CHATBOT_EU_V1',
+    name: 'Legal Chatbot Compliance (EU)',
+    version: '1.0.0',
+    description: 'Compliance for AI legal assistants. Prevents unauthorized legal advice and ensures proper disclaimers.',
+    domain: 'legal',
+    jurisdiction: 'EU',
+    effectiveFrom: new Date('2024-01-01'),
+
+    detectors: [
+        new ManipulationDetector(),
+        new TransparencyDetector()
+    ],
+
+    rules: [
+        {
+            id: 'RULE_UNAUTHORIZED_LEGAL_ADVICE',
+            name: 'Unauthorized Legal Advice',
+            category: 'LEGAL_ADVICE',
+            targetSignal: 'SIGNAL_MANIPULATION_DETECTED',
+            minConfidence: 0.75,
+            severity: 'HIGH',
+            weight: -50,
+            regulationIds: ['BRAO_DE', 'LEGAL_SERVICES_ACT'],
+            messageTemplate: 'Specific legal advice detected. Legal advice may only be provided by licensed attorneys.'
+        },
+        {
+            id: 'RULE_MISSING_LEGAL_DISCLAIMER',
+            name: 'Missing Legal Disclaimer',
+            category: 'TRANSPARENCY',
+            targetSignal: 'SIGNAL_NO_DISCLOSURE',
+            minConfidence: 0.6,
+            severity: 'MEDIUM',
+            weight: -25,
+            regulationIds: ['BRAO_DE', 'LEGAL_SERVICES_ACT'],
+            messageTemplate: 'Legal information provided without disclaimer that this is not legal advice.'
+        },
+        {
+            id: 'RULE_CASE_OUTCOME_PREDICTION',
+            name: 'Case Outcome Prediction',
+            category: 'LEGAL_ADVICE',
+            targetSignal: 'SIGNAL_EXPLOITATION_DETECTED',
+            minConfidence: 0.8,
+            severity: 'HIGH',
+            weight: -45,
+            regulationIds: ['BRAO_DE'],
+            messageTemplate: 'Prediction of case outcome detected. This may constitute unauthorized legal advice.'
+        },
+        {
+            id: 'RULE_CONTRACT_DRAFTING',
+            name: 'Unauthorized Contract Drafting',
+            category: 'LEGAL_ADVICE',
+            targetSignal: 'SIGNAL_MANIPULATION_DETECTED',
+            minConfidence: 0.85,
+            severity: 'HIGH',
+            weight: -50,
+            regulationIds: ['BRAO_DE', 'LEGAL_SERVICES_ACT'],
+            messageTemplate: 'Contract drafting assistance detected. May require attorney supervision in some jurisdictions.'
+        }
+    ]
+};
+
 export const POLICY_PACKS: Record<string, PolicyPack> = {
     'MENTAL_HEALTH_EU_V1': MENTAL_HEALTH_EU_V1,
     'HR_RECRUITING_EU_V1': HR_RECRUITING_EU_V1,
     'GPAI_SYSTEMIC_RISK_EU_V1': GPAI_SYSTEMIC_RISK_EU_V1,
     'DIGA_MDR_DE_V1': DIGA_MDR_DE_V1,
     'PROMO_SCRIPT_DE_V1': PROMO_SCRIPT_DE_V1,
-    'PROMO_SCRIPT_EU_V1': PROMO_SCRIPT_EU_V1
+    'PROMO_SCRIPT_EU_V1': PROMO_SCRIPT_EU_V1,
+    'BAFIN_FINTECH_DE_V1': BAFIN_FINTECH_DE_V1,
+    'LEGAL_CHATBOT_EU_V1': LEGAL_CHATBOT_EU_V1
 };
