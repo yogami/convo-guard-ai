@@ -20,6 +20,18 @@ import { errorReporter } from '@/lib/errorReporter';
 
 export const runtime = 'nodejs'; // Ensure we use Node runtime for crypto support
 
+// CORS headers for cross-origin requests
+const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
+// Handle preflight requests
+export async function OPTIONS() {
+    return NextResponse.json({}, { headers: corsHeaders });
+}
+
 export interface ValidateRequest {
     transcript?: string;
     messages?: ConversationMessage[];
@@ -53,7 +65,7 @@ export async function POST(request: Request) {
         if (!body.transcript && !body.messages) {
             return NextResponse.json(
                 { error: 'Either transcript or messages is required' },
-                { status: 400 }
+                { status: 400, headers: corsHeaders }
             );
         }
 
@@ -64,13 +76,13 @@ export async function POST(request: Request) {
             if (!apiKey) {
                 return NextResponse.json(
                     { error: 'Invalid API key' },
-                    { status: 401 }
+                    { status: 401, headers: corsHeaders }
                 );
             }
             if (apiKeyRepository.isRateLimited(apiKey)) {
                 return NextResponse.json(
                     { error: 'Rate limit exceeded', limit: apiKey.requestsLimit },
-                    { status: 429 }
+                    { status: 429, headers: corsHeaders }
                 );
             }
             apiKeyId = apiKey.id;
@@ -159,7 +171,7 @@ export async function POST(request: Request) {
             execution_time_ms: Math.round(executionTimeMs),
         };
 
-        return NextResponse.json(response);
+        return NextResponse.json(response, { headers: corsHeaders });
 
     } catch (error: any) {
         // Use safeLogger (CodeQL: js/log-injection)
@@ -171,7 +183,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json(
             { error: 'Internal server error', details: error?.message || String(error) },
-            { status: 500 }
+            { status: 500, headers: corsHeaders }
         );
     }
 }
