@@ -1,0 +1,10 @@
+{
+  "model_type": "onnx",
+  "base_model": "distilbert-base-multilingual-cased",
+  "exported_from": "/Users/user1000/gitprojects/convo-guard-ai/ml/models/distilbert",
+  "labels": [
+    "SAFE",
+    "RISKY",
+    "CRISIS"
+  ]
+}

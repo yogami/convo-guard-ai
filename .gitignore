@@ -51,3 +51,6 @@ ml/models/distilbert/checkpoints/
 ml/models/distilbert/*.safetensors
 ml/models/distilbert/*.pt
 
+
+# ONNX model files (portable)
+# ml/models/onnx/*.onnx
