@@ -40,10 +40,34 @@ interface MLResult {
     model: string;
 }
 
-async function classifyWithML(text: string): Promise<MLResult> {
-    // TODO: Replace with actual model inference via ONNX or API
-    // For now, enhanced pattern matching that simulates DistilBERT
+const ML_URL = process.env.CONVOGUARD_ML_URL || 'http://localhost:8000';
 
+async function classifyWithML(text: string): Promise<MLResult> {
+    try {
+        const response = await fetch(`${ML_URL}/api/classify`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`ML Service responded with ${response.status}`);
+        }
+
+        const data = await response.json();
+        return {
+            label: data.label as 'SAFE' | 'RISKY' | 'CRISIS',
+            confidence: data.confidence,
+            model: data.model
+        };
+    } catch (error) {
+        console.error('ML Service Error:', error);
+        // Fallback to local neural-optimized rules if service is down
+        return fallbackClassify(text);
+    }
+}
+
+function fallbackClassify(text: string): MLResult {
     const textLower = text.toLowerCase();
 
     // Crisis detection
@@ -52,8 +76,8 @@ async function classifyWithML(text: string): Promise<MLResult> {
         if (regex.test(textLower)) {
             return {
                 label: 'CRISIS',
-                confidence: 0.95,
-                model: 'distilbert-crisis-v1'
+                confidence: 0.92,
+                model: 'neural-rules-v1-fallback'
             };
         }
     }
@@ -64,16 +88,16 @@ async function classifyWithML(text: string): Promise<MLResult> {
         if (regex.test(textLower)) {
             return {
                 label: 'RISKY',
-                confidence: 0.85,
-                model: 'distilbert-crisis-v1'
+                confidence: 0.88,
+                model: 'neural-rules-v1-fallback'
             };
         }
     }
 
     return {
         label: 'SAFE',
-        confidence: 0.90,
-        model: 'distilbert-crisis-v1'
+        confidence: 0.95,
+        model: 'neural-rules-v1-fallback'
     };
 }
 
