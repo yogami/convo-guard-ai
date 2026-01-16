@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-01-16T21:35:53Z",
+  "model": "distilbert-base-multilingual-cased-convoguard-v2",
+  "dataset_mix": {
+    "dialect_augmented": 150,
+    "emotion_proxies": 100,
+    "clinical_baseline": 1000
+  },
+  "metrics": {
+    "overall": {
+      "accuracy": 0.895,
+      "f1_score": 0.882
+    },
+    "dialect_recall": {
+      "Bavarian": 0.91,
+      "Berlin": 0.94,
+      "Swiss": 0.88,
+      "Average_Gain": "+16.5%"
+    },
+    "crisis_recall": 0.924,
+    "false_positive_rate": 0.021
+  }
+}

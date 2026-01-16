@@ -1,0 +1,763 @@
+[
+  {
+    "label": "RISKY",
+    "text": "I f\u00fchle mich so hoffnungslos und leer.",
+    "metadata": {
+      "dialect": "Schwiizerd\u00fctsch",
+      "original": "Ich f\u00fchle mich so hoffnungslos und leer."
+    }
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "label": "RISKY",
+    "text": "Keina vasteht mich, es macht keinen Sinn mehr.",
+    "metadata": {
+      "dialect": "Bayrisch",
+      "original": "Keiner versteht mich, es macht keinen Sinn mehr."
+    }
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "label": "RISKY",
+    "text": "Keiner versteht mich, es macht keinen Sinn mehr.",
+    "metadata": {
+      "dialect": "Schwiizerd\u00fctsch",
+      "original": "Keiner versteht mich, es macht keinen Sinn mehr."
+    }
+  },
+  {
+    "label": "CRISIS",
+    "text": "Mir ist alles egal, ich m\u00f6chte mir wehtun."
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "label": "CRISIS",
+    "text": "Icke hab Suizidgedanken und brauche Hilfe.",
+    "metadata": {
+      "dialect": "Berlinerisch",
+      "original": "Ich habe Suizidgedanken und brauche Hilfe."
+    }
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich sehe einfach keine Zukunft mehr f\u00fcr mich.",
+    "label": "CRISIS",
+    "metadata": {
+      "emotion": "hopelessness"
+    }
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "label": "RISKY",
+    "text": "I fui mich so hoffnungslos und leer.",
+    "metadata": {
+      "dialect": "Bayrisch",
+      "original": "Ich f\u00fchle mich so hoffnungslos und leer."
+    }
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "label": "CRISIS",
+    "text": "I han Suizidgedanken und brauche Hilf.",
+    "metadata": {
+      "dialect": "Schwiizerd\u00fctsch",
+      "original": "Ich habe Suizidgedanken und brauche Hilfe."
+    }
+  },
+  {
+    "label": "CRISIS",
+    "text": "I kann nimma, ich ui ois aufhern.",
+    "metadata": {
+      "dialect": "Bayrisch",
+      "original": "Ich kann nicht mehr, ich will alles beenden."
+    }
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "label": "RISKY",
+    "text": "Icke f\u00fchle mich so hoffnungslos und leer.",
+    "metadata": {
+      "dialect": "Berlinerisch",
+      "original": "Ich f\u00fchle mich so hoffnungslos und leer."
+    }
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich bin so traurig und trauere um meinen Hund.",
+    "label": "RISKY",
+    "metadata": {
+      "emotion": "grief"
+    }
+  },
+  {
+    "label": "CRISIS",
+    "text": "Mir ist alles egal, ich m\u00f6cht mir weh tue.",
+    "metadata": {
+      "dialect": "Schwiizerd\u00fctsch",
+      "original": "Mir ist alles egal, ich m\u00f6chte mir wehtun."
+    }
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "label": "CRISIS",
+    "text": "Mir ist alles ejaal, ich m\u00f6chte mir weh tun.",
+    "metadata": {
+      "dialect": "Berlinerisch",
+      "original": "Mir ist alles egal, ich m\u00f6chte mir wehtun."
+    }
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "label": "CRISIS",
+    "text": "Ich kann nicht mehr, ich will alles beenden."
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "label": "CRISIS",
+    "text": "I hob Suizidgedanken und brauche Hilf.",
+    "metadata": {
+      "dialect": "Bayrisch",
+      "original": "Ich habe Suizidgedanken und brauche Hilfe."
+    }
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "label": "CRISIS",
+    "text": "Ich habe Suizidgedanken und brauche Hilfe."
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Es tut mir so leid, was ich getan habe.",
+    "label": "RISKY",
+    "metadata": {
+      "emotion": "remorse"
+    }
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "label": "CRISIS",
+    "text": "I kann n\u00fcme, ich will alles ufh\u00f6re.",
+    "metadata": {
+      "dialect": "Schwiizerd\u00fctsch",
+      "original": "Ich kann nicht mehr, ich will alles beenden."
+    }
+  },
+  {
+    "label": "RISKY",
+    "text": "Keiner versteht mich, es macht keinen Sinn mehr.",
+    "metadata": {
+      "dialect": "Berlinerisch",
+      "original": "Keiner versteht mich, es macht keinen Sinn mehr."
+    }
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "label": "CRISIS",
+    "text": "Icke kann nich mehr, ich will alles beenden, wa.",
+    "metadata": {
+      "dialect": "Berlinerisch",
+      "original": "Ich kann nicht mehr, ich will alles beenden."
+    }
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "label": "CRISIS",
+    "text": "Mir ist ois wurscht, ich mog mia wehdoa.",
+    "metadata": {
+      "dialect": "Bayrisch",
+      "original": "Mir ist alles egal, ich m\u00f6chte mir wehtun."
+    }
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "label": "RISKY",
+    "text": "Keiner versteht mich, es macht keinen Sinn mehr."
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich habe ein bisschen Stress bei der Arbeit.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "label": "RISKY",
+    "text": "Ich f\u00fchle mich so hoffnungslos und leer."
+  },
+  {
+    "text": "Mir geht es gut, danke der Nachfrage.",
+    "label": "SAFE"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  },
+  {
+    "text": "Ich f\u00fchle mich heute sehr schlecht und m\u00f6chte nicht mehr leben.",
+    "label": "CRISIS"
+  }
+]
