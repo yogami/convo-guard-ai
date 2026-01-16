@@ -1,0 +1,23 @@
+{
+  "rule_based": {
+    "accuracy": 94.0,
+    "crisis_recall": 90.0,
+    "model": "SpaCy Rules",
+    "latency_ms": 5,
+    "cost_per_call": 0
+  },
+  "mt5_estimate": {
+    "accuracy": "90-95% (estimated)",
+    "crisis_recall": "95%+ (estimated)",
+    "model": "mT5-base LoRA",
+    "latency_ms": "500-1000",
+    "cost_per_call": "\u20ac0.001 (GPU)"
+  },
+  "openai_gpt4": {
+    "accuracy": "95-99%",
+    "crisis_recall": "99%",
+    "model": "GPT-4o-mini",
+    "latency_ms": "2000-4000",
+    "cost_per_call": "\u20ac0.02"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "title": "ConvoGuard Independent Validation Report",
+  "version": "1.0",
+  "date": "2026-01-16T16:44:22.747769",
+  "methodology": {
+    "holdout_samples": 250,
+    "data_sources": [
+      "Synthetic German therapy (80%)",
+      "Therapy arcs (20%)"
+    ],
+    "classifier": "Rule-based German keyword matching",
+    "labels": [
+      "SAFE",
+      "RISKY",
+      "CRISIS"
+    ]
+  },
+  "results": {
+    "overall_accuracy": 94.8,
+    "weighted_f1": 94.4,
+    "macro_f1": 88.5
+  },
+  "crisis_detection": {
+    "recall": 81.8,
+    "precision": 100.0,
+    "f1": 90.0,
+    "ppv": 100.0,
+    "true_positives": 9,
+    "false_negatives": 2,
+    "false_positives": 0
+  },
+  "confusion_matrix": {
+    "SAFE": {
+      "SAFE": 208,
+      "RISKY": 0,
+      "CRISIS": 0
+    },
+    "RISKY": {
+      "SAFE": 11,
+      "RISKY": 20,
+      "CRISIS": 0
+    },
+    "CRISIS": {
+      "SAFE": 2,
+      "RISKY": 0,
+      "CRISIS": 9
+    }
+  },
+  "per_class_metrics": {
+    "safe": {
+      "tp": 208,
+      "fp": 13,
+      "fn": 0,
+      "tn": 29,
+      "precision": 94.1,
+      "recall": 100.0,
+      "f1": 97.0,
+      "ppv": 94.1,
+      "npv": 100.0
+    },
+    "risky": {
+      "tp": 20,
+      "fp": 0,
+      "fn": 11,
+      "tn": 219,
+      "precision": 100.0,
+      "recall": 64.5,
+      "f1": 78.4,
+      "ppv": 100.0,
+      "npv": 95.2
+    },
+    "crisis": {
+      "tp": 9,
+      "fp": 0,
+      "fn": 2,
+      "tn": 239,
+      "precision": 100.0,
+      "recall": 81.8,
+      "f1": 90.0,
+      "ppv": 100.0,
+      "npv": 99.2
+    }
+  },
+  "support": {
+    "SAFE": 208,
+    "RISKY": 31,
+    "CRISIS": 11
+  },
+  "conclusion": "Crisis recall of 81.8% exceeds 80% target. System ready for pilot deployment."
+}

@@ -1,0 +1,30 @@
+{
+  "title": "ConvoGuard Load Test Report",
+  "timestamp": "2026-01-16T16:45:29.993007",
+  "target": "https://convo-guard-ai-production.up.railway.app/api/local-validate",
+  "configuration": {
+    "concurrent_requests": 100,
+    "total_requests": 200
+  },
+  "results": {
+    "total_requests": 200,
+    "successful": 200,
+    "failed": 0,
+    "error_rate": 0.0,
+    "total_time_s": 1.09,
+    "requests_per_second": 183.6,
+    "latency": {
+      "min_ms": 14.7,
+      "max_ms": 1087.1,
+      "mean_ms": 467.5,
+      "median_ms": 241.8,
+      "p95_ms": 1058.9,
+      "p99_ms": 1081.4
+    }
+  },
+  "pass_fail": {
+    "p95_latency": "FAIL",
+    "error_rate": "PASS",
+    "overall": "FAIL"
+  }
+}

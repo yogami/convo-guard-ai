@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-01-16T16:09:31.423213",
+  "datasets": [
+    {
+      "name": "SMHD-GER",
+      "description": "German mental health Reddit",
+      "source": "Not directly on HF - academic paper"
+    },
+    {
+      "name": "malexandersalazar/xlm-roberta-base-cls-depression",
+      "description": "Multilingual depression (6 langs incl. German)",
+      "source": "HuggingFace model"
+    },
+    {
+      "name": "AIMH/SWMH",
+      "description": "Reddit SuicideWatch + Mental Health",
+      "source": "HuggingFace dataset"
+    },
+    {
+      "name": "gohjiayi/suicidal-bert",
+      "description": "Suicidal text classification",
+      "source": "HuggingFace model"
+    },
+    {
+      "name": "sentinet/suicidality",
+      "description": "Advanced suicidality classifier",
+      "source": "HuggingFace model"
+    },
+    {
+      "name": "ChrisLalk/German-Emotions",
+      "description": "27 German emotions",
+      "source": "HuggingFace model"
+    },
+    {
+      "name": "cardiffnlp/tweet_sentiment_multilingual",
+      "description": "Multilingual sentiment",
+      "source": "HuggingFace dataset"
+    }
+  ]
+}
