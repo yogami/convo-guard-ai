@@ -48,6 +48,6 @@
     "prettier": "^3.7.4",
     "reflect-metadata": "^0.2.2",
     "typescript": "^5",
-    "vitest": "^4.0.15"
+    "vitest": "^4.0.17"
   }
 }
