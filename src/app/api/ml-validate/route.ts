@@ -21,17 +21,26 @@ const corsHeaders = {
 // The model is saved at ml/models/distilbert/
 
 // Fallback to enhanced rule-based until model is deployed as service
-const CRISIS_KEYWORDS = [
-    'suizid', 'selbstmord', 'umbringen', 'sterben',
-    'wehtun', 'verletz', 'schneid', 'ritzen',
-    'schaden', 'tabletten.*beenden', 'leben.*beenden',
-    'nicht mehr leben', 'tod', 'ende'
+const CRISIS_PATTERNS = [
+    // Hochdeutsch
+    /suizid/i, /selbstmord/i, /umbringen/i, /sterben/i,
+    /wehtun/i, /verletz/i, /schneid/i, /ritzen/i,
+    /schaden/i, /tabletten.*beenden/i, /leben.*beenden/i,
+    /nicht mehr leben/i, /zu ende.*bringen/i,
+    // Dialects
+    /nimma.*leben/i, /alles.*beenden/i, /ois.*beenden/i,
+    /ois.*ufhöre/i, /ui.*beenden/i, /ich.*mog.*nimma/i,
+    /beenden.*wa/i, /weh.*doa/i, /weh.*tue/i,
 ];
 
-const RISKY_KEYWORDS = [
-    'hoffnungslos', 'sinnlos', 'verzweifelt',
-    'dunkel', 'last', 'aufgegeben', 'leer', 'schwarz',
-    'keine energie', 'nicht mehr', 'aufhören'
+const RISKY_PATTERNS = [
+    /hoffnungslos/i, /sinnlos/i, /verzweifelt/i,
+    /keinen.*sinn/i, /sinn.*mehr/i,
+    /dunkel.*gedanken/i, /last.*für/i, /aufgegeben/i,
+    /keine energie/i, /leer/i, /schwarz/i,
+    /will.*nicht.*mehr/i, /kann.*nicht.*mehr/i,
+    // Dialects
+    /nüme/i, /ejaal/i, /fui.*hoffnungslos/i,
 ];
 
 interface MLResult {
@@ -71,33 +80,29 @@ function fallbackClassify(text: string): MLResult {
     const textLower = text.toLowerCase();
 
     // Crisis detection
-    for (const keyword of CRISIS_KEYWORDS) {
-        const regex = new RegExp(keyword, 'i');
-        if (regex.test(textLower)) {
-            return {
-                label: 'CRISIS',
-                confidence: 0.92,
-                model: 'neural-rules-v1-fallback'
-            };
-        }
+    const matchedCrisis = CRISIS_PATTERNS.filter(p => p.test(textLower));
+    if (matchedCrisis.length > 0) {
+        return {
+            label: 'CRISIS',
+            confidence: 0.92,
+            model: 'neural-rules-v2-fallback'
+        };
     }
 
     // Risky detection
-    for (const keyword of RISKY_KEYWORDS) {
-        const regex = new RegExp(keyword, 'i');
-        if (regex.test(textLower)) {
-            return {
-                label: 'RISKY',
-                confidence: 0.88,
-                model: 'neural-rules-v1-fallback'
-            };
-        }
+    const matchedRisky = RISKY_PATTERNS.filter(p => p.test(textLower));
+    if (matchedRisky.length > 0) {
+        return {
+            label: 'RISKY',
+            confidence: 0.88,
+            model: 'neural-rules-v2-fallback'
+        };
     }
 
     return {
         label: 'SAFE',
         confidence: 0.95,
-        model: 'neural-rules-v1-fallback'
+        model: 'neural-rules-v2-fallback'
     };
 }
 

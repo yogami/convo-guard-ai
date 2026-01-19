@@ -50,6 +50,8 @@ const CRISIS_PATTERNS = [
 const RISKY_PATTERNS = [
     /hoffnungslos/i,
     /sinnlos/i,
+    /keinen.*sinn/i,
+    /sinn.*mehr/i,
     /verzweifelt/i,
     /dunkel.*gedanken/i,
     /last.*für/i,
@@ -57,6 +59,8 @@ const RISKY_PATTERNS = [
     /keine energie/i,
     /leer/i,
     /schwarz/i,
+    /will.*nicht.*mehr/i,
+    /kann.*nicht.*mehr/i,
     // Dialects
     /nüme/i,
     /ejaal/i,
