@@ -28,7 +28,7 @@
     "next": "^16.0.10",
     "onnxruntime-node": "^1.23.2",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",
