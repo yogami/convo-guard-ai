@@ -43,19 +43,25 @@ async function getOnnxSession() {
 
 // Fallback to enhanced neural-rules v2 (semantic triggers derived from model weights)
 const CRISIS_PATTERNS = [
+    // German / Dialects
     /suizid/i, /selbstmord/i, /umbringen/i, /sterben/i,
     /wehtun/i, /verletz/i, /schneid/i, /ritzen/i,
     /schaden/i, /tabletten.*beenden/i, /leben.*beenden/i,
     /nicht mehr leben/i, /zu ende.*bringen/i,
     /nimma.*leben/i, /alles.*beenden/i, /ois.*beenden/i,
     /ich.*mog.*nimma/i,
+    // English
+    /suicide/i, /kill myself/i, /end my life/i, /self harm/i, /end it all/i,
 ];
 
 const RISKY_PATTERNS = [
+    // German / Dialects
     /hoffnungslos/i, /sinnlos/i, /verzweifelt/i,
     /keinen.*sinn/i, /sinn.*mehr/i,
     /dunkel.*gedanken/i, /last.*für/i, /aufgegeben/i,
     /leer/i, /schwarz/i, /will.*nicht.*mehr/i,
+    // English
+    /hopeless/i, /no point/i, /no way out/i, /give up/i, /worthless/i, /burden to/i,
 ];
 
 interface MLResult {
