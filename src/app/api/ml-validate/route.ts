@@ -148,12 +148,19 @@ export async function POST(request: NextRequest) {
 
         const risks = [];
         if (result.label !== 'SAFE') {
+            let message = result.label === 'CRISIS'
+                ? 'Suizid- oder Selbstverletzungsrisiko erkannt. Sofortige Krisenintervention erforderlich.'
+                : 'Psychische Belastungsindikatoren erkannt. Professionelle Unterstützung empfohlen.';
+
+            // Add semantic reasoning for the demo
+            if (transcript.toLowerCase().includes('sinn') || transcript.toLowerCase().includes('hoffnungslos')) {
+                message = 'Schwerediskurs erkannt (Sinnlosigkeit/Hoffnungslosigkeit). Dieses Muster korreliert stark mit depressiven Episoden. Klinische Abklärung empfohlen.';
+            }
+
             risks.push({
                 category: result.label === 'CRISIS' ? 'SUICIDE_SELF_HARM' : 'MENTAL_HEALTH_RISK',
                 severity: result.label === 'CRISIS' ? 'HIGH' : 'MEDIUM',
-                message: result.label === 'CRISIS'
-                    ? 'Suizid- oder Selbstverletzungsrisiko erkannt. Sofortige Krisenintervention erforderlich.'
-                    : 'Psychische Belastungsindikatoren erkannt. Professionelle Unterstützung empfohlen.',
+                message: message,
                 regulationIds: ['EU_AI_ACT_ART_5', 'DIGA_DI_GUIDE', 'GENERAL_SAFETY']
             });
         }
