@@ -27,7 +27,7 @@
     "inversify": "^6.2.2",
     "next": "^16.0.10",
     "onnxruntime-node": "^1.23.2",
-    "react": "19.2.0",
+    "react": "19.2.3",
     "react-dom": "19.2.0"
   },
   "devDependencies": {
