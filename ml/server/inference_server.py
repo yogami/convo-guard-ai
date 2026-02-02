@@ -58,42 +58,6 @@ class HealthResponse(BaseModel):
     version: str
 
 
-@app.on_event("startup")
-async def load_model():
-    """Load ONNX model on startup"""
-    global model, tokenizer
-    
-    # Try multiple paths for Docker vs Local
-    paths_to_try = [
-        MODEL_DIR,
-        Path("./models/onnx"),
-        Path("/app/models/onnx")
-    ]
-    
-    success = False
-    for path in paths_to_try:
-        if (path / "tokenizer_config.json").exists():
-            try:
-                from optimum.onnxruntime import ORTModelForSequenceClassification
-                from transformers import DistilBertTokenizer
-                
-                print(f"Loading ONNX model from {path}...")
-                tokenizer = DistilBertTokenizer.from_pretrained(str(path))
-                
-                if (path / "model.onnx").exists():
-                    model = ORTModelForSequenceClassification.from_pretrained(str(path))
-                    print("✅ Real ML Model loaded successfully!")
-                    success = True
-                    break
-                else:
-                    print(f"⚠️ model.onnx missing in {path}, using neural-ready tokenizer with rule-fallback")
-            except Exception as e:
-                print(f"⚠️ Failed to load model from {path}: {e}")
-
-    if not success:
-        print("🚩 Falling back to robust rule-based inference (neural-optimized patterns)")
-
-
 @app.get("/api/health", response_model=HealthResponse)
 @app.get("/health", response_model=HealthResponse)
 async def health():
@@ -108,11 +72,37 @@ async def health():
 @app.post("/api/classify", response_model=ClassifyResponse)
 @app.post("/classify", response_model=ClassifyResponse)
 async def classify(request: ClassifyRequest):
-    """Classify text for crisis/risk detection"""
+    """Classify text for crisis/risk detection with lazy-loading"""
     global model, tokenizer
     
     start_time = time.perf_counter()
     
+    # LAZY LOADING
+    if model is None or tokenizer is None:
+        # Try multiple paths for Docker vs Local
+        paths_to_try = [
+            MODEL_DIR,
+            Path("./models/onnx"),
+            Path("/app/models/onnx"),
+            Path(__file__).parent.parent / "models" / "onnx" # Added a more robust relative path
+        ]
+        
+        for path in paths_to_try:
+            if (path / "tokenizer_config.json").exists():
+                try:
+                    from optimum.onnxruntime import ORTModelForSequenceClassification
+                    from transformers import DistilBertTokenizer
+                    
+                    print(f"[On-Demand] Loading heavy ONNX model from {path}...")
+                    tokenizer = DistilBertTokenizer.from_pretrained(str(path))
+                    
+                    if (path / "model.onnx").exists():
+                        model = ORTModelForSequenceClassification.from_pretrained(str(path))
+                        print("✅ Real ML Model loaded successfully (On-Demand)!")
+                        break
+                except Exception as e:
+                    print(f"⚠️ Failed to lazy-load model from {path}: {e}")
+
     # REAL ML INFERENCE
     if model is not None and tokenizer is not None:
         try:
