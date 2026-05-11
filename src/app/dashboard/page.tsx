@@ -52,10 +52,10 @@ function DashboardContent() {
                 {/* Lifecycle & Certification Row */}
                 <section className={styles.complianceRow}>
                     <div className={styles.lifecyclePanel}>
-                        <LifecycleView currentStage="DEVELOPMENT" systemId="ConvoGuard-Demo" />
+                        <LifecycleView currentStage="DEVELOPMENT" systemId="HelloBetter-Multimodal-Agent" />
                     </div>
                     <div className={styles.certPanel}>
-                        <CertificationStatus systemId="ConvoGuard-Demo" />
+                        <CertificationStatus systemId="HelloBetter-Multimodal-Agent" />
                     </div>
                 </section>
 

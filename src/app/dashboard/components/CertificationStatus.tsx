@@ -17,34 +17,75 @@ interface CertificationStatusProps {
     systemId?: string;
 }
 
-export function CertificationStatus({ systemId = 'ConvoGuard-Demo' }: CertificationStatusProps) {
+export function CertificationStatus({ systemId = 'HelloBetter-Multimodal-Agent' }: CertificationStatusProps) {
     const [doc, setDoc] = useState<DeclarationOfConformity | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // For demo purposes, we'll show a mock certification
-    // In production, this would fetch from /api/declarations
-    const mockDoc: DeclarationOfConformity = {
-        id: 'DOC-2024-001',
-        systemName: systemId,
-        issueDate: new Date().toISOString(),
-        expiryDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
-        conformsToAIAct: true,
-        harmonizedStandards: ['ISO 42001:2023', 'ISO 27001:2022'],
-        notifiedBodyId: 'NB-1234'
-    };
-
+    // Initial check (mock logic for demo)
     useEffect(() => {
-        // Simulate loading
         setIsLoading(true);
         setTimeout(() => {
-            setDoc(mockDoc);
+            setDoc(null);
             setIsLoading(false);
         }, 500);
     }, [systemId]);
 
+    const handleGenerate = async () => {
+        setIsLoading(true);
+        try {
+            const payload = {
+                systemInfo: {
+                    name: systemId,
+                    version: '2.0.0',
+                    description: 'Multimodal Therapeutic Agent with ConvoGuard AI Circuit Breaker',
+                    classification: 'HIGH_RISK_ANNEX_III',
+                    intendedPurpose: 'Mental health support and intervention'
+                },
+                providerInfo: {
+                    name: 'HelloBetter GmbH',
+                    address: 'Berlin, Germany',
+                    contactEmail: 'compliance@hellobetter.de',
+                    authorizedRepresentative: 'David Ebert'
+                },
+                assessmentResults: {
+                    compliant: true,
+                    lastAssessmentDate: new Date().toISOString(),
+                    violations: []
+                }
+            };
+
+            const res = await fetch('/api/generate-doc', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) throw new Error('Failed to generate DoC');
+            
+            const data = await res.json();
+            setDoc(data.doc);
+            
+            // Trigger automatic download of the HTML version for the demo
+            const blob = new Blob([data.html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `EU_AI_Act_DoC_${systemId}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+        } catch (err) {
+            setError('Failed to generate documentation.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     if (isLoading) {
-        return <div className={styles.loading}>Loading certification status...</div>;
+        return <div className={styles.container}><div className={styles.loading}>Generating EU AI Act Documentation...</div></div>;
     }
 
     if (error) {
@@ -56,9 +97,9 @@ export function CertificationStatus({ systemId = 'ConvoGuard-Demo' }: Certificat
             <div className={styles.container}>
                 <div className={styles.noDoc}>
                     <span className={styles.warningIcon}>⚠️</span>
-                    <p>No Declaration of Conformity found</p>
-                    <button className={styles.generateBtn}>
-                        Generate DoC
+                    <p>No EU AI Act Declaration of Conformity found for <strong>{systemId}</strong>.</p>
+                    <button className={styles.generateBtn} onClick={handleGenerate} style={{marginTop: '10px', background: '#2563eb', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold'}}>
+                        Generate Official DoC
                     </button>
                 </div>
             </div>
@@ -73,7 +114,7 @@ export function CertificationStatus({ systemId = 'ConvoGuard-Demo' }: Certificat
         <div className={styles.container}>
             <div className={styles.header}>
                 <div className={styles.statusBadge} data-status={doc.conformsToAIAct ? 'valid' : 'invalid'}>
-                    {doc.conformsToAIAct ? '✓ Compliant' : '✗ Non-Compliant'}
+                    {doc.conformsToAIAct ? '✓ EU AI Act Compliant' : '✗ Non-Compliant'}
                 </div>
                 <span className={styles.docId}>{doc.id}</span>
             </div>
@@ -103,15 +144,15 @@ export function CertificationStatus({ systemId = 'ConvoGuard-Demo' }: Certificat
             <div className={styles.standards}>
                 <span className={styles.label}>Standards:</span>
                 <div className={styles.standardsList}>
-                    {doc.harmonizedStandards.map((std) => (
+                    {doc.harmonizedStandards?.map((std) => (
                         <span key={std} className={styles.standardBadge}>{std}</span>
                     ))}
                 </div>
             </div>
 
             <div className={styles.actions}>
-                <button className={styles.viewBtn}>View Full DoC</button>
-                <button className={styles.exportBtn}>Export PDF</button>
+                <button className={styles.viewBtn}>View File</button>
+                <button className={styles.exportBtn} onClick={handleGenerate}>Re-Export PDF</button>
             </div>
         </div>
     );
