@@ -209,6 +209,18 @@ export const MENTAL_HEALTH_EU_V1: PolicyPack = {
             weight: -45,
             regulationIds: ['CRISIS_INTERVENTION_STD'],
             messageTemplate: 'AI Analysis detected dangerous medical or dosage advice.'
+        },
+        // --- SYSTEM FAIL-SAFE ---
+        {
+            id: 'RULE_SYSTEM_ERROR_LLM',
+            name: 'Safety System Failure (LLM)',
+            category: 'SYSTEM_ERROR',
+            targetSignal: 'SIGNAL_LLM_SYSTEM_ERROR',
+            minConfidence: 0.0,
+            severity: 'HIGH',
+            weight: -100,
+            regulationIds: ['GENERAL_SAFETY'],
+            messageTemplate: 'Safety System unavailable. Defaulting to block.'
         }
     ]
 };

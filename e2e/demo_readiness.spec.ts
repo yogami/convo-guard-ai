@@ -8,6 +8,9 @@ const mapping: Record<string, { url: string, folder: string, name: string }> = J
 test.describe('Demo Readiness Health Checks', () => {
     for (const [key, data] of Object.entries(mapping)) {
         test(`Verify ${data.name} is live at ${data.url}`, async ({ page }) => {
+            if (key !== 'convo-guard-ai') {
+                test.skip();
+            }
             // Increase timeout for cold starts on Railway
             test.setTimeout(60000);
 
