@@ -13,6 +13,7 @@ import { LifecycleView } from './components/LifecycleView';
 import { CertificationStatus } from './components/CertificationStatus';
 import { IntentDriftGraph } from './components/IntentDriftGraph';
 import { ComplianceReplayViewer } from './components/ComplianceReplayViewer';
+import { CBTFidelityScorecard } from './components/CBTFidelityScorecard';
 
 export const dynamic = 'force-dynamic';
 
@@ -72,6 +73,10 @@ function DashboardContent() {
                             <div className={styles.certPanel} style={{ width: '100%' }}>
                                 <CertificationStatus systemId="AcmeTherapy-Multimodal-Agent" />
                             </div>
+                        </section>
+
+                        <section>
+                            <CBTFidelityScorecard />
                         </section>
 
                         <section>

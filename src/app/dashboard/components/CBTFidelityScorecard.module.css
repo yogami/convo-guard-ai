@@ -1,0 +1,117 @@
+.container {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 0.75rem;
+}
+
+.title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.scoreBadge {
+    background: #ecfdf5;
+    color: #059669;
+    font-size: 1.25rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 2px solid #a7f3d0;
+}
+
+.driftSection {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+}
+
+.driftTitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.tagList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.adherent {
+    background: #e0e7ff;
+    color: #4338ca;
+}
+
+.drift {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px dashed #f87171;
+}
+
+.correction {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.exportSection {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px dashed #cbd5e1;
+}
+
+.cptCode {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #334155;
+    background: #f1f5f9;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.exportBtn {
+    background: #0f172a;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.875rem;
+}
+
+.exportBtn:hover {
+    background: #334155;
+}
