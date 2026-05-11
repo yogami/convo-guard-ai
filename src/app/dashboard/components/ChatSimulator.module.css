@@ -275,3 +275,51 @@
 .clickable:hover {
     transform: scale(1.02);
 }
+
+/* Window of Tolerance Gauge */
+.telemetryPanel {
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.telemetryRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.telemetryValue {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.gaugeContainer {
+    width: 100%;
+    height: 8px;
+    background: #334155;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 4px;
+}
+
+.gaugeBar {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.telemetryTitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}

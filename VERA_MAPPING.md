@@ -1,11 +1,11 @@
-# ATF Compliance Mapping: ConvoGuard AI
+# VERA Compliance Mapping: ConvoGuard AI
 
-> **Agentic Trust Framework Element**: 🛡️ **Element 3 — Data Governance ("What are you eating? What are you serving?")**
-> **ATF Spec**: [github.com/massivescale-ai/agentic-trust-framework](https://github.com/massivescale-ai/agentic-trust-framework)
+> **Verifiable Enforcement for Runtime Agents Element**: 🛡️ **Element 3 — Data Governance ("What are you eating? What are you serving?")**
+> **VERA Spec**: [github.com/massivescale-ai/agentic-trust-framework](https://github.com/massivescale-ai/agentic-trust-framework)
 
-## ATF Data Governance Requirements → Implementation
+## VERA Data Governance Requirements → Implementation
 
-| ATF Requirement | ATF Description | Implementation Status |
+| VERA Requirement | VERA Description | Implementation Status |
 |:---|:---|:---|
 | **Schema Validation** | Inputs conform to expected structure and types | ✅ Input validation pipeline before inference |
 | **Injection Prevention** | Detection of prompt injection and adversarial inputs | ✅ Multi-vector prompt injection defense (ONNX runtime) |
@@ -13,16 +13,16 @@
 | **Output Validation** | Outputs conform to expected structure and content policies | ✅ 6 compliance rules (suicide prevention, GDPR, crisis, medical safety, terminology, data residency) |
 | **Data Lineage** | Tracking of data provenance through the agent pipeline | ✅ Signed audit logs with EU AI Act Article mapping (11, 12, 73) |
 
-## Beyond ATF: Where ConvoGuard Exceeds the Spec
+## Beyond VERA: Where ConvoGuard Exceeds the Spec
 
-| ATF Says | ConvoGuard Does |
+| VERA Says | ConvoGuard Does |
 |:---|:---|
 | "Detect PII" | **Edge-deployed** — sub-20ms ONNX inference, no data leaves the device |
 | "Validate outputs" | **Regulatory evidence** — signed, immutable compliance trails for EU AI Act |
 | "Content filtering" | **Firewall model** — deterministic control layer, not probabilistic filter |
 | "Schema validation" | **DLP at the Edge** — intercepts API keys and secrets before network transmission |
 
-## ATF Maturity Level Support
+## VERA Maturity Level Support
 
 | Agent Level | Supported | How |
 |:---|:---|:---|
@@ -47,5 +47,5 @@
 
 ---
 
-*Berlin AI Labs — ATF Reference Implementation*
-*[Cloud Security Alliance Agentic Trust Framework](https://cloudsecurityalliance.org/blog/2026/02/02/the-agentic-trust-framework-zero-trust-governance-for-ai-agents)*
+*Berlin AI Labs — VERA Reference Implementation*
+*[Cloud Security Alliance Verifiable Enforcement for Runtime Agents](https://cloudsecurityalliance.org/blog/2026/02/02/the-agentic-trust-framework-zero-trust-governance-for-ai-agents)*

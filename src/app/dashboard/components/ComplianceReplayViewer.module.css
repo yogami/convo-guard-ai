@@ -1,0 +1,155 @@
+.container {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.header {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 0.5rem;
+}
+
+.title {
+    margin: 0;
+    font-size: 1rem;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    position: relative;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #e2e8f0;
+    z-index: 1;
+}
+
+.eventMarker {
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: transform 0.2s;
+}
+
+.eventMarker:hover {
+    transform: scale(1.1);
+}
+
+.markerDot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px #cbd5e1;
+}
+
+.PASS .markerDot {
+    background: #10b981;
+    box-shadow: 0 0 0 2px #10b981;
+}
+
+.MODIFY .markerDot {
+    background: #f59e0b;
+    box-shadow: 0 0 0 2px #f59e0b;
+}
+
+.BLOCK .markerDot {
+    background: #ef4444;
+    box-shadow: 0 0 0 2px #ef4444;
+}
+
+.eventLabel {
+    font-size: 0.65rem;
+    color: #475569;
+    font-family: monospace;
+}
+
+.eventDetails {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.detailHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.detailHeader h5 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.latency {
+    font-family: monospace;
+    color: #4338ca;
+    background: #e0e7ff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+.detailRow {
+    margin-bottom: 0.5rem;
+    color: #334155;
+}
+
+.detailRow strong {
+    color: #1e293b;
+    margin-right: 4px;
+}
+
+.detailRow code {
+    background: #e2e8f0;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #0f172a;
+}
+
+.emptyDetails {
+    margin-top: 1rem;
+    padding: 1rem;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.875rem;
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}

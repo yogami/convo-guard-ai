@@ -8,7 +8,7 @@ test.describe('HelloBetter Demo UI & XAI Flows', () => {
             const request = route.request();
             const postData = request.postDataJSON();
 
-            if (postData?.transcript?.includes('suicide') || postData?.transcript?.includes('die')) {
+            if (postData?.transcript?.includes('die')) {
                 await route.fulfill({
                     status: 200,
                     contentType: 'application/json',
@@ -68,27 +68,27 @@ test.describe('HelloBetter Demo UI & XAI Flows', () => {
         });
     });
 
-    test('should trigger circuit breaker and display XAI modal on high risk input', async ({ page }) => {
+    test('should trigger gracious circuit break on dissociation and display new UI components', async ({ page }) => {
         await page.goto('/dashboard');
         
-        // Find the input and send a safe message first
-        const chatInput = page.locator('input[placeholder*="Type a message"]');
-        await chatInput.fill('I am feeling okay today');
-        await page.locator('button:has-text("Send")').click();
-        
-        // Verify assistant responds
-        await expect(page.locator('text=I am here to listen.')).toBeVisible();
+        // Verify new components rendered
+        await expect(page.locator('h4:has-text("Intent Drift Trajectory")')).toBeVisible();
+        await expect(page.locator('h4:has-text("Compliance Replay Viewer")')).toBeVisible();
 
-        // Send a risky message
-        await chatInput.fill('I want to die');
+        // Verify Compliance Replay Viewer events
+        await expect(page.locator('div[class*="eventLabel"]', { hasText: '14:32:07.045' })).toBeVisible();
+
+        // Find the input and send a dissociation message
+        const chatInput = page.locator('input[placeholder*="Type \'I feel numb\'"]');
+        await chatInput.fill('I feel numb');
         await page.locator('button:has-text("Send")').click();
 
-        // Verify circuit is broken
-        const blockedMsg = page.locator('text=🚫 CIRCUIT BROKEN: Detected self-harm ideation requiring immediate clinical escalation.');
+        // Verify gracious circuit break occurs (Grounding script injected)
+        const blockedMsg = page.locator('text=⚡ GRACIOUS CIRCUIT BREAK');
         await expect(blockedMsg).toBeVisible();
 
-        // Verify escalate button appears
-        await expect(page.locator('button:has-text("Escalate to Human Moderator")')).toBeVisible();
+        // Verify Clinical Supervisor Ping button appears
+        await expect(page.locator('button:has-text("Ping Clinical Supervisor")')).toBeVisible();
 
         // Click the blocked message to open XAI Inspector
         await blockedMsg.click();
@@ -96,12 +96,15 @@ test.describe('HelloBetter Demo UI & XAI Flows', () => {
         // Verify XAI Modal opens with correct details
         const modal = page.locator('div[class*="modalContent"]');
         await expect(modal.locator('h4:has-text("Explainability (XAI) Trace")')).toBeVisible();
-        await expect(modal.locator('span:text-is("SELF_HARM")').first()).toBeVisible();
-        await expect(modal.locator('text=RULE_SELF_HARM_REGEX').first()).toBeVisible();
+        await expect(modal.locator('span:text-is("PATHOLOGICAL_DISSOCIATION")').first()).toBeVisible();
+        await expect(modal.locator('text=RULE_TRAUMA_EXPOSURE_TOLERANCE').first()).toBeVisible();
+        
+        // Verify the action taken is explicitly the gracious circuit break
+        await expect(modal.locator('text=Interrupted exposure narrative').first()).toBeVisible();
 
         // Close modal
         await page.locator('button', { hasText: '×' }).click();
-        await expect(page.locator('h4:has-text("Explainability (XAI) Trace")')).toBeHidden();
+        await expect(modal).toBeHidden();
     });
 
     test('should generate and display Declaration of Conformity', async ({ page }) => {
