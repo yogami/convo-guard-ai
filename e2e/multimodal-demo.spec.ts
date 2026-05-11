@@ -130,13 +130,13 @@ test.describe('AcmeTherapy Demo UI & XAI Flows', () => {
         await expect(page.locator('text=ISO 42001')).toBeVisible();
     });
 
-    test('should display Enterprise Operational Leverage props', async ({ page }) => {
+    test('should display Infrastructure MVP benefits', async ({ page }) => {
         await page.goto('/dashboard');
 
-        // Verify the Enterprise Value Props are visible
-        await expect(page.locator('h3:has-text("Enterprise Operational Leverage")')).toBeVisible();
-        await expect(page.locator('h4:has-text("Automated AbEM Data Extraction")')).toBeVisible();
-        await expect(page.locator('h4:has-text("Strict Liability Risk Transfer (PLD)")')).toBeVisible();
-        await expect(page.locator('h4:has-text("AI-Augmented Medical Coding")')).toBeVisible();
+        // Verify the MVP Props are visible
+        await expect(page.locator('h3:has-text("Infrastructure MVP Benefits")')).toBeVisible();
+        await expect(page.locator('h4:has-text("The Boring Rules Engine")')).toBeVisible();
+        await expect(page.locator('h4:has-text("The Boring Audit Logs")')).toBeVisible();
+        await expect(page.locator('h4:has-text("The Boring Billing Extraction")')).toBeVisible();
     });
 });
