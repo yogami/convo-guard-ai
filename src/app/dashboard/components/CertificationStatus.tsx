@@ -17,7 +17,7 @@ interface CertificationStatusProps {
     systemId?: string;
 }
 
-export function CertificationStatus({ systemId = 'HelloBetter-Multimodal-Agent' }: CertificationStatusProps) {
+export function CertificationStatus({ systemId = 'AcmeTherapy-Multimodal-Agent' }: CertificationStatusProps) {
     const [doc, setDoc] = useState<DeclarationOfConformity | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -43,10 +43,10 @@ export function CertificationStatus({ systemId = 'HelloBetter-Multimodal-Agent' 
                     intendedPurpose: 'Mental health support and intervention'
                 },
                 providerInfo: {
-                    name: 'HelloBetter GmbH',
+                    name: 'AcmeTherapy GmbH',
                     address: 'Berlin, Germany',
-                    contactEmail: 'compliance@hellobetter.de',
-                    authorizedRepresentative: 'David Ebert'
+                    contactEmail: 'compliance@acmetherapy.de',
+                    authorizedRepresentative: 'Dr. John Doe'
                 },
                 assessmentResults: {
                     compliant: true,

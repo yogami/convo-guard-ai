@@ -19,7 +19,7 @@ interface Message {
 
 export function ChatSimulator() {
     const [messages, setMessages] = useState<Message[]>([
-        { id: '1', role: 'assistant', content: 'Hello! I am your HelloBetter Mental Health Agent. How are you feeling today?' }
+        { id: '1', role: 'assistant', content: 'Hello! I am your AcmeTherapy Mental Health Agent. How are you feeling today?' }
     ]);
     const [input, setInput] = useState('');
     const [processing, setProcessing] = useState(false);

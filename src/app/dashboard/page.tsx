@@ -64,13 +64,13 @@ function DashboardContent() {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                         <section className={styles.complianceRow}>
                             <div className={styles.lifecyclePanel} style={{ width: '100%' }}>
-                                <LifecycleView currentStage="DEVELOPMENT" systemId="HelloBetter-Multimodal-Agent" />
+                                <LifecycleView currentStage="DEVELOPMENT" systemId="AcmeTherapy-Multimodal-Agent" />
                             </div>
                         </section>
                         
                         <section className={styles.complianceRow}>
                             <div className={styles.certPanel} style={{ width: '100%' }}>
-                                <CertificationStatus systemId="HelloBetter-Multimodal-Agent" />
+                                <CertificationStatus systemId="AcmeTherapy-Multimodal-Agent" />
                             </div>
                         </section>
 
@@ -89,7 +89,7 @@ function DashboardContent() {
 
             <footer className={styles.footer}>
                 <p>EU AI Act • DiGA • GDPR Compliant</p>
-                <p className={styles.version}>v2.5.0 - HelloBetter Frontier Edition</p>
+                <p className={styles.version}>v2.5.0 - AcmeTherapy Frontier Edition</p>
             </footer>
         </div>
     );

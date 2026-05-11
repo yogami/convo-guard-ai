@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('HelloBetter Demo UI & XAI Flows', () => {
+test.describe('AcmeTherapy Demo UI & XAI Flows', () => {
 
     test.beforeEach(async ({ page }) => {
         // Mock the API responses so tests are deterministic and don't rely on OpenAI
@@ -56,7 +56,7 @@ test.describe('HelloBetter Demo UI & XAI Flows', () => {
                     success: true,
                     doc: {
                         id: 'DOC-MOCK-123',
-                        systemName: 'HelloBetter-Multimodal-Agent',
+                        systemName: 'AcmeTherapy-Multimodal-Agent',
                         issueDate: new Date().toISOString(),
                         expiryDate: new Date(Date.now() + 86400000).toISOString(),
                         conformsToAIAct: true,
@@ -122,7 +122,7 @@ test.describe('HelloBetter Demo UI & XAI Flows', () => {
         const download = await downloadPromise;
 
         // Verify download filename
-        expect(download.suggestedFilename()).toBe('EU_AI_Act_DoC_HelloBetter-Multimodal-Agent.html');
+        expect(download.suggestedFilename()).toBe('EU_AI_Act_DoC_AcmeTherapy-Multimodal-Agent.html');
 
         // Verify UI updates to show compliance badge
         await expect(page.locator('text=✓ EU AI Act Compliant')).toBeVisible();
