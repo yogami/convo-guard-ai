@@ -20,23 +20,28 @@ export class TransparencyLogRepository {
             return;
         }
 
-        const { error } = await client
-            .from('transparency_logs')
-            .insert({
-                id: log.id,
-                created_at: log.timestamp.toISOString(),
-                system_id: log.systemId,
-                decision_type: log.decisionType,
-                input_summary: log.inputSummary,
-                output_decision: log.outputDecision,
-                explanation_provided: log.explanationProvided,
-                human_oversight: log.humanOversight,
-                audit_trail: log.auditTrail,
-                regulation_references: log.regulationReferences
-            });
+        try {
+            const { error } = await client
+                .from('transparency_logs')
+                .insert({
+                    id: log.id,
+                    created_at: log.timestamp.toISOString(),
+                    system_id: log.systemId,
+                    decision_type: log.decisionType,
+                    input_summary: log.inputSummary,
+                    output_decision: log.outputDecision,
+                    explanation_provided: log.explanationProvided,
+                    human_oversight: log.humanOversight,
+                    audit_trail: log.auditTrail,
+                    regulation_references: log.regulationReferences
+                });
 
-        if (error) {
-            console.warn(`Failed to save transparency log to Supabase: ${error.message}. Falling back to memory.`);
+            if (error) {
+                console.warn(`Failed to save transparency log to Supabase: ${error.message}. Falling back to memory.`);
+                this.memoryStore.set(log.id, log);
+            }
+        } catch (ex: any) {
+            console.warn(`Exception when saving transparency log to Supabase: ${ex.message}. Falling back to memory.`);
             this.memoryStore.set(log.id, log);
         }
     }
@@ -49,31 +54,38 @@ export class TransparencyLogRepository {
                 .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
         }
 
-        const { data, error } = await client
-            .from('transparency_logs')
-            .select('*')
-            .eq('system_id', systemId)
-            .order('created_at', { ascending: false });
+        try {
+            const { data, error } = await client
+                .from('transparency_logs')
+                .select('*')
+                .eq('system_id', systemId)
+                .order('created_at', { ascending: false });
 
-        if (error) {
-            console.warn(`Failed to fetch logs from Supabase: ${error.message}. Falling back to memory.`);
+            if (error) {
+                console.warn(`Failed to fetch logs from Supabase: ${error.message}. Falling back to memory.`);
+                return Array.from(this.memoryStore.values())
+                    .filter(l => l.systemId === systemId)
+                    .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+            }
+
+            return data.map((row: any) => ({
+                id: row.id,
+                timestamp: new Date(row.created_at),
+                systemId: row.system_id,
+                decisionType: row.decision_type,
+                inputSummary: row.input_summary,
+                outputDecision: row.output_decision,
+                explanationProvided: row.explanation_provided,
+                humanOversight: row.human_oversight,
+                auditTrail: row.audit_trail,
+                regulationReferences: row.regulation_references
+            }));
+        } catch (ex: any) {
+            console.warn(`Exception when fetching logs from Supabase: ${ex.message}. Falling back to memory.`);
             return Array.from(this.memoryStore.values())
                 .filter(l => l.systemId === systemId)
                 .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
         }
-
-        return data.map((row: any) => ({
-            id: row.id,
-            timestamp: new Date(row.created_at),
-            systemId: row.system_id,
-            decisionType: row.decision_type,
-            inputSummary: row.input_summary,
-            outputDecision: row.output_decision,
-            explanationProvided: row.explanation_provided,
-            humanOversight: row.human_oversight,
-            auditTrail: row.audit_trail,
-            regulationReferences: row.regulation_references
-        }));
     }
 }
 
