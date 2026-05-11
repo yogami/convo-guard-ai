@@ -36,7 +36,8 @@ export class TransparencyLogRepository {
             });
 
         if (error) {
-            throw new Error(`Failed to save transparency log: ${error.message}`);
+            console.warn(`Failed to save transparency log to Supabase: ${error.message}. Falling back to memory.`);
+            this.memoryStore.set(log.id, log);
         }
     }
 
@@ -55,7 +56,10 @@ export class TransparencyLogRepository {
             .order('created_at', { ascending: false });
 
         if (error) {
-            throw new Error(`Failed to fetch logs: ${error.message}`);
+            console.warn(`Failed to fetch logs from Supabase: ${error.message}. Falling back to memory.`);
+            return Array.from(this.memoryStore.values())
+                .filter(l => l.systemId === systemId)
+                .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
         }
 
         return data.map((row: any) => ({

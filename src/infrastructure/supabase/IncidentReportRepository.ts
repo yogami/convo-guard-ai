@@ -26,7 +26,8 @@ export class IncidentReportRepository {
             });
 
         if (error) {
-            throw new Error(`Failed to save Incident Report: ${error.message}`);
+            console.warn(`Failed to save Incident Report to Supabase: ${error.message}. Falling back to memory.`);
+            this.memoryStore.set(report.id, report);
         }
     }
 
@@ -45,7 +46,10 @@ export class IncidentReportRepository {
             .order('created_at', { ascending: false });
 
         if (error) {
-            throw new Error(`Failed to fetch incidents: ${error.message}`);
+            console.warn(`Failed to fetch incidents from Supabase: ${error.message}. Falling back to memory.`);
+            return Array.from(this.memoryStore.values())
+                .filter(r => r.systemId === systemId)
+                .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
         }
 
         return data.map((row: any) => ({

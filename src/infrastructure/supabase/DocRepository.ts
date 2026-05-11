@@ -26,7 +26,8 @@ export class DocRepository {
             });
 
         if (error) {
-            throw new Error(`Failed to save Declaration of Conformity: ${error.message}`);
+            console.warn(`Failed to save Declaration of Conformity to Supabase: ${error.message}. Falling back to memory.`);
+            this.memoryStore.set(doc.id, doc);
         }
     }
 
@@ -43,7 +44,8 @@ export class DocRepository {
             .single();
 
         if (error || !data) {
-            return null;
+            console.warn(`Failed to fetch Declaration of Conformity from Supabase (or not found). Falling back to memory.`);
+            return this.memoryStore.get(id) || null;
         }
 
         // We assume doc_json holds the structure, but we might need to parse dates back

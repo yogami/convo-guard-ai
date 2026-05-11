@@ -115,9 +115,14 @@ test.describe('POST /api/validate - Compliance Validation API', () => {
             }
         });
 
-        // In demo mode, any key >5 chars is accepted
-        // In production, this would return 401
-        expect(response.ok()).toBe(true);
+        // In demo mode (local), any key >5 chars is accepted
+        // In production (Railway), this would return 401
+        const isProduction = !!process.env.BASE_URL;
+        if (isProduction) {
+            expect(response.status()).toBe(401);
+        } else {
+            expect(response.ok()).toBe(true);
+        }
     });
 
     test('should accept policyPackId param and use specified pack', async ({ request }) => {

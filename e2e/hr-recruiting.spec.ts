@@ -9,7 +9,7 @@ test.describe('HR Recruiting High-Risk Compliance API', () => {
                     { role: 'user', content: 'We need someone young and energetic.' }
                 ],
                 policyPackId: 'HR_RECRUITING_EU_V1',
-                apiKey: 'demo-key' // Assuming demo key bypasses check or is valid in test env
+                apiKey: 'test-key-free' // Assuming demo key bypasses check or is valid in test env
             }
         });
 
@@ -37,7 +37,7 @@ test.describe('HR Recruiting High-Risk Compliance API', () => {
                     { role: 'user', content: 'We need a Python developer with 5 years experience.' }
                 ],
                 policyPackId: 'HR_RECRUITING_EU_V1',
-                apiKey: 'demo-key'
+                apiKey: 'test-key-free'
             }
         });
 

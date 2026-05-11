@@ -17,7 +17,7 @@ test.describe('Adversarial Robustness API', () => {
             data: {
                 messages: [{ role: 'user', content: testCase.prompt }],
                 policyPackId: 'HR_RECRUITING_EU_V1',
-                apiKey: 'demo-key'
+                apiKey: 'test-key-free'
             }
         });
 
