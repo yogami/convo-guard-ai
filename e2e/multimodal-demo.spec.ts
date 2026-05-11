@@ -130,39 +130,13 @@ test.describe('AcmeTherapy Demo UI & XAI Flows', () => {
         await expect(page.locator('text=ISO 42001')).toBeVisible();
     });
 
-    test('should display CBT Protocol Fidelity and export SOAP note', async ({ page }) => {
+    test('should display Enterprise Operational Leverage props', async ({ page }) => {
         await page.goto('/dashboard');
 
-        // Verify the CBT Fidelity Scorecard is visible
-        await expect(page.locator('h3:has-text("CBT Protocol Fidelity")')).toBeVisible();
-        await expect(page.locator('text=94% Adherent')).toBeVisible();
-
-        // Verify drift tags are present
-        await expect(page.locator('text=✓ Psychoeducation')).toBeVisible();
-        await expect(page.locator('text=⚠️ Off-label Nutrition Drift')).toBeVisible();
-
-        // Verify the export section is visible
-        await expect(page.locator('text=CPT: 989X2 / ICD-10: F32.9')).toBeVisible();
-
-        // Verify SOAP Note Export functionality
-        const exportBtn = page.locator('button', { hasText: /^Generate SOAP Note$/ });
-        await expect(exportBtn).toBeVisible();
-
-        // Intercept download before clicking
-        const downloadPromise = page.waitForEvent('download');
-        
-        // Use a generic locator for the button to check state changes
-        const genericBtn = page.locator('button', { hasText: /Generate SOAP Note|Generating...|✓ Note Exported/ });
-        
-        await exportBtn.click();
-        
-        // Wait for generation delay
-        await expect(genericBtn).toHaveText('Generating...');
-        
-        const download = await downloadPromise;
-        expect(download.suggestedFilename()).toContain('SOAP_Note_Export_');
-
-        // Verify UI updates after export
-        await expect(genericBtn).toHaveText('✓ Note Exported');
+        // Verify the Enterprise Value Props are visible
+        await expect(page.locator('h3:has-text("Enterprise Operational Leverage")')).toBeVisible();
+        await expect(page.locator('h4:has-text("Automated AbEM Data Extraction")')).toBeVisible();
+        await expect(page.locator('h4:has-text("Strict Liability Risk Transfer (PLD)")')).toBeVisible();
+        await expect(page.locator('h4:has-text("AI-Augmented Medical Coding")')).toBeVisible();
     });
 });

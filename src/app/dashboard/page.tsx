@@ -13,7 +13,7 @@ import { LifecycleView } from './components/LifecycleView';
 import { CertificationStatus } from './components/CertificationStatus';
 import { IntentDriftGraph } from './components/IntentDriftGraph';
 import { ComplianceReplayViewer } from './components/ComplianceReplayViewer';
-import { CBTFidelityScorecard } from './components/CBTFidelityScorecard';
+import { EnterpriseValueProps } from './components/EnterpriseValueProps';
 
 export const dynamic = 'force-dynamic';
 
@@ -76,7 +76,7 @@ function DashboardContent() {
                         </section>
 
                         <section>
-                            <CBTFidelityScorecard />
+                            <EnterpriseValueProps />
                         </section>
 
                         <section>
